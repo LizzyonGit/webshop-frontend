@@ -10,11 +10,11 @@
 
 ---
 
-# ADR-[NUMMER]: [Kort titel på beslutet, t.ex. Val av State Management för Varukorg]
+# ADR-1: [Designsystem & UI]
 
 * **Status:** [ Föreslagen | Beslutad | Ersatt | Förkastad ]
-* **Datum:** 2026-XX-XX
-* **Deltagare:** [Namn på teammedlemmar som deltog i beslutet]
+* **Datum:** 2026-09-22
+* **Deltagare:** Leo, Lizzy, Patrick, Perjin, David
 * **Relaterad Issue/Ticket:** #[Issue-nummer på GitHub]
 
 ---
@@ -52,13 +52,12 @@
 ## 4. Konsekvenser
 
 ### Positiva konsekvenser
-* Teamet får en standardiserad metod för globalt state som kan återanvändas för eventuella andra funktioner (t.ex. notifikationer/toast).
-* Kunden får en modern köpupplevelse där korgen sparas mellan sessioner.
-* Enkelt att testa och mocka.
+* Teamet får ett standardiserat gränssnitt för applikationen som kan återanvändas för olika komponenter utan att behöva radera existerande Tailwind-kod.
+* Kunden får ett igenkännbart gränssnitt för alla sidor som kunden besöker.
+* Enkelt att ställa in och använda från första början.
 
 ### Negativa konsekvenser / Risker
-* Vi måste säkerställa att vi hanterar Hydration i Next.js så att vi inte renderar korgens innehåll innan klienten mountat (för att undvika hydration warnings).
-* Alla i gruppen måste förstå hur Zustands `useStore`-hook fungerar så att inte enbart en person kan arbeta med varukorgen.
+* Shadcn är nytt för teamet och kräver att vi sätter oss in i det innan vi börjar koda.
 
 ---
 
