@@ -150,7 +150,7 @@ För att särskilja ert erbjudande och skapa extra affärsvärde har kunden list
 * **Then** uppdateras URL:en till `?search=jacka` och endast produkter med "jacka" i titeln eller beskrivningen visas.
 * **And** om inga varor matchar visas ett tydligt meddelande: "Inga produkter matchade din sökning".
 
-Se [https://github.com/LizzyonGit/webshop-frontend/blob/main/userstories1.md]
+Se [https://github.com/LizzyonGit/webshop-frontend/blob/main/docs/userstories1.md]
 
 ---
 
