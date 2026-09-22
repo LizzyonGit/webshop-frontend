@@ -80,15 +80,15 @@ För att särskilja ert erbjudande och skapa extra affärsvärde har kunden list
 
 | Modul | Svårighetsgrad | Inriktning & Rekommendation |
 | :--- | :---: | :--- |
-| **📦 Persistent Varukorg**2 | 🟢 Lätt / Medel | Spara varukorgens innehåll mellan sidladdningar och sessioner.<br>*(Rekommenderat: **Zustand med persist-middleware** eller Cookies. Mycket tacksamt då det sker helt i kodbasen utan externa API-konton).* |
-| **🎨 Designsystem & UI**1 | 🟢 Lätt / Medel | Bygg ett enhetligt, tillgängligt och proffsigt gränssnitt.<br>*(Rekommenderat: **Shadcn/ui + Tailwind CSS**. Undvik att bygga all CSS från scratch för att spara tid).* |
-| **📨 Transaktionell E-post**3 | 🟢 Lätt / Medel | Fungerande kontaktformulär eller orderbekräftelse via Next.js Server Actions.<br>*(Rekommenderat: **Resend**. Extremt smidigt i Next.js och kräver inga krångliga SMTP-inställningar).* |
-| **🔐 Autentisering**6 | 🟡 Medel | Kundinloggning och skyddade rutter (*Mina sidor*, orderhistorik, favoriter).<br>*(Rekommenderat: **NextAuth**, **Kinde**, **BetterAuth** eller **Clerk** för snabbast och säkrast integration med Next.js App Router).* |
-| **💳 Betallösning**7 | 🟡 Medel | Simulera ett riktigt köpflöde i testläge.<br>*(Rekommenderat: **Stripe Hosted Checkout**. Kunden omdirigeras till Stripes säkra sida och tillbaka, vilket minimerar komplexitet).* |
-| **☁️ Databasmigration**4 | 🟡 Medel | Ersätt Fas 1:s JSON-server med en riktig molndatabas och ett modernt ORM.<br>*(Rekommenderat: **Supabase** eller **Neon PostgreSQL** kopplat med **Prisma** eller **Drizzle**).* |
-| **🌍 Cloud Deployment**5 | 🟡 Medel | Publik driftsättning i produktionsmiljö.<br>*(Rekommenderat: **Vercel**. **Obs:** Kräver att er datakälla finns online och inte på `localhost:3001`!)* |
-| **〽️ Prestandaoptimering**8 | 🔴 Avancerad | Avancerad strömning, skelettladdare och optimistiska gränssnittsuppdateringar.<br>*(Rekommenderat: **Suspense-boundaries**, `useOptimistic` och Server Actions).* |
-| **⚙️ Automatiserad Testning**9 | 🔴 Avancerad | E2E-testning av affärskritiska flöden (sök vara → öppna detaljsida → lägg i korg).<br>*(Rekommenderat: **Playwright**).* |
+| **📦 Persistent Varukorg** 2 | 🟢 Lätt / Medel | Spara varukorgens innehåll mellan sidladdningar och sessioner.<br>*(Rekommenderat: **Zustand med persist-middleware** eller Cookies. Mycket tacksamt då det sker helt i kodbasen utan externa API-konton).* |
+| **🎨 Designsystem & UI** 1 | 🟢 Lätt / Medel | Bygg ett enhetligt, tillgängligt och proffsigt gränssnitt.<br>*(Rekommenderat: **Shadcn/ui + Tailwind CSS**. Undvik att bygga all CSS från scratch för att spara tid).* |
+| **📨 Transaktionell E-post** 3 | 🟢 Lätt / Medel | Fungerande kontaktformulär eller orderbekräftelse via Next.js Server Actions.<br>*(Rekommenderat: **Resend**. Extremt smidigt i Next.js och kräver inga krångliga SMTP-inställningar).* |
+| **🔐 Autentisering** 6 | 🟡 Medel | Kundinloggning och skyddade rutter (*Mina sidor*, orderhistorik, favoriter).<br>*(Rekommenderat: **NextAuth**, **Kinde**, **BetterAuth** eller **Clerk** för snabbast och säkrast integration med Next.js App Router).* |
+| **💳 Betallösning** 7 | 🟡 Medel | Simulera ett riktigt köpflöde i testläge.<br>*(Rekommenderat: **Stripe Hosted Checkout**. Kunden omdirigeras till Stripes säkra sida och tillbaka, vilket minimerar komplexitet).* |
+| **☁️ Databasmigration** 4 | 🟡 Medel | Ersätt Fas 1:s JSON-server med en riktig molndatabas och ett modernt ORM.<br>*(Rekommenderat: **Supabase** eller **Neon PostgreSQL** kopplat med **Prisma** eller **Drizzle**).* |
+| **🌍 Cloud Deployment** 5 | 🟡 Medel | Publik driftsättning i produktionsmiljö.<br>*(Rekommenderat: **Vercel**. **Obs:** Kräver att er datakälla finns online och inte på `localhost:3001`!)* |
+| **〽️ Prestandaoptimering** 8 | 🔴 Avancerad | Avancerad strömning, skelettladdare och optimistiska gränssnittsuppdateringar.<br>*(Rekommenderat: **Suspense-boundaries**, `useOptimistic` och Server Actions).* |
+| **⚙️ Automatiserad Testning** 9 | 🔴 Avancerad | E2E-testning av affärskritiska flöden (sök vara → öppna detaljsida → lägg i korg).<br>*(Rekommenderat: **Playwright**).* |
 
 > ⚠️ **Arkitekturtips inför val av moduler:**  
 > * **Säkra kort utan externa konton:** Om ni känner er osäkra eller vill minimera beroenden, välj **Persistent Varukorg (Zustand)** och **Designsystem (Shadcn/ui)**.  
