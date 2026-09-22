@@ -12,7 +12,7 @@
 
 # ADR-1: [Designsystem & UI]
 
-* **Status:** [ Föreslagen | Beslutad | Ersatt | Förkastad ]
+* **Status:** [ ~~Föreslagen~~ | Beslutad | ~~Ersatt | Förkastad~~ ]
 * **Datum:** 2026-09-22
 * **Deltagare:** Leo, Lizzy, Patrick, Perjin, David
 * **Relaterad Issue/Ticket:** #[Issue-nummer på GitHub]
@@ -22,31 +22,26 @@
 ## 1. Kontext & Problemställning
 *Vilken utmaning eller vilket behov står vi inför? Vilka krav och begränsningar styr oss?*
 
-*Exempel: Vi behöver hantera kundens varukorg i webbshoppen. Korgen ska kunna uppdateras från flera olika komponenter (produktsida, navbar-ikon, kassa) och användarens varor ska helst inte försvinna vid en sidomladdning. Vi måste bestämma hur vi hanterar detta tillstånd i Next.js App Router.*
+*Vi behöver enhetlig styling.*
 
 ---
 
 ## 2. Övervägda Alternativ
 
-### Alternativ A: [t.ex. React Context API med LocalStorage]
-* **Fördelar:** Inbyggt i React, inga externa beroenden, enkelt att komma igång med.
-* **Nackdelar:** Kan orsaka onödiga omrenderingar vid frekventa uppdateringar, kräver manuell hantering av SSR/hydration mismatch vid synk mot LocalStorage.
+### Alternativ A: ingen shadcn/ui (ren css/Tailwind)
+* **Fördelar:** Vi behöver inte lägga tid på att sätta oss in i det
+* **Nackdelar:** Vi ska hantera enhetlighet på ett annat sätt ändå
+### Alternativ B: shadcn/ui med Tailwind/css
+* **Fördelar:** Lätt att det blir enhetlig styling
+* **Nackdelar:** Tar tid att sätta oss in i det.
 
-### Alternativ B: [t.ex. Zustand med persist-middleware]
-* **Fördelar:** Lättviktigt (under 2kB), mycket snabbt, friktionsfri selector-modell som minimerar omrenderingar, inbyggt stöd för att persistera till LocalStorage eller Cookies.
-* **Nackdelar:** Ett extra npm-paket att underhålla och lära sig.
-
-### Alternativ C: [t.ex. Server State med Cookies och Server Actions]
-* **Fördelar:** Fungerar sömlöst med Server Components och kräver minimal JavaScript på klienten.
-* **Nackdelar:** Mer komplext att implementera för snabba UI-uppdateringar utan fördröjning om inte optimistiska uppdateringar används.
 
 ---
 
 ## 3. Beslut
 *Vilket alternativ valde vi och varför?*
 
-*Exempel: Vi beslutar att använda **Alternativ B: Zustand med persist-middleware**. Detta ger oss ett flexibelt, globalt state som fungerar smidigt i våra Client Components, samtidigt som vi undviker boilerplate och får persistent varukorg "out of the box".*
-
+*Exempel: Vi beslutar att använda **Alternativ B: shadcn/ui med Tailwind/css**. Detta ger oss ett ramverk som vi kan bygga vår enhetliga styling på. Vi lär oss ett nytt sätt att styla komponenter på.*
 ---
 
 ## 4. Konsekvenser
@@ -64,7 +59,6 @@
 ## 5. Hur vi verifierar beslutet
 *Hur vet vi att beslutet var lyckat?*
 
-* [ ] Varor kan läggas till och tas bort från både produktsida och kassa.
-* [ ] Antalet varor i navbar-badgen uppdateras omedelbart utan sidomladdning.
-* [ ] Varukorgens innehåll finns kvar efter att sidan laddats om (`F5`).
-* [ ] Inga Hydration-varningar syns i webbläsarkonsolen.
+* [ ] Bra överblick av stylingkomponenter
+* [ ] Enghetlig styling utan för mycket eget CSS
+* [ ] Återanvända komponenter
