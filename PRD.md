@@ -110,9 +110,9 @@ För att särskilja ert erbjudande och skapa extra affärsvärde har kunden list
 > 3. Kopiera över den valda koden från Fas 1 och pusha som er första commit (`Initial commit from Phase 1`).  
 > 4. Lägg in detta dokument (`PRD.md`), `kontrakt.md` och `docs/` i repot.
 
-* **Vald Fas 1-kodbas:** Bygger på kod skriven av `[Grupp 2 / Repolänk till Fas 1https://github.com/sandrauddman/agileProjectGrupp2
- ]`
-* **Nytt gemensamt GitHub-repo:** `[[Länk till gruppens nya GitHub-repo]](https://github.com/LizzyonGit/webshop-frontend)`
+* **Vald Fas 1-kodbas:** Bygger på kod skriven av Grupp 2 / Repolänk till Fas 1 [https://github.com/sandrauddman/agileProjectGrupp2]
+
+* **Nytt gemensamt GitHub-repo:** (Länk till gruppens nya GitHub-repo)[https://github.com/LizzyonGit/webshop-frontend]
 * **Eventuella städnings- eller refaktoreringsbehov i basen innan start:**
   - `[Beskriv kort vad som behöver fixas, t.ex. rensa död kod, städa CSS, fixa datastruktur]`
 
@@ -150,25 +150,7 @@ För att särskilja ert erbjudande och skapa extra affärsvärde har kunden list
 * **Then** uppdateras URL:en till `?search=jacka` och endast produkter med "jacka" i titeln eller beskrivningen visas.
 * **And** om inga varor matchar visas ett tydligt meddelande: "Inga produkter matchade din sökning".
 
-#### User Story 2: [Fyll i er egen]
-* **Som en** `[roll]`
-* **vill jag** `[handling]`
-* **så att** `[nytta]`
-
-**Acceptanskriterier:**
-* **Given** `...`
-* **When** `...`
-* **Then** `...`
-
-#### User Story 3: [Fyll i er egen]
-* **Som en** `[roll]`
-* **vill jag** `[handling]`
-* **så att** `[nytta]`
-
-**Acceptanskriterier:**
-* **Given** `...`
-* **When** `...`
-* **Then** `...`
+Se [https://github.com/LizzyonGit/webshop-frontend/blob/main/userstories1.md]
 
 ---
 
@@ -190,12 +172,13 @@ För att särskilja ert erbjudande och skapa extra affärsvärde har kunden list
 ### 5.5 Teamets Definition of Done (DoD)
 *Vad krävs i er grupp för att en Issue/Ticket ska få flyttas till "Done"? (Kryssa i och anpassa)*:
 
-* [ ] Koden löser den specificerade User Storyn och uppfyller acceptanskriterierna.
-* [ ] Koden är testad lokalt och bygger utan fel (`npm run build`).
-* [ ] Inga TypeScript- eller lint-fel i terminalen.
-* [ ] Pull Request är skapad och granskad (Code Review) av minst en annan teammedlem.
-* [ ] Mergad till `main`-branchen.
-* [ ] Relaterad issue är stängd i GitHub Projects.
+* [x] Koden löser den specificerade User Storyn och uppfyller acceptanskriterierna.
+* [x] Koden är testad lokalt och bygger utan fel (`npm run build`).
+* [x] Inga TypeScript- eller lint-fel i terminalen.
+* [x] Pull Request är skapad och granskad (Code Review) av minst en annan teammedlem.
+* [x] Mergad till `main`-branchen.
+* [x] Relaterad issue är stängd i GitHub Projects.
+* [x] Ansvariga har informerat alla på Teamskanalen.
 
 ---
 
@@ -207,10 +190,10 @@ Grupperna förväntas arbeta enligt agila principer med sprintar, backlog i GitH
 
 | Period | Huvudfokus | Mål & Leverans |
 | :--- | :--- | :--- |
-| **Vecka 39 (21/9 – 25/9)** | **Uppstart, Kontrakt & Specifikation** | • Gruppkontrakt signerat.<br>• Val av Fas 1-kodbas fastställt.<br>• PRD-sektionerna ovan ifyllda.<br>• **Senast fredag 25/9:** Kanban-board / GitHub Projects uppsatt med brutna tickets redo för sprintstart nästa vecka. |
-| **Vecka 40 (28/9 – 2/10)** | **Sprint: MVP-Utveckling** | • Kodning startar i full skala!<br>• Implementering av rutnät, detaljsida, sök/filter och paginering.<br>• **Mål slutet av v.40 (~2/10):** Feature Freeze för grundläggande MVP-krav. |
-| **Vecka 41 (5/10 – 9/10)** | **Sprint: Fördjupning & Förfining** | • Implementering av era valda fördjupningsmoduler.<br>• Refaktorering av kodbasen, styling och UI-puts.<br>• Skriva färdigt ADR-dokumentation i `docs/`. |
-| **Vecka 42 (12/10 – 13/10)** | **Slutleverans & Redovisning** | • **Måndag 12/10:** Total Code Freeze, finslipning av `README.md`, förberedelse och testkörning av presentationen.<br>• **Tisdag 13/10:** Slutredovisningar enligt [redovisningsinstruktionen](file:///c:/docLocal/Lexicon/FE26/grupparbete/redovisning.md). |
+| **Vecka 39 (21/9 – 25/9)** | **Uppstart, Kontrakt & Specifikation** | • Gruppkontrakt signerat.<br>• Val av Fas 1-kodbas fastställt.<br>• PRD-sektionerna ovan ifyllda.<br>• **Senast fredag 25/9:** Kanban-board / GitHub Projects uppsatt med brutna tickets redo för sprintstart nästa vecka. <br>-Scrummaster Perjin|
+| **Vecka 40 (28/9 – 2/10)** | **Sprint: MVP-Utveckling** | • Kodning startar i full skala!<br>• Implementering av rutnät, detaljsida, sök/filter och paginering.<br>• **Mål slutet av v.40 (~2/10):** Feature Freeze för grundläggande MVP-krav.<br>-Scrummaster Leo, Lizzy |
+| **Vecka 41 (5/10 – 9/10)** | **Sprint: Fördjupning & Förfining** | • Implementering av era valda fördjupningsmoduler.<br>• Refaktorering av kodbasen, styling och UI-puts.<br>• Skriva färdigt ADR-dokumentation i `docs/`.<br> -Scrummaster David |
+| **Vecka 42 (12/10 – 13/10)** | **Slutleverans & Redovisning** | • **Måndag 12/10:** Total Code Freeze, finslipning av `README.md`, förberedelse och testkörning av presentationen.<br>• **Tisdag 13/10:** Slutredovisningar enligt [redovisningsinstruktionen](file:///c:/docLocal/Lexicon/FE26/grupparbete/redovisning.md). <br> -Scrummaster Patrik|
 
 ---
 
