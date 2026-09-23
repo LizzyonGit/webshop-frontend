@@ -117,6 +117,7 @@ För att särskilja ert erbjudande och skapa extra affärsvärde har kunden list
   - `Uppdatera page.tsx`
   - `Flytta de gamla komponenterna till admin-katalog`
   - `Flytta de gamla sidorna till admin-katalog`
+  - `Flytta services till admin-katalogen`
 
 ---
 
