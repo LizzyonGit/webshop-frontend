@@ -114,7 +114,9 @@ För att särskilja ert erbjudande och skapa extra affärsvärde har kunden list
 
 * **Nytt gemensamt GitHub-repo:** (Länk till gruppens nya GitHub-repo)[https://github.com/LizzyonGit/webshop-frontend]
 * **Eventuella städnings- eller refaktoreringsbehov i basen innan start:**
-  - `[Beskriv kort vad som behöver fixas, t.ex. rensa död kod, städa CSS, fixa datastruktur]`
+  - `Uppdatera page.tsx`
+  - `Flytta de gamla komponenterna till admin-katalog`
+  - `Flytta de gamla sidorna till admin-katalog`
 
 ---
 
