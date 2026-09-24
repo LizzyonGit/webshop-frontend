@@ -19,7 +19,7 @@ För att skapa ett tryggt och förutsägbart arbetsklimat har vi kommit överens
   1. *Vad gjorde jag igår?*
   2. *Vad ska jag göra idag?*
   3. *Har jag några hinder (blockers) där jag behöver hjälp?*
-  * **Vår spikade standup-tid:** Kl. **[08:30]**
+  * **Vår spikade standup-tid:** Kl. **[08:45]**
 * **Kärntid:** Vi förväntas vara tillgängliga för samarbete, parprogrammering och snabba frågor i **gruppens Teams-kanal** mellan kl. **[09:00]** och **[16:00]**.
 * **Frånvaro & Förhinder:** Om någon blir sjuk eller får förhinder ska detta meddelas i **gruppens Teams-kanal** senast **30 minuter innan vår valda standup-tid**.
 * **Ambitionsnivå i gruppen:**  
