@@ -4,7 +4,7 @@ import ProductDeleteButton from '@/components/product-delete-button';
 import ProductEditButton from '@/components/product-edit-button';
 
 //Actions
-import { deleteProduct } from '@/actions/product-action';
+import { deleteProduct } from '@/actions/admin/product-action';
 
 //Types
 import type { Category, Product } from '@/app/types';
