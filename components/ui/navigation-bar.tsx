@@ -16,7 +16,22 @@ export default function NavigationBar() {
                     <NavigationMenuLink
                     render={<Link href="/" />}
                     className={navigationMenuTriggerStyle()}
-                    >Home
+                    >Sky Market (+ logo)
+                    </NavigationMenuLink>
+                    <NavigationMenuLink
+                    render={<Link href="/" />}
+                    className={navigationMenuTriggerStyle()}
+                    >Products (ev. replace with NavigationMenuTrigger that displays all products)
+                    </NavigationMenuLink>
+                    <NavigationMenuLink
+                    render={<Link href="/" />}
+                    className={navigationMenuTriggerStyle()}
+                    >Contact
+                    </NavigationMenuLink>
+                    <NavigationMenuLink
+                    render={<Link href="/" />}
+                    className={navigationMenuTriggerStyle()}
+                    >Your Cart (insert logo)
                     </NavigationMenuLink>
                 </NavigationMenuItem>
             </NavigationMenuList>
