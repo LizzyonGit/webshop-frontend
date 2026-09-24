@@ -3,10 +3,10 @@ import ProductService from '@/services/product-service';
 import CategoryService from '@/services/category-service';
 
 //Components
-import ProductListComponent from '@/components/product-list';
-import Header from '@/components/header';
-import InventoryStatistics from '@/components/inventory-statistics';
-import SearchForm from '@/components/search-form';
+import ProductListComponent from '@/components/admin/product-list';
+import Header from '@/components/admin/header';
+import InventoryStatistics from '@/components/admin/inventory-statistics';
+import SearchForm from '@/components/admin/search-form';
 
 type PageProps = {
   searchParams: Promise<{
