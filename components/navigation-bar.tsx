@@ -1,5 +1,5 @@
+import Image from "next/image";
 import Link from "next/link";
-
 import { 
     NavigationMenu,
     NavigationMenuItem, 
@@ -7,7 +7,6 @@ import {
     NavigationMenuList,
     navigationMenuTriggerStyle    
 } from "./ui/navigation-menu";
-import Image from "next/image";
 
 export default function NavigationBar() {
     return (
