@@ -34,6 +34,10 @@ export default class ProductService {
     }
   }
 
+  
+  
+
+
   //DELETE: Product
   static async deleteProduct(productId: number): Promise<ProductDeleteResponse> {
     try {
