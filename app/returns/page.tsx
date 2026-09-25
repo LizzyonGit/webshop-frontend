@@ -1,4 +1,4 @@
-export default function returnsPage() {
+export default function ReturnsPage() {
   return (
     <main className="bg-background text-foreground">
       <div className="mx-auto max-w-7xl px-6 py-16">
