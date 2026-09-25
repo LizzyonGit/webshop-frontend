@@ -5,8 +5,12 @@ import {
   Card,
   CardContent,
   CardFooter,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge";
+
+
 
 
 export default async function ProductsTable(){
@@ -18,37 +22,48 @@ export default async function ProductsTable(){
     
 
     return(
+        <div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {products.map((product) =>  (
-            <Card key={product.id} className="overflow-hidden">
+            <Card key={product.id}>
                 <div className="relative aspect-square">
                     <Image
-                    src={product.thumbnail}
+                    src={product.images[0]} //take first image
                     alt={product.title}
                     fill
                     className="object-cover"
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"/>
                 </div>
-                <CardContent className="p-4">
-            <Badge variant="secondary">
-              product.category
-              
-            </Badge>
+                
+                <CardHeader><CardTitle className="flex">
+            
 
-            <h2 className="mt-3 text-lg font-semibold">
+            
                       
             
-                {product.title}</h2>
-          </CardContent>
+                {product.title}<Badge variant="default" className="ml-auto">
+              {product.category?.name}
+              
+            </Badge>
+                </CardTitle>
+                
+          </CardHeader>
 
-          <CardFooter className="p-4 pt-0">
-            <p className="text-lg font-medium">
-              ${product.price.toFixed(2)}
-            </p>
-          </CardFooter>
+          <CardContent>
+            
+            
+              €{product.price}
+            
+          </CardContent>
+          <CardFooter>Knapp?</CardFooter>
         </Card>
                 ))}  
         
+
+
         </div>
+                
+
+</div>
     )
 }

@@ -2,7 +2,7 @@ import type { ApiResponse, ApiSuccessResponse, Product, ProductDeleteResponse, P
 import { errorResponse } from '@/utils/error-response';
 
 const API_URL = 'http://localhost:4000';
-const defaultLimit = '6';
+const defaultLimit = '30';
 
 export default class ProductService {
   // GET: Products
