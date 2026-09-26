@@ -1,122 +1,43 @@
-"use client";
+import Link from 'next/link';
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
+import { User } from 'lucide-react';
+import LoginForm from '@/components/forms/user/login-form';
+import { getSession } from '@/lib/auth-guard';
+import { redirect } from 'next/navigation';
 
-import { authClient } from "@/lib/auth-client";
-import { loginSchema } from "@/lib/validation/user";
+export default async function LoginPage() {
+  const session = await getSession();
 
-export default function LoginPage() {
-    const router = useRouter();
+  //If you already logged in redirect to home.
+  if (session) {
+    redirect('/');
+  }
 
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  return (
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden">
+      <div className="w-full max-w-md rounded-2xl border p-8 shadow-lg">
+        <div className="mb-8 text-center">
+          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#C09721]/40 bg-[#2A2414] shadow-[0_0_24px_rgba(192,151,33,0.08)]">
+            <User className="h-6 w-6 text-white" strokeWidth={1.6} />
+          </div>
 
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
+          <h1 className="text-2xl font-semibold text-gray-600">Account login</h1>
+        </div>
 
-    async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
-        event.preventDefault();
-
-        setError("");
-
-        const validation = loginSchema.safeParse({
-            email,
-            password,
-        });
-
-        if (!validation.success) {
-            setError(
-                validation.error.issues[0]?.message ??
-                "Invalid login information."
-            );
-            return;
-        }
-
-        setLoading(true);
-
-        try {
-            const result = await authClient.signIn.email({
-                email: validation.data.email,
-                password: validation.data.password,
-            });
-
-            if (result.error) {
-                setError(
-                    result.error.message ??
-                    "Invalid email or password."
-                );
-                return;
-            }
-
-            router.push("/dashboard");
-            router.refresh();
-        } catch {
-            setError("Something went wrong. Please try again.");
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    return (
-        <main className="flex min-h-screen items-center justify-center p-6">
-            <div className="w-full max-w-md">
-                <h1 className="mb-6 text-3xl font-bold">
-                    Login
-                </h1>
-
-                <form
-                    onSubmit={handleSubmit}
-                    className="flex flex-col gap-4"
-                >
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
-                        autoComplete="email"
-                        required
-                        className="border p-3"
-                    />
-
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(event) =>
-                            setPassword(event.target.value)
-                        }
-                        autoComplete="current-password"
-                        required
-                        className="border p-3"
-                    />
-
-                    {error && (
-                        <p className="text-sm text-red-600">
-                            {error}
-                        </p>
-                    )}
-
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="bg-black p-3 text-white disabled:opacity-50"
-                    >
-                        {loading ? "Logging in..." : "Login"}
-                    </button>
-                </form>
-
-                <p className="mt-6 text-sm">
-                    Don't have an account?{" "}
-                    <Link
-                        href="/signup"
-                        className="underline"
-                    >
-                        Sign up
-                    </Link>
-                </p>
-            </div>
-        </main>
-    );
+        <LoginForm />
+        <footer className="mt-5 grid grid-cols-1 gap-2 text-grey-700">
+          <p className="text-center text-sm">
+            <Link href="/account/register" className="font-medium transition-colors duration-200 hover:text-gray-600 hover:underline hover:underline-offset-4">
+              Create account
+            </Link>
+          </p>
+          <p className="text-center text-sm">
+            <Link href="/account/forgot-password" className="font-medium transition-colors duration-200 hover:text-gray-600 hover:underline hover:underline-offset-4">
+              Forgot your password?
+            </Link>
+          </p>
+        </footer>
+      </div>
+    </main>
+  );
 }
