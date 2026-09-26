@@ -25,7 +25,7 @@ export async function forgotPasswordAction(formData: FormData): Promise<ActionRe
       headers: await headers(),
       body: {
         email,
-        redirectTo: '/account/reset-password',
+        redirectTo: '/reset-password',
       },
     });
 
