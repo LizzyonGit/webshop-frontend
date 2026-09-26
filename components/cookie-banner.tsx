@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { Button } from '@/components/ui/button';
 
 export default function CookieBanner() {
   const [showBanner, setShowBanner] = useState<boolean | null>(null);
@@ -34,13 +35,15 @@ export default function CookieBanner() {
       </div>
 
       <div className="mt-5 flex justify-center gap-3">
-        <button type="button" onClick={declineCookie} className="rounded-xl border border-b-gray-600 px-5 py-2.5 text-sm font-medium text-black-600 transition hover:bg-gray-100">
-          Neka
-        </button>
+        <div className="mt-5 flex justify-center gap-3">
+          <Button type="button" variant="secondary" onClick={declineCookie}>
+            Neka
+          </Button>
 
-        <button type="button" onClick={acceptCookie} className="rounded-xl bg-black px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-gray-950">
-          Acceptera
-        </button>
+          <Button type="button" variant="default" onClick={acceptCookie}>
+            Acceptera
+          </Button>
+        </div>
       </div>
     </aside>
   );
