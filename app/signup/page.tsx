@@ -1,135 +1,34 @@
-"use client";
+import Link from 'next/link';
 
-import React, { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-
-import { authClient } from "@/lib/auth-client";
-import { signUpSchema } from "@/lib/validation/user";
+import { User } from 'lucide-react';
+import SignUpForm from '@/components/forms/user/sign-up-form';
 
 export default function SignupPage() {
-    const router = useRouter();
+  return (
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden">
+      <div className="w-full max-w-md rounded-2xl border p-8 shadow-lg">
+        <div className="mb-8 text-center">
+          <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#C09721]/40 bg-[#2A2414] shadow-[0_0_24px_rgba(192,151,33,0.08)]">
+            <User className="h-6 w-6 text-white" strokeWidth={1.6} />
+          </div>
 
-    const [name, setName] = useState("");
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+          <h1 className="text-2xl font-semibold text-gray-600">Register user</h1>
+        </div>
 
-    const [error, setError] = useState("");
-    const [loading, setLoading] = useState(false);
-
-    async function handleSubmit(event: React.SubmitEvent<HTMLFormElement>) {
-        event.preventDefault();
-
-        setError("");
-
-        const validation = signUpSchema.safeParse({
-            name,
-            email,
-            password,
-        });
-
-        if (!validation.success) {
-            setError(
-                validation.error.issues[0]?.message ??
-                "Invalid signup information."
-            );
-            return;
-        }
-
-        setLoading(true);
-
-        try {
-            const result = await authClient.signUp.email({
-                name: validation.data.name,
-                email: validation.data.email,
-                password: validation.data.password,
-            });
-
-            if (result.error) {
-                setError(
-                    result.error.message ??
-                    "Unable to create your account."
-                );
-                return;
-            }
-
-            router.push("/dashboard");
-            router.refresh();
-        } catch {
-            setError("Something went wrong. Please try again.");
-        } finally {
-            setLoading(false);
-        }
-    }
-
-    return (
-        <main className="flex min-h-screen items-center justify-center p-6">
-            <div className="w-full max-w-md">
-                <h1 className="mb-6 text-3xl font-bold">
-                    Create account
-                </h1>
-
-                <form
-                    onSubmit={handleSubmit}
-                    className="flex flex-col gap-4"
-                >
-                    <input
-                        type="text"
-                        placeholder="Name"
-                        value={name}
-                        onChange={(event) => setName(event.target.value)}
-                        autoComplete="name"
-                        required
-                        className="border p-3"
-                    />
-
-                    <input
-                        type="email"
-                        placeholder="Email"
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
-                        autoComplete="email"
-                        required
-                        className="border p-3"
-                    />
-
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(event) =>
-                            setPassword(event.target.value)
-                        }
-                        autoComplete="new-password"
-                        required
-                        className="border p-3"
-                    />
-
-                    {error && (
-                        <p className="text-sm text-red-600">
-                            {error}
-                        </p>
-                    )}
-
-                    <button
-                        type="submit"
-                        disabled={loading}
-                        className="bg-black p-3 text-white disabled:opacity-50"
-                    >
-                        {loading ? "Creating account..." : "Sign up"}
-                    </button>
-                </form>
-
-                <p className="mt-6 text-sm">
-                    Already have an account?{" "}
-                    <Link
-                        href="/login"
-                        className="underline"
-                    >
-                        Login
-                    </Link>
-                </p>
-            </div>
-        </main>
-    );
+        <SignUpForm />
+        <footer className="mt-5 grid grid-cols-1 gap-2 text-grey-700">
+          <p className="text-center text-sm">
+            <Link href="/account/register" className="font-medium transition-colors duration-200 hover:text-gray-600 hover:underline hover:underline-offset-4">
+              Create account
+            </Link>
+          </p>
+          <p className="text-center text-sm">
+            <Link href="/account/forgot-password" className="font-medium transition-colors duration-200 hover:text-gray-600 hover:underline hover:underline-offset-4">
+              Forgot your password?
+            </Link>
+          </p>
+        </footer>
+      </div>
+    </main>
+  );
 }
