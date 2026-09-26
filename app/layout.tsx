@@ -3,11 +3,13 @@ import { Geist, Geist_Mono, Inter, Nunito_Sans, Noto_Sans } from 'next/font/goog
 import './globals.css';
 
 import { Toaster } from 'sonner';
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
-const notoSansHeading = Noto_Sans({subsets:['latin'],variable:'--font-heading'});
+const notoSansHeading = Noto_Sans({ subsets: ['latin'], variable: '--font-heading' });
 
-const nunitoSans = Nunito_Sans({subsets:['latin'],variable:'--font-sans'});
+const nunitoSans = Nunito_Sans({ subsets: ['latin'], variable: '--font-sans' });
+
+import CookieBanner from '@/components/cookie-banner';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -36,10 +38,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={cn("h-full", "antialiased", geistSans.variable, geistMono.variable, inter.variable, "font-sans", nunitoSans.variable, notoSansHeading.variable)}>
+    <html lang="en" className={cn('h-full', 'antialiased', geistSans.variable, geistMono.variable, inter.variable, 'font-sans', nunitoSans.variable, notoSansHeading.variable)}>
       <body className="min-h-full flex flex-col">
         {children}
         <Toaster richColors position="top-right" />
+        <CookieBanner />
       </body>
     </html>
   );
