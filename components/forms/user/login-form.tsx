@@ -6,8 +6,8 @@ import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
 import { Mail, LockKeyhole } from 'lucide-react';
 import { signInEmailAction } from '@/actions/user/sign-in-email-action';
-import FormField from '../../ui/form-field';
-import Input from '../../ui/input';
+import FormField from '@/components/ui/form-field';
+import Input from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
 export default function LoginForm() {
@@ -26,8 +26,6 @@ export default function LoginForm() {
 
     setPending(true);
     setErrors({});
-
-    alert('Körs!');
 
     try {
       const formData = new FormData(evt.currentTarget);
