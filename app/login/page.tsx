@@ -27,12 +27,12 @@ export default async function LoginPage() {
         <LoginForm />
         <footer className="mt-5 grid grid-cols-1 gap-2 text-grey-700">
           <p className="text-center text-sm">
-            <Link href="/account/register" className="font-medium transition-colors duration-200 hover:text-gray-600 hover:underline hover:underline-offset-4">
+            <Link href="/signup" className="font-medium transition-colors duration-200 hover:text-gray-600 hover:underline hover:underline-offset-4">
               Create account
             </Link>
           </p>
           <p className="text-center text-sm">
-            <Link href="/account/forgot-password" className="font-medium transition-colors duration-200 hover:text-gray-600 hover:underline hover:underline-offset-4">
+            <Link href="/forgot-password" className="font-medium transition-colors duration-200 hover:text-gray-600 hover:underline hover:underline-offset-4">
               Forgot your password?
             </Link>
           </p>

@@ -15,8 +15,6 @@ export async function signInEmailAction(formData: FormData): Promise<ActionRespo
     password,
   });
 
-  console.log('Validation', validation);
-
   if (!validation.success) {
     return {
       success: false,

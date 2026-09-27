@@ -15,7 +15,7 @@ export default function ForgotPasswordPage() {
         </div>
 
         <ForgotPasswordForm />
-        <footer className="mt-5 grid grid-cols-1 gap-2 text-[#b5b0a3]">
+        <footer className="mt-5 grid grid-cols-1 gap-2 text-grey-700">
           <p className="text-center text-sm">
             <Link href="/login" className="font-medium transition-colors duration-200 hover:text-gray-600 hover:underline hover:underline-offset-4">
               Go back to login

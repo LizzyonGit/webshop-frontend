@@ -1,24 +1,49 @@
-import { betterAuth } from "better-auth";
-import { prismaAdapter } from "better-auth/adapters/prisma";
-import { prisma } from "@/lib/prisma";
+import { betterAuth } from 'better-auth';
+import { prismaAdapter } from 'better-auth/adapters/prisma';
+import { prisma } from '@/lib/prisma';
+import { resetPasswordEmail } from '@/lib/email-templates/reset-password-email';
+import { sendEmail } from '@/lib/resend';
 
 export const auth = betterAuth({
-    database: prismaAdapter(prisma, {
-        provider: "postgresql",
-    }),
+  database: prismaAdapter(prisma, {
+    provider: 'postgresql',
+  }),
 
-    emailAndPassword: {
-        enabled: true,
+  emailAndPassword: {
+    enabled: true,
+    // Send reset password email
+    sendResetPassword: async ({ user, url }) => {
+      //TDO: Add sky market loggo to env file.
+      const logoUrl = process.env.NEXT_PUBLIC_LOGO_URL;
+
+      if (!logoUrl) {
+        throw new Error('NEXT_PUBLIC_LOGO_URL is missing');
+      }
+
+      await sendEmail({
+        to: user.email,
+        subject: 'Reset your Dine Menu password',
+
+        html: resetPasswordEmail({
+          userName: user.name || 'there',
+          resetUrl: url,
+          logoUrl,
+        }),
+      });
     },
 
-    user: {
-        additionalFields: {
-            role: {
-                type: ["USER", "ADMIN"],
-                required: false,
-                defaultValue: "USER",
-                input: false,
-            },
-        },
+    // Revoke sessions after password reset
+    revokeSessionsOnPasswordReset: true,
+  },
+
+  user: {
+    additionalFields: {
+      role: {
+        type: ['USER', 'ADMIN'],
+        required: false,
+        defaultValue: 'USER',
+        input: false,
+      },
     },
+  },
 });

@@ -33,6 +33,7 @@ export default function ForgotPasswordForm() {
       const formData = new FormData(evt.currentTarget);
       const result = await forgotPasswordAction(formData);
 
+      console.log(result);
       if (!result.success) {
         toast.error(result.message, { duration: 1000 });
 
@@ -80,7 +81,9 @@ export default function ForgotPasswordForm() {
       </FormField>
 
       {/* Submit */}
-      <Button disabled={isPending}>{isPending ? 'Sending...' : 'Send Reset Link'}</Button>
+      <Button type="submit" disabled={isPending}>
+        {isPending ? 'Sending...' : 'Send Reset Link'}
+      </Button>
     </form>
   );
 }
