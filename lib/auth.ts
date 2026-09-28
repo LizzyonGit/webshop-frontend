@@ -14,15 +14,11 @@ export const auth = betterAuth({
     // Send reset password email
     sendResetPassword: async ({ user, url }) => {
       //TDO: Add sky market loggo to env file.
-      const logoUrl = process.env.NEXT_PUBLIC_LOGO_URL;
-
-      if (!logoUrl) {
-        throw new Error('NEXT_PUBLIC_LOGO_URL is missing');
-      }
+      const logoUrl = process.env.NEXT_PUBLIC_LOGO_URL ?? '';
 
       await sendEmail({
         to: user.email,
-        subject: 'Reset your Dine Menu password',
+        subject: 'Reset your Sky Market password',
 
         html: resetPasswordEmail({
           userName: user.name || 'there',

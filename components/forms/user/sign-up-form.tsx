@@ -42,8 +42,8 @@ export default function SignUpForm() {
         return;
       }
 
-      router.replace('/');
-      router.refresh();
+      toast.success(result.message);
+      router.push('/');
       return toast.success(result.message);
     } catch (error) {
       console.error('Register user form error:', error);
@@ -120,7 +120,9 @@ export default function SignUpForm() {
 
       {/* General error */}
       {error && <p className="rounded-lg bg-red-50 p-3 text-sm text-red-600">{error}</p>}
-      <Button disabled={isPending}>{isPending ? 'Registering...' : 'Register account'}</Button>
+      <Button type="submit" disabled={isPending}>
+        {isPending ? 'Registering...' : 'Register account'}
+      </Button>
     </form>
   );
 }

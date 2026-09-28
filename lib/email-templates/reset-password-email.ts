@@ -35,7 +35,7 @@ export function resetPasswordEmail({ userName, resetUrl, logoUrl }: ResetPasswor
                   <td align="center" style="padding-bottom: 30px;">
                     <img
                       src="${logoUrlImg}"
-                      alt="Dine Menu"
+                      alt="Sky Market"
                       width="180"
                       border="0"
                       style="
