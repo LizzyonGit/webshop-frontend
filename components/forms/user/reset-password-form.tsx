@@ -120,7 +120,9 @@ export default function ResetPasswordForm() {
       </FormField>
 
       {/* Submit */}
-      <Button disabled={isPending}>{isPending ? 'Logging in...' : 'Login'}</Button>
+      <Button type="submit" disabled={isPending}>
+        {isPending ? 'Logging in...' : 'Login'}
+      </Button>
     </form>
   );
 }
