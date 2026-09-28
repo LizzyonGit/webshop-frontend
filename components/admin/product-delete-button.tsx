@@ -4,9 +4,9 @@ import { Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 type Props = {
-  productId: number;
+  productId: string;
   productTitle: string;
-  deleteProduct: (productId: number) => Promise<{
+  deleteProduct: (productId: string) => Promise<{
     success: boolean;
     message: string;
   }>;

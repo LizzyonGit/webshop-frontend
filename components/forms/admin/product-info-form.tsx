@@ -1,4 +1,6 @@
-import { Category, Product } from '@/app/types';
+//Types
+import type { Product } from '@/types/product';
+import type { Category } from '@/app/types';
 
 type Props = {
   categories: Category[];
@@ -14,13 +16,7 @@ export default function ProductInfoForm({ categories, product }: Props) {
             Title
           </label>
 
-          <input
-            id="title"
-            name="title"
-            type="text"
-            defaultValue={product?.title ?? ''}
-            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-foreground"
-          />
+          <input id="title" name="title" type="text" defaultValue={product?.title ?? ''} className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-foreground" />
         </div>
 
         <div className="col-span-1 md:col-span-3">
@@ -42,13 +38,7 @@ export default function ProductInfoForm({ categories, product }: Props) {
             Brand
           </label>
 
-          <input
-            id="brand"
-            name="brand"
-            type="text"
-            defaultValue={product?.brand ?? ''}
-            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-foreground"
-          />
+          <input id="brand" name="brand" type="text" defaultValue={product?.brand ?? ''} className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-foreground" />
         </div>
 
         <div>
