@@ -1,7 +1,7 @@
 //Components
-import ProductPagination from '@/components/product-pagination';
-import ProductDeleteButton from '@/components/product-delete-button';
-import ProductEditButton from '@/components/product-edit-button';
+import ProductPagination from '@/components/admin/product-pagination';
+import ProductDeleteButton from '@/components/admin/product-delete-button';
+import ProductEditButton from '@/components/admin/product-edit-button';
 
 //Actions
 import { deleteProduct } from '@/actions/admin/product-action';

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Plus } from 'lucide-react';
-import ProductModal from './product-modal';
+import ProductModal from '@/components/admin/product-modal';
 import { Category } from '@/app/types';
 
 type Props = {

@@ -1,0 +1,27 @@
+export const CATEGORIES = [
+    { label: "Beauty", value: "beauty" },
+    { label: "Fragrances", value: "fragrances" },
+    { label: "Furniture", value: "furniture" },
+    { label: "Groceries", value: "groceries" },
+    { label: "Home Decoration", value: "home-decoration" },
+    { label: "Kitchen Accessories", value: "kitchen-accessories" },
+    { label: "Laptops", value: "laptops" },
+    { label: "Men's Shirts", value: "mens-shirts" },
+    { label: "Men's Shoes", value: "mens-shoes" },
+    { label: "Men's Watches", value: "mens-watches" },
+    { label: "Mobile Accessories", value: "mobile-accessories" },
+    { label: "Motorcycle", value: "motorcycle" },
+    { label: "Skin Care", value: "skin-care" },
+    { label: "Smartphones", value: "smartphones" },
+    { label: "Sports Accessories", value: "sports-accessories" },
+    { label: "Sunglasses", value: "sunglasses" },
+    { label: "Tablets", value: "tablets" },
+    { label: "Tops", value: "tops" },
+    { label: "Vehicle", value: "vehicle" },
+    { label: "Women's Bags", value: "womens-bags" },
+    { label: "Women's Dresses", value: "womens-dresses" },
+    { label: "Women's Jewellery", value: "womens-jewellery" },
+    { label: "Women's Shoes", value: "womens-shoes" },
+] as const;
+
+export type Category = (typeof CATEGORIES)[number];
