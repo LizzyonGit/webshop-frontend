@@ -13,7 +13,7 @@ export default function SearchForm({ categories, selectedCategory, selectedStock
       <h2 id="search-heading" className="sr-only">
         Search and filter products
       </h2>
-      <form action="/" method="GET" className="bg-white border border-zinc-200 rounded-sm flex p-4 gap-4 mt-6 text-sm">
+      <form action="/admin" method="GET" className="bg-white border border-zinc-200 rounded-sm flex p-4 gap-4 mt-6 text-sm">
         {/* Search */}
         <label htmlFor="search" className="sr-only">
           Search
@@ -39,9 +39,9 @@ export default function SearchForm({ categories, selectedCategory, selectedStock
         </label>
         <select name="stock" id="stock" defaultValue={selectedStock} className="border border-zinc-200 rounded-sm p-2 grow-2">
           <option value="">All Stock</option>
-          <option value="inStock">In stock</option>
-          <option value="lowStock">Low stock</option>
-          <option value="outofStock">Out of Stock</option>
+          <option value="in-stock">In stock</option>
+          <option value="low-stock">Low stock</option>
+          <option value="out-of-stock">Out of Stock</option>
         </select>
 
         <button type="submit" className="border border-zinc-200 hover:bg-zinc-300 rounded-sm flex gap-2 p-2  justify-center">

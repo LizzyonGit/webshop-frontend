@@ -4,7 +4,9 @@ import { useState } from 'react';
 import { Pencil } from 'lucide-react';
 
 import ProductModal from '@/components/admin/product-modal';
-import type { Category, Product } from '@/app/types';
+//Types
+import type { Product } from '@/types/product';
+import type { Category } from '@/app/types';
 
 type Props = {
   product: Product;

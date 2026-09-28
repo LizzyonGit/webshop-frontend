@@ -7,6 +7,7 @@ import ProductListComponent from '@/components/admin/product-list';
 import Header from '@/components/admin/header';
 import InventoryStatistics from '@/components/admin/inventory-statistics';
 import SearchForm from '@/components/admin/search-form';
+import { ProductRepository } from '@/repositories/product-repository';
 
 type PageProps = {
   searchParams: Promise<{
@@ -16,6 +17,8 @@ type PageProps = {
     search?: string;
   }>;
 };
+
+const productRepository = new ProductRepository();
 
 export default async function Home({ searchParams }: PageProps) {
   const params = await searchParams;
@@ -36,9 +39,12 @@ export default async function Home({ searchParams }: PageProps) {
     CategoryService.getAllCategories(),
   ]);
 
-  const products = productResponse.success ? productResponse.data.products : [];
+  const productReponse = await productRepository.getProducts(currentPage, categoryParams, stockParams, queryParams);
+  console.log(productReponse);
+
+  const products = productReponse.products;
   const categories = categoryResponse.success ? categoryResponse.data.categories : [];
-  const pages = productResponse.success ? productResponse.data.pages : 0;
+  const pages = productReponse.totalPages ?? 0;
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -56,7 +62,7 @@ export default async function Home({ searchParams }: PageProps) {
           stockParam={stockParams}
           queryParam={queryParams}
           currentPage={currentPage}
-          totalPage={pages}
+          totalPages={pages}
         />
       </div>
     </main>

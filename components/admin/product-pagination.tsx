@@ -10,6 +10,9 @@ type Props = {
 };
 
 export default function ProductPagination({ currentPage, totalPages, categoryParam, stockParam, queryParam }: Props) {
+  console.log('CURRENT PAGE', currentPage);
+  console.log('TOTAL PAGES', totalPages);
+
   return (
     <nav aria-label="Product pagination" className="flex justify-center border-t border-gray-200 px-6 py-5">
       <div className="flex items-center gap-2">
@@ -18,7 +21,7 @@ export default function ProductPagination({ currentPage, totalPages, categoryPar
           <Link
             aria-label="Previous page"
             className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 hover:bg-gray-100"
-            href={`/?page=${currentPage - 1}&category=${categoryParam}&stock=${stockParam}&search=${queryParam}`}
+            href={`/admin/?page=${currentPage - 1}&category=${categoryParam}&stock=${stockParam}&search=${queryParam}`}
           >
             <ChevronLeft size={18} aria-hidden="true" />
           </Link>
@@ -28,7 +31,7 @@ export default function ProductPagination({ currentPage, totalPages, categoryPar
         {currentPage > 1 && (
           <Link
             aria-label="Page 1"
-            href={`/?page=1&category=${categoryParam}&stock=${stockParam}&search=${queryParam}`}
+            href={`/admin/?page=1&category=${categoryParam}&stock=${stockParam}&search=${queryParam}`}
             className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 hover:bg-gray-100"
           >
             1
@@ -44,7 +47,7 @@ export default function ProductPagination({ currentPage, totalPages, categoryPar
         {currentPage + 1 <= totalPages && (
           <Link
             aria-label={`Page ${currentPage + 1}`}
-            href={`/?page=${currentPage + 1}&category=${categoryParam}&stock=${stockParam}&search=${queryParam}`}
+            href={`/admin/?page=${currentPage + 1}&category=${categoryParam}&stock=${stockParam}&search=${queryParam}`}
             className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-100"
           >
             {currentPage + 1}
@@ -55,7 +58,7 @@ export default function ProductPagination({ currentPage, totalPages, categoryPar
         {currentPage + 2 <= totalPages && (
           <Link
             aria-label={`Page ${currentPage + 2}`}
-            href={`/?page=${currentPage + 2}&category=${categoryParam}&stock=${stockParam}&search=${queryParam}`}
+            href={`/admin/?page=${currentPage + 2}&category=${categoryParam}&stock=${stockParam}&search=${queryParam}`}
             className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-100"
           >
             {currentPage + 2}
@@ -66,7 +69,7 @@ export default function ProductPagination({ currentPage, totalPages, categoryPar
         {currentPage + 2 < totalPages && (
           <Link
             aria-label={`Page ${totalPages}`}
-            href={`/?page=${totalPages}&category=${categoryParam}&stock=${stockParam}&search=${queryParam}`}
+            href={`/admin/?page=${totalPages}&category=${categoryParam}&stock=${stockParam}&search=${queryParam}`}
             className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-700 hover:bg-gray-100"
           >
             {totalPages}
@@ -77,7 +80,7 @@ export default function ProductPagination({ currentPage, totalPages, categoryPar
         {currentPage < totalPages && (
           <Link
             aria-label="Next page"
-            href={`/?page=${currentPage + 1}&category=${categoryParam}&stock=${stockParam}&search=${queryParam}`}
+            href={`/admin/?page=${currentPage + 1}&category=${categoryParam}&stock=${stockParam}&search=${queryParam}`}
             className="flex h-10 w-10 items-center justify-center rounded-md border border-gray-300 bg-white text-gray-600 hover:bg-gray-100"
           >
             <ChevronRight size={18} aria-hidden="true" />
