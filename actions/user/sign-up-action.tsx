@@ -1,6 +1,7 @@
 'use server';
 
 import { auth } from '@/lib/auth';
+import { signUpSchema } from '@/lib/validation/user';
 import { ActionResponse } from '@/types/action-response';
 import { isAPIError } from 'better-auth/api';
 import { headers } from 'next/headers';
@@ -9,6 +10,20 @@ export async function signUpEmailAction(formData: FormData): Promise<ActionRespo
   const name = String(formData.get('name'));
   const email = String(formData.get('email'));
   const password = String(formData.get('password'));
+
+  const validation = signUpSchema.safeParse({
+    name,
+    email,
+    password,
+  });
+
+  if (!validation.success) {
+    return {
+      success: false,
+      message: 'Invalid input',
+      errors: validation.error.flatten().fieldErrors,
+    };
+  }
 
   try {
     await auth.api.signUpEmail({
