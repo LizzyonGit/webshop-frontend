@@ -3,12 +3,12 @@ import Image from "next/image"
 
 export default function Hero() {
     return (
-        <AspectRatio ratio={16/9} className="my-4">
+        <AspectRatio ratio={1} className="my-4 sm:aspect-video">
             <Image 
                 src="/hero.png" 
                 alt="Hero image"
                 fill
-                className="container rounded-lg object-cover" 
+                className="rounded-lg object-cover" 
             />
         </AspectRatio>
     )
