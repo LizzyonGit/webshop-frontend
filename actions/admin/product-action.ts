@@ -5,7 +5,7 @@ import ProductService from '@/services/product-service';
 import type { Product } from '@/app/types';
 import { addProductSchema, editProduct } from '@/schemas/validation-schema';
 
-export async function deleteProduct(productId: number) {
+export async function deleteProduct(productId: string) {
   const response = await ProductService.deleteProduct(productId);
 
   if (!response.success) {
@@ -52,11 +52,7 @@ function getProductFromFormData(formData: FormData): Partial<Product> {
   };
 }
 
-export async function updateProduct(
-  productId: number,
-  _previousState: { success: boolean; message: string },
-  formData: FormData
-) {
+export async function updateProduct(productId: number, _previousState: { success: boolean; message: string }, formData: FormData) {
   // Validate form data before sending it to the API
   const validation = editProduct.safeParse({
     title: formData.get('title'),
@@ -72,7 +68,7 @@ export async function updateProduct(
     width: formData.get('width'),
     depth: formData.get('depth'),
   });
-  
+
   // Stop if the form data does not pass validation
   if (!validation.success) {
     return {
@@ -100,10 +96,7 @@ export async function updateProduct(
   };
 }
 
-export async function createProduct(
-  _previousState: { success: boolean; message: string },
-  formData: FormData
-) {
+export async function createProduct(_previousState: { success: boolean; message: string }, formData: FormData) {
   const validation = addProductSchema.safeParse({
     title: formData.get('title'),
     description: formData.get('description'),
