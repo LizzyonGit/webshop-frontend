@@ -62,7 +62,7 @@ function getCategory(images?: string[]): string {
 }
 
 async function main() {
-  const jsonPath = path.join(process.cwd(), "../data/products.json");
+  const jsonPath = path.join(process.cwd(), "./data/products.json");
 
   const file = await readFile(jsonPath, "utf8");
   const data: ProductsJson = JSON.parse(file);

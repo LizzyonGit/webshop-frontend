@@ -37,11 +37,140 @@ model Product {
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
+  orderItems OrderItem[]
+
   @@index([category])
   @@index([brand])
   @@index([createdAt])
   @@index([title])
   @@map("products")
+}
+
+enum OrderStatus {
+  PENDING // created, awaiting payment
+  PAID
+  PROCESSING
+  SHIPPED
+  DELIVERED
+  CANCELLED
+  REFUNDED
+
+  @@map("order_status")
+}
+
+enum PaymentStatus {
+  UNPAID
+  PROCESSING
+  PAID
+  FAILED
+  PARTIALLY_REFUNDED
+  REFUNDED
+
+  @@map("payment_status")
+}
+
+enum AddressType {
+  SHIPPING
+  BILLING
+
+  @@map("address_type")
+}
+
+model Order {
+  id          String @id @default(uuid()) @db.Uuid
+  orderNumber Int    @unique @default(autoincrement()) // human-friendly number for emails/support
+
+  // Supabase auth.users.id. No FK, since auth schema is managed by Supabase.
+  // Nullable to allow guest checkout.
+  userId String? @db.Uuid
+  email  String
+
+  status        OrderStatus   @default(PENDING)
+  paymentStatus PaymentStatus @default(UNPAID)
+  currency      String        @default("eur") @db.VarChar(3) // lowercase ISO code, like Stripe
+
+  subtotal      Decimal @db.Decimal(10, 2)
+  shippingTotal Decimal @default(0) @db.Decimal(10, 2)
+  taxTotal      Decimal @default(0) @db.Decimal(10, 2)
+  discountTotal Decimal @default(0) @db.Decimal(10, 2)
+  total         Decimal @db.Decimal(10, 2)
+
+  // Stripe
+  stripeCustomerId        String?
+  stripeCheckoutSessionId String?   @unique
+  stripePaymentIntentId   String?   @unique
+  stripeChargeId          String?
+  paidAt                  DateTime?
+  refundedAt              DateTime?
+
+  notes     String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  items     OrderItem[]
+  addresses OrderAddress[]
+
+  @@index([userId])
+  @@index([email])
+  @@index([status])
+  @@index([paymentStatus])
+  @@index([createdAt])
+  @@map("orders")
+}
+
+model OrderItem {
+  id      String @id @default(uuid()) @db.Uuid
+  orderId String @db.Uuid
+  order   Order  @relation(fields: [orderId], references: [id], onDelete: Cascade)
+
+  // SetNull so deleting a product never deletes order history
+  productId String?  @db.Uuid
+  product   Product? @relation(fields: [productId], references: [id], onDelete: SetNull)
+
+  // Snapshot of product data at time of purchase
+  title     String
+  sku       String
+  unitPrice Decimal @db.Decimal(10, 2)
+  quantity  Int
+  lineTotal Decimal @db.Decimal(10, 2) // unitPrice * quantity
+
+  createdAt DateTime @default(now())
+
+  @@index([orderId])
+  @@index([productId])
+  @@map("order_items")
+}
+
+model OrderAddress {
+  id      String      @id @default(uuid()) @db.Uuid
+  orderId String      @db.Uuid
+  order   Order       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  type    AddressType
+
+  fullName   String
+  company    String?
+  line1      String
+  line2      String?
+  city       String
+  state      String?
+  postalCode String
+  country    String  @db.VarChar(2) // ISO 3166-1 alpha-2
+  phone      String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([orderId, type]) // one shipping + one billing per order
+  @@map("order_addresses")
+}
+
+// Stripe webhook idempotency: insert event.id first, skip if it already exists
+model StripeEvent {
+  id          String   @id // Stripe event id, e.g. evt_...
+  type        String
+  processedAt DateTime @default(now())
+
+  @@map("stripe_events")
 }
 
 enum Role {
