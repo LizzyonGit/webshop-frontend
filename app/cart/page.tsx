@@ -24,8 +24,18 @@ export default function Cart() {
                     <Button variant="link"><Link href="./products">Continue shopping</Link></Button>
                 </CardAction>
             </CardHeader>
-            <CardContent>
+            <CardContent className="grid grid-cols-2">
+                <div> {/* Left column: cart*/}
+                    <form action="">
 
+                    </form>
+                </div>
+
+                <div> {/* Right column: checkout*/}
+                    <form action="">
+
+                    </form>
+                </div>
             </CardContent>
             <CardFooter>
 
