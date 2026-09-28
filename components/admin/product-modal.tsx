@@ -3,12 +3,12 @@
 import { useActionState, useEffect } from 'react';
 import { useFormStatus } from 'react-dom';
 
-import ProductInfoForm from './forms/product-info-form';
+import ProductInfoForm from '@/components/forms/admin/product-info-form';
 import { Category, Product } from '@/app/types';
 import { X } from 'lucide-react';
 
-import PricingInventoryForm from './forms/pricing-inventory-form';
-import ProductMediaForm from './forms/product-media-form';
+import PricingInventoryForm from '@/components/forms/admin/pricing-inventory-form';
+import ProductMediaForm from '@/components/forms/admin/product-media-form';
 import { createProduct, updateProduct } from '@/actions/admin/product-action';
 import { toast } from 'sonner';
 

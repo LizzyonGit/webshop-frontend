@@ -1,4 +1,5 @@
 import NavigationBar from "@/components/navigation-bar";
+import Footer from "@/components/footer";
 
 export default async function Home() {
     return (
@@ -6,6 +7,7 @@ export default async function Home() {
             <div className="container max-w-7xl mx-auto px-6 py-6">
                 <NavigationBar />
             </div>
+            <Footer />
         </main>
     )
 }
