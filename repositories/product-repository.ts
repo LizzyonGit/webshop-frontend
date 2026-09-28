@@ -83,7 +83,7 @@ export class ProductRepository {
       slug: product.slug,
       category: product.category,
       brand: product.brand,
-      // thumbnail: product.thumbnail,
+      //thumbnail: product.thumbnail,
       price: Number(product.price),
       stock: product.stock,
       description: product.description,

@@ -1,4 +1,4 @@
-import ProductService from "@/services/product-service";
+import { ProductRepository } from "@/repositories/product-repository";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -15,11 +15,9 @@ import { Badge } from "@/components/ui/badge";
 
 
 export default async function ProductsTable(){
-
-    const response = await ProductService.getProducts(1, '', '', '');
-    const products = response.success
-    ? response.data.products
-    : [];
+    const repository = new ProductRepository();
+    const response = await repository.getProducts(1, '', '', '');
+    const products = response.products;
     
 
     return(
@@ -32,7 +30,7 @@ export default async function ProductsTable(){
             <Card key={product.id} className="h-full w-full">
                 <div className="relative aspect-square">
                     <Image
-                    src={product.images[0]} //take first image
+                    src={`/images/${product.slug}.webp`}
                     alt={product.title}
                     fill
                     className="object-cover"
@@ -46,7 +44,7 @@ export default async function ProductsTable(){
                       
             
                 {product.title}<Badge variant="default" className="ml-auto">
-              {product.category?.name}
+              {product.category}
               
             </Badge>
                 </CardTitle>
