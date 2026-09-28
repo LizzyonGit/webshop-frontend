@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   Card,
   CardContent,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -15,10 +14,22 @@ import { Badge } from "@/components/ui/badge";
 
 
 export default async function ProductsTable(){
+
     const repository = new ProductRepository();
     const response = await repository.getProducts(1, '', '', '');
     const products = response.products;
     
+    //function to display category not as slug
+    function formatCategory(category: string) {
+    return category
+        .split("-")
+        .map((word, index) =>
+        index === 0
+            ? word.charAt(0).toUpperCase() + word.slice(1)
+            : word
+        )
+        .join(" ");
+    }
 
     return(
         <div>
@@ -28,7 +39,7 @@ export default async function ProductsTable(){
            <Link key={product.id} href={`/products/${product.id}`}//adjust to final product detail page link
            > 
             <Card key={product.id} className="h-full w-full">
-                <div className="relative aspect-square">
+                <div className="relative aspect-square border-b border-border">
                     <Image
                     src={`/images/${product.slug}.webp`}
                     alt={product.title}
@@ -44,7 +55,7 @@ export default async function ProductsTable(){
                       
             
                 {product.title}<Badge variant="default" className="ml-auto">
-              {product.category}
+              {formatCategory(product.category)}
               
             </Badge>
                 </CardTitle>
@@ -57,7 +68,7 @@ export default async function ProductsTable(){
               €{product.price}
             
           </CardContent>
-          <CardFooter>Knapp?</CardFooter>
+          
         </Card>
         </Link>
                 ))}  
