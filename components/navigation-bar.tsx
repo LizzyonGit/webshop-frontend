@@ -23,7 +23,7 @@ export default function NavigationBar() {
                         width={200}
                         height={100}
                         priority
-                        className="h-auto w-[160px] object-contain"
+                        className="h-auto w-40 object-contain"
                         />}
                     </NavigationMenuLink>
 
@@ -49,7 +49,7 @@ export default function NavigationBar() {
                             width={24}
                             height={24}
                             priority
-                            className="h-auto w-[24px] object-contain dark:invert"
+                            className="h-auto w-6 object-contain dark:invert"
                             />}
                         </NavigationMenuLink>
                     </div>
