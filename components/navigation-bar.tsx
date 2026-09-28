@@ -35,7 +35,7 @@ export default function NavigationBar() {
                         </NavigationMenuLink>
 
                         <NavigationMenuLink
-                        render={<Link href="#" />}
+                        render={<Link href="/contact"  />}
                         className={navigationMenuTriggerStyle()}
                         >Contact
                         </NavigationMenuLink>
