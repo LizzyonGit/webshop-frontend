@@ -18,10 +18,12 @@ export default class ProductService {
 
       const stock = stockFilters[stockParams] ?? '';
 
-            
-      const response = await fetch(`${API_URL}/products?_page=${currentPage}&_limit=${defaultLimit}&_sort=id&_order=desc&_expand=category${category}&_expand=stock${stock}&_expand=query${query}`, {
-        method: 'GET',
-      });
+      const response = await fetch(
+        `${API_URL}/products?_page=${currentPage}&_limit=${defaultLimit}&_sort=id&_order=desc&_expand=category${category}&_expand=stock${stock}&_expand=query${query}`,
+        {
+          method: 'GET',
+        },
+      );
 
       const result = await response.json();
 
@@ -39,7 +41,7 @@ export default class ProductService {
 
 
   //DELETE: Product
-  static async deleteProduct(productId: number): Promise<ProductDeleteResponse> {
+  static async deleteProduct(productId: string): Promise<ProductDeleteResponse> {
     try {
       const response = await fetch(`${API_URL}/products/${productId}`, {
         method: 'DELETE',
@@ -54,7 +56,7 @@ export default class ProductService {
     }
   }
 
-    //PATCH/EDIT: Product
+  //PATCH/EDIT: Product
   static async updateProduct(productId: number, product: Partial<Product>): Promise<ApiResponse<Product>> {
     try {
       const response = await fetch(`${API_URL}/products/${productId}`, {
