@@ -23,25 +23,25 @@ export default function NavigationBar() {
                         width={200}
                         height={100}
                         priority
-                        className="h-auto w-[160px] object-contain"
+                        className="h-auto w-40 object-contain"
                         />}
                     </NavigationMenuLink>
 
                     <div className="flex items-center gap-2">
                         <NavigationMenuLink
-                        render={<Link href="#" />}
+                        render={<Link href="./products" />}
                         className={navigationMenuTriggerStyle()}
                         >Products {/*ev. replace with NavigationMenuTrigger (dropdown menu) that displays all products*/}
                         </NavigationMenuLink>
 
                         <NavigationMenuLink
-                        render={<Link href="#" />}
+                        render={<Link href="./about" />}
                         className={navigationMenuTriggerStyle()}
-                        >Contact
+                        >About
                         </NavigationMenuLink>
 
                         <NavigationMenuLink
-                        render={<Link href="#" />}
+                        render={<Link href="./cart" />}
                         className={navigationMenuTriggerStyle()}
                         >{<Image 
                             src="/shopping-cart.svg" 
@@ -49,7 +49,7 @@ export default function NavigationBar() {
                             width={24}
                             height={24}
                             priority
-                            className="h-auto w-[24px] object-contain dark:invert"
+                            className="h-auto w-6 object-contain dark:invert"
                             />}
                         </NavigationMenuLink>
                     </div>
