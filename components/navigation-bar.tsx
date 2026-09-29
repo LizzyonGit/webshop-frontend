@@ -41,7 +41,7 @@ export default function NavigationBar() {
                         </NavigationMenuLink>
 
                         <NavigationMenuLink
-                        render={<Link href="#" />}
+                        render={<Link href="/cart" />}
                         className={navigationMenuTriggerStyle()}
                         >{<Image 
                             src="/shopping-cart.svg" 

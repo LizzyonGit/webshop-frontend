@@ -11,19 +11,23 @@ import {
 import Link from "next/link"
 
 export default function Cart() {
-    <Card>
-        <CardHeader>
-            <CardTitle>Your Cart</CardTitle>
-            <CardDescription>Current items in your cart.</CardDescription>
-            <CardAction>
-                <Button variant="link"><Link href="/">Continue shopping</Link></Button>
-            </CardAction>
-        </CardHeader>
-        <CardContent>
+    return (
+        <main className="mx-auto max-w-7xl px-6 py-10">
+            <Card className="overflow-hidden">
+                <CardHeader>
+                    <CardTitle className="text-2xl font-semibold">Your Cart</CardTitle>
+                    <CardDescription>Current items in your cart.</CardDescription>
+                    <CardAction>
+                        <Button variant="link"><Link href="/">Continue shopping</Link></Button>
+                    </CardAction>
+                </CardHeader>
+                <CardContent>
 
-        </CardContent>
-        <CardFooter>
+                </CardContent>
+                <CardFooter>
 
-        </CardFooter>
-    </Card>
+                </CardFooter>
+            </Card>
+        </main>  
+    )
 }
