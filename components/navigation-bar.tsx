@@ -1,61 +1,39 @@
-import Image from "next/image";
-import Link from "next/link";
-import { 
-    NavigationMenu,
-    NavigationMenuItem, 
-    NavigationMenuLink,
-    NavigationMenuList,
-    navigationMenuTriggerStyle    
-} from "./ui/navigation-menu";
+import Image from 'next/image';
+import Link from 'next/link';
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from './ui/navigation-menu';
+import { auth } from '@/lib/auth';
+import { headers } from 'next/headers';
 
-export default function NavigationBar() {
-    return (
-        <NavigationMenu className="w-full max-w-none border-be-3">
-            <NavigationMenuList className="w-full justify-between">
-                <NavigationMenuItem className="flex w-full items-center justify-between">
+export default async function NavigationBar() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-                    <NavigationMenuLink
-                    render={<Link href="/" />}
-                    className={navigationMenuTriggerStyle()}
-                    >{<Image 
-                        src="/sky-market-transparent.png" 
-                        alt="Sky Market logo"
-                        width={200}
-                        height={100}
-                        priority
-                        className="h-auto w-40 object-contain"
-                        />}
-                    </NavigationMenuLink>
+  console.log(session);
 
-                    <div className="flex items-center gap-2">
-                        <NavigationMenuLink
-                        render={<Link href="#" />}
-                        className={navigationMenuTriggerStyle()}
-                        >Products {/*ev. replace with NavigationMenuTrigger (dropdown menu) that displays all products*/}
-                        </NavigationMenuLink>
+  return (
+    <NavigationMenu className="w-full max-w-none border-be-3">
+      <NavigationMenuList className="w-full justify-between">
+        <NavigationMenuItem className="flex w-full items-center justify-between">
+          <NavigationMenuLink render={<Link href="/" />} className={navigationMenuTriggerStyle()}>
+            {<Image src="/sky-market-transparent.png" alt="Sky Market logo" width={200} height={100} priority className="h-auto w-40 object-contain" />}
+          </NavigationMenuLink>
 
-                        <NavigationMenuLink
-                        render={<Link href="/contact"  />}
-                        className={navigationMenuTriggerStyle()}
-                        >Contact
-                        </NavigationMenuLink>
+          <div className="flex items-center gap-2">
+            <NavigationMenuLink render={<Link href="#" />} className={navigationMenuTriggerStyle()}>
+              Products {/*ev. replace with NavigationMenuTrigger (dropdown menu) that displays all products*/}
+            </NavigationMenuLink>
 
-                        <NavigationMenuLink
-                        render={<Link href="#" />}
-                        className={navigationMenuTriggerStyle()}
-                        >{<Image 
-                            src="/shopping-cart.svg" 
-                            alt="Shopping cart logo"
-                            width={24}
-                            height={24}
-                            priority
-                            className="h-auto w-6 object-contain dark:invert"
-                            />}
-                        </NavigationMenuLink>
-                    </div>
+            <NavigationMenuLink render={<Link href="/contact" />} className={navigationMenuTriggerStyle()}>
+              Contact
+            </NavigationMenuLink>
 
-                </NavigationMenuItem>
-            </NavigationMenuList>
-        </NavigationMenu>
-    )
+            <NavigationMenuLink render={<Link href="#" />} className={navigationMenuTriggerStyle()}>
+              {<Image src="/shopping-cart.svg" alt="Shopping cart logo" width={24} height={24} priority className="h-auto w-6 object-contain dark:invert" />}
+            </NavigationMenuLink>
+          </div>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  );
 }
