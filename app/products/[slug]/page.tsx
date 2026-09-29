@@ -1,64 +1,73 @@
-import { prisma } from "@/lib/prisma";
-import { notFound } from "next/navigation";
-import Image from "next/image";
+import { ProductRepository } from '@/repositories/product-repository';
+import { notFound } from 'next/navigation';
+import Image from 'next/image';
+const productRepository = new ProductRepository();
 
 type ProductPageProps = {
-    params: Promise<{
-        slug: string;
-    }>;
+  params: Promise<{
+    slug: string;
+  }>;
 };
 
-export default async function ProductPage({
-                                              params,
-                                          }: ProductPageProps) {
-    const { slug } = await params;
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { slug } = await params;
 
-    const product = await prisma.product.findUnique({
-        where: {
-            slug,
-        },
-    });
+  const product = await productRepository.getProduct(slug);
 
-    if (!product) {
-        notFound();
-    }
+  if (!product) {
+    notFound();
+  }
 
-    return (
-        <main>
-            <h1>title: {product.title}</h1>
+  return (
+    <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <div className="grid gap-10 md:grid-cols-2">
 
-            <p>description: {product.description}</p>
 
-            <p>slug: {product.slug}</p>
+        <div>
 
-            <p>Price: {product.price.toString()}</p>
+        <p>
+          <Image src={`/images/${product.thumbnail}.webp`} width={500} height={500} alt={`${product.title}`} loading="eager" />
+        </p>
 
-            <p>Category: {product.category}</p>
+        <p>
+          <Image src={`/thumbnails/${product.slug}.webp`} width={50} height={50} alt={`${product.title}`} />
+        </p>
+        </div>
 
-            <p>Brand: {product.brand}</p>
+                <div>
+        
+        <h1 className="text-3xl font-semibold">{product.title}</h1>
 
-            <p>SKU: {product.sku}</p>
+        <p className="text-muted-foreground">{product.description}</p>
 
-            <p>Stock: {product.stock}</p>
+        <p>Slug: {product.slug}</p>
 
-            <p>
-                Image:
-                <Image
-                    src={`/images/${product.slug}.webp`}
-                    width={500}
-                    height={500}
-                    alt={`${product.title}`}
-                    loading="eager"
-                />
-            </p>
-            <p>
-                <Image
-                    src={`/thumbnails/${product.slug}.webp`}
-                    width={50}
-                    height={50}
-                    alt={`${product.title}`}
-                />
-            </p>
-        </main>
-    );
+        <p className="text-2xl font-semibold">${product.price.toFixed(2)}</p>
+
+        <p>
+          <span className="font-medium">Category:</span> {product.category}
+        </p>
+
+        <p>
+          <span className="font-medium">Brand:</span> {product.brand}
+        </p>
+
+        <p>
+          <span className="font-medium">SKU:</span> {product.sku}
+        </p>
+
+        <p>
+          <span className="font-medium">Stock:</span> {product.stock}
+        </p>
+        </div>
+      </div>
+      
+
+      
+
+
+
+      
+    </main>
+  );
 }
