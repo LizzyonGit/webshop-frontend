@@ -1,0 +1,28 @@
+'use client';
+
+import { SearchX } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+export default function NotFound() {
+  const pathname = usePathname();
+
+  return (
+    <main className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/hero.png')" }}>
+      <div className="absolute inset-0 bg-black/60" />
+      <div className="relative z-10 text-center text-white">
+        <div className="mb-6 flex justify-center">
+          <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/10">
+            <SearchX className="h-10 w-10  text-white" />
+          </div>
+        </div>
+        <p className="mb-3 text-sm font-semibold uppercase tracking-widest text-white">404 – page not found</p>
+        <p className="mb-6 text-base leading-relaxed text-white">{`The page "${pathname}" you are looking for is no longer available, has been removed, or the link is incorrect.`}</p>
+
+        <Link href="/" className="mt-8 rounded-xl bg-white px-6 py-3 font-semibold text-black shadow-lg  transition-all duration-200 hover:scale-105">
+          Go back to product list
+        </Link>
+      </div>
+    </main>
+  );
+}
