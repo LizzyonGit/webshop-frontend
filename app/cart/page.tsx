@@ -10,6 +10,9 @@ import {
 } from "@/components/ui/card"
 import Image from "next/image";
 import Link from "next/link"
+import { title } from "process";
+import { keyof } from "zod";
+import { id } from "zod/v4/locales";
 
 const cartItems = [
   {
@@ -48,11 +51,46 @@ export default function Cart() {
                         <Button variant="link"><Link href="/">Continue shopping</Link></Button>
                     </CardAction>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="grid grid-cols-2">
+                    {cartItems.map((item) => 
+                        <div 
+                            key={item.id}
+                            className=""
+                            >
+                        <div>
+                            <Image 
+                            src={`/thumbnails/${item.slug}.webp`}
+                            alt={item.title}
+                            fill={true}
+                            className="object-cover"
+                            sizes="96px"
+                            />
+                        </div>
 
+                        <div>
+                            <div>
+                                <Link
+                                    href={`/products/${item.slug}`}
+                                    >
+                                    {item.title}
+                                </Link>
+                                <p className="text-muted-foreground">
+                                    €{item.price.toFixed(2)}
+                                </p>
+                            </div>
+
+                        </div>
+                        </div>
+                    )}
+                    
                 </CardContent>
                 <CardFooter>
-
+                    <Button 
+                        variant="link"
+                        className="mx-auto"
+                    >
+                        <Link href="/shipping">Proceed to checkout</Link>
+                    </Button>
                 </CardFooter>
             </Card>
         </main>  
