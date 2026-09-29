@@ -10,9 +10,6 @@ import {
 } from "@/components/ui/card"
 import Image from "next/image";
 import Link from "next/link"
-import { title } from "process";
-import { keyof } from "zod";
-import { id } from "zod/v4/locales";
 
 const cartItems = [
   {
@@ -20,7 +17,7 @@ const cartItems = [
     slug: "classic-leather-backpack",
     title: "Classic Leather Backpack",
     price: 129,
-    quantity: 1,
+    quantity: 4,
   },
   {
     id: "2",
@@ -43,27 +40,32 @@ export default function Cart() {
     return (
         <main className="mx-auto max-w-7xl px-6 py-10">
             <Card className="overflow-hidden">
-                <CardHeader>
-                    <CardTitle className="text-2xl font-semibold">Your Cart</CardTitle>
+                <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                        <CardTitle className="text-2xl font-semibold">Your Cart</CardTitle>
+                        <CardDescription>Current items in your cart.</CardDescription>
+                    </div>
 
-                    <CardDescription>Current items in your cart.</CardDescription>
                     <CardAction>
-                        <Button variant="link"><Link href="/">Continue shopping</Link></Button>
+                        <Button variant="link">
+                            <Link href="/">Continue shopping</Link>
+                        </Button>
                     </CardAction>
                 </CardHeader>
-                <CardContent className="grid grid-cols-2">
+
+                <CardContent className="grid grid-cols-1 gap-6">
                     {cartItems.map((item) => 
                         <div 
                             key={item.id}
-                            className=""
+                            className="h-full w-full"
                             >
-                        <div>
+                        <div className="relative aspect-square border-b border-border">
                             <Image 
                             src={`/thumbnails/${item.slug}.webp`}
                             alt={item.title}
                             fill={true}
                             className="object-cover"
-                            sizes="96px"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                             />
                         </div>
 
@@ -79,10 +81,39 @@ export default function Cart() {
                                 </p>
                             </div>
 
+                            <div className="border-3 w-fit">
+                                <Button type="button" variant="ghost" size="sm">
+                                    -
+                                </Button>
+                                <span>{item.quantity}</span>
+                                <Button type="button" variant="ghost" size="sm">
+                                    +
+                                </Button>
+                            </div>
+
                         </div>
                         </div>
                     )}
-                    
+
+                    <aside className="flex flex-col gap-2">
+                        <h2 className="text-2xl font-semibold">Order summary</h2>
+
+                        <div className="flex justify-between">
+                            <p className="font-bold">Subtotal</p>
+                            <span>€{subtotal.toFixed(2)}</span>
+                        </div>
+
+                        <div className="flex justify-between">
+                            <p className="font-bold">Shipping cost</p>
+                            <span>Free</span>
+                        </div>
+
+                        <div className="flex justify-between border-y-3 py-2 text-xl font-bold">
+                            <p>Total</p>
+                            <span>€{subtotal.toFixed(2)}</span>
+                        </div>
+                    </aside>
+
                 </CardContent>
                 <CardFooter>
                     <Button 
