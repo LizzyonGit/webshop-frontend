@@ -2,7 +2,7 @@ import type { ApiResponse, ApiSuccessResponse, Product, ProductDeleteResponse, P
 import { errorResponse } from '@/utils/error-response';
 
 const API_URL = 'http://localhost:4000';
-const defaultLimit = '6';
+const defaultLimit = '30';
 
 export default class ProductService {
   // GET: Products
@@ -35,6 +35,10 @@ export default class ProductService {
       return errorResponse('Kunde inte ansluta till servern.');
     }
   }
+
+  
+  
+
 
   //DELETE: Product
   static async deleteProduct(productId: string): Promise<ProductDeleteResponse> {
