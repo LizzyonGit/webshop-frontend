@@ -1,7 +1,6 @@
 import NavigationBar from "@/components/navigation-bar";
 import Footer from "@/components/footer";
 import Hero from "@/components/hero";
-
 import ProductsTable from "@/components/products-table";
 
 export default async function Home() {
