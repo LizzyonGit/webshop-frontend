@@ -36,7 +36,7 @@ export default async function ProductsTable(){
         <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
 
         {products.map((product) =>  (
-           <Link key={product.id} href={`/products/${product.id}`}//adjust to final product detail page link
+           <Link key={product.id} href={`/products/${product.slug}`}//adjust to final product detail page link
            > 
             <Card key={product.id} className="h-full w-full">
                 <div className="relative aspect-square border-b border-border">

@@ -4,7 +4,7 @@ import { Product, ProductListResponse } from '@/types/product';
 
 export class ProductRepository {
   async getProducts(currentPage: number, categoryParams: string, stockParams: string, queryParams: string): Promise<ProductListResponse> {
-    const pageSize = 11;
+    const pageSize = 12;
     const skip = (currentPage - 1) * pageSize;
 
     const search = queryParams.trim();
