@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Pagination from "./pagination";
 
+
 import {
   Card,
   CardContent,
@@ -31,12 +32,16 @@ export default async function ProductsTable({searchParams,}: ProductsTableProps)
 
 
     const repository = new ProductRepository();
+
+    // Send pagination and filter parameters to the backend
+    // and receive the paginated product response
     const response = await repository.getProducts(
         currentPage,
         category,
         stock,
         query
     );
+    // Get the products from the response
     const products = response.products;
     
     //function to display category not as slug
