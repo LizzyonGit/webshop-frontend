@@ -3,17 +3,16 @@ import Link from 'next/link';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from './ui/navigation-menu';
 import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
+import AuthActionButton from './AuthActionButton';
 
 export default async function NavigationBar() {
   const requestHeaders = await headers();
-
-  console.log('Cookies:', requestHeaders.get('cookie'));
 
   const session = await auth.api.getSession({
     headers: requestHeaders,
   });
 
-  console.log('Session:', session);
+  const isLoggedIn = session ? true : false;
 
   return (
     <NavigationMenu className="w-full max-w-none border-be-3">
@@ -35,6 +34,7 @@ export default async function NavigationBar() {
             <NavigationMenuLink render={<Link href="#" />} className={navigationMenuTriggerStyle()}>
               {<Image src="/shopping-cart.svg" alt="Shopping cart logo" width={24} height={24} priority className="h-auto w-6 object-contain dark:invert" />}
             </NavigationMenuLink>
+            <AuthActionButton isLoggedIn={isLoggedIn} />
           </div>
         </NavigationMenuItem>
       </NavigationMenuList>
