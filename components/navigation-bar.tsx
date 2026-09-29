@@ -5,11 +5,15 @@ import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 
 export default async function NavigationBar() {
+  const requestHeaders = await headers();
+
+  console.log('Cookies:', requestHeaders.get('cookie'));
+
   const session = await auth.api.getSession({
-    headers: await headers(),
+    headers: requestHeaders,
   });
 
-  console.log(session);
+  console.log('Session:', session);
 
   return (
     <NavigationMenu className="w-full max-w-none border-be-3">
