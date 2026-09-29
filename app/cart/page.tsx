@@ -1,5 +1,5 @@
 import Cart from "@/components/cart";
-import Checkout from "@/components/ui/checkout";
+import Checkout from "@/components/checkout";
 import Image from "next/image";
 import Link from "next/link"
 
