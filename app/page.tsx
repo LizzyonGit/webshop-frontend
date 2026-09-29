@@ -4,13 +4,22 @@ import Hero from "@/components/hero";
 
 import ProductsTable from "@/components/products-table";
 
-export default async function Home() {
+type PageProps = {
+  searchParams: Promise<{
+    page?: string;
+    category?: string;
+    stock?: string;
+    query?: string;
+  }>;
+};
+
+export default async function Home({ searchParams }: PageProps) {
     return (
         <main className="min-h-screen">
             <div className="container max-w-7xl mx-auto px-6 py-6">
                 <NavigationBar />
                 <Hero />
-                <ProductsTable />
+                <ProductsTable searchParams={searchParams}/>
             </div>
             <Footer />
         </main>

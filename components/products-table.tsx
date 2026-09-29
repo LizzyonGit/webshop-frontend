@@ -1,6 +1,7 @@
 import { ProductRepository } from "@/repositories/product-repository";
 import Image from "next/image";
 import Link from "next/link";
+import Pagination from "./pagination";
 
 import {
   Card,
@@ -10,13 +11,32 @@ import {
 } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge";
 
+type ProductsTableProps = {
+  searchParams: Promise<{
+    page?: string;
+    category?: string;
+    stock?: string;
+    query?: string;
+  }>;
+};
 
+export default async function ProductsTable({searchParams,}: ProductsTableProps){
+    const params = await searchParams;
 
+    // Get values from the URL
+    const currentPage = Number(params.page ?? "1");
+    const category = params.category ?? "";
+    const stock = params.stock ?? "";
+    const query = params.query ?? "";
 
-export default async function ProductsTable(){
 
     const repository = new ProductRepository();
-    const response = await repository.getProducts(1, '', '', '');
+    const response = await repository.getProducts(
+        currentPage,
+        category,
+        stock,
+        query
+    );
     const products = response.products;
     
     //function to display category not as slug
@@ -76,6 +96,11 @@ export default async function ProductsTable(){
 
 
         </div>
+        {/* Pagination */}
+      <Pagination
+        currentPage={response.currentPage}
+        totalPages={response.totalPages}
+      />
                 
 
 </div>
