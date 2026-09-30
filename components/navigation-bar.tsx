@@ -23,7 +23,7 @@ export default async function NavigationBar() {
           </NavigationMenuLink>
 
           <div className="flex items-center gap-2">
-            <NavigationMenuLink render={<Link href="#" />} className={navigationMenuTriggerStyle()}>
+            <NavigationMenuLink render={<Link href="/products" />} className={navigationMenuTriggerStyle()}>
               Products {/*ev. replace with NavigationMenuTrigger (dropdown menu) that displays all products*/}
             </NavigationMenuLink>
 
