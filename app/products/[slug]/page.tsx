@@ -1,64 +1,87 @@
-import { prisma } from "@/lib/prisma";
-import { notFound } from "next/navigation";
-import Image from "next/image";
+import { ProductRepository } from '@/repositories/product-repository';
+import { notFound } from 'next/navigation';
+import Image from 'next/image';
+import Input from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { ShoppingCart } from 'lucide-react';
+import type { Metadata } from 'next';
+
+const productRepository = new ProductRepository();
 
 type ProductPageProps = {
-    params: Promise<{
-        slug: string;
-    }>;
+  params: Promise<{
+    slug: string;
+  }>;
 };
 
-export default async function ProductPage({
-                                              params,
-                                          }: ProductPageProps) {
-    const { slug } = await params;
+export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const product = await productRepository.getProduct(slug);
 
-    const product = await prisma.product.findUnique({
-        where: {
-            slug,
-        },
-    });
+  return {
+    title: product ? `${product.title} | Sky Market` : 'Product | Sky Market',
+  };
+}
 
-    if (!product) {
-        notFound();
-    }
+export default async function ProductPage({ params }: ProductPageProps) {
+  const { slug } = await params;
 
-    return (
-        <main>
-            <h1>title: {product.title}</h1>
+  const product = await productRepository.getProduct(slug);
 
-            <p>description: {product.description}</p>
+  if (!product) {
+    notFound();
+  }
 
-            <p>slug: {product.slug}</p>
+  return (
+    <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+      <div className="grid gap-10 md:grid-cols-2">
+        <div>
+          <Image src={`/images/${product.thumbnail}.webp`} width={500} height={500} alt={product.title} loading="eager" />
 
-            <p>Price: {product.price.toString()}</p>
+          <Image src={`/thumbnails/${product.slug}.webp`} width={50} height={50} alt={product.title} className="mt-4 rounded-md border" />
+        </div>
 
-            <p>Category: {product.category}</p>
+        <div>
+          <h1 className="text-3xl font-semibold">{product.title}</h1>
 
-            <p>Brand: {product.brand}</p>
+          <p className="text-muted-foreground">{product.description}</p>
 
-            <p>SKU: {product.sku}</p>
+          <p className="mt-4 text-2xl font-semibold">${product.price.toFixed(2)}</p>
 
-            <p>Stock: {product.stock}</p>
+          <p>
+            <span className="font-medium">Category:</span> {product.category}
+          </p>
 
-            <p>
-                Image:
-                <Image
-                    src={`/images/${product.slug}.webp`}
-                    width={500}
-                    height={500}
-                    alt={`${product.title}`}
-                    loading="eager"
-                />
-            </p>
-            <p>
-                <Image
-                    src={`/thumbnails/${product.slug}.webp`}
-                    width={50}
-                    height={50}
-                    alt={`${product.title}`}
-                />
-            </p>
-        </main>
-    );
+          <p>
+            <span className="font-medium">Brand:</span> {product.brand}
+          </p>
+
+          <p>
+            <span className="font-medium">SKU:</span> {product.sku}
+          </p>
+
+          <p>
+            <span className="font-medium">Stock:</span> {product.stock}
+          </p>
+
+          <div className="mt-6">
+            <label htmlFor="quantity" className="mb-2 block font-medium">
+              Quantity
+            </label>
+
+            <div className="w-24">
+              <Input id="quantity" name="quantity" type="number" min={1} max={product.stock} defaultValue={1} />
+            </div>
+          </div>
+
+          <div className="mt-4 flex gap-2">
+            <Button>
+              <ShoppingCart />
+              Add to cart
+            </Button>
+          </div>
+        </div>
+      </div>
+    </main>
+  );
 }

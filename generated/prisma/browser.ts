@@ -18,7 +18,7 @@ export { Prisma }
 export * as $Enums from './enums'
 export * from './enums';
 /**
- * Model Product
+ * Model Category
  * *
  *  * Prisma's built-in search (preview, quick, limited)
  *  * In Prisma 7 this is still a preview feature — Prisma Client supports full-text search for MySQL and for PostgreSQL
@@ -33,7 +33,32 @@ export * from './enums';
  *  * fine on a small table but does a sequential scan with to_tsvector() computed on the fly for every row on every
  *  * query — not something you want once you have more than a few thousand posts
  */
+export type Category = Prisma.CategoryModel
+/**
+ * Model Product
+ * 
+ */
 export type Product = Prisma.ProductModel
+/**
+ * Model Order
+ * 
+ */
+export type Order = Prisma.OrderModel
+/**
+ * Model OrderItem
+ * 
+ */
+export type OrderItem = Prisma.OrderItemModel
+/**
+ * Model OrderAddress
+ * 
+ */
+export type OrderAddress = Prisma.OrderAddressModel
+/**
+ * Model StripeEvent
+ * 
+ */
+export type StripeEvent = Prisma.StripeEventModel
 /**
  * Model User
  * 
