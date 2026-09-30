@@ -33,7 +33,9 @@ export class ProductRepository {
     /** Category filter. **/
     if (categoryParams) {
       condition.push({
-        category: category,
+        category: {
+          name: category,
+        },
       });
     }
 
@@ -74,6 +76,9 @@ export class ProductRepository {
         orderBy: {
           title: 'asc',
         },
+        include: {
+          category: true,
+        },
       }),
     ]);
 
@@ -81,9 +86,9 @@ export class ProductRepository {
       id: product.id,
       title: product.title,
       slug: product.slug,
-      category: product.category,
+      category: product.category.name,
       brand: product.brand,
-      //thumbnail: product.thumbnail,
+      // thumbnail: product.thumbnail,
       price: Number(product.price),
       stock: product.stock,
       description: product.description,
@@ -100,10 +105,13 @@ export class ProductRepository {
     };
   }
 
-  async getProduct(slug: string) {
+  async getProduct(slug: string): Promise<Product | null> {
     const product = await prisma.product.findFirst({
       where: {
         slug,
+      },
+      include: {
+        category: true,
       },
     });
 
@@ -113,7 +121,7 @@ export class ProductRepository {
       id: product.id,
       title: product.title,
       slug: product.slug,
-      category: product.category,
+      category: product.category.name,
       brand: product.brand,
       thumbnail: product.slug,
       price: Number(product.price),
