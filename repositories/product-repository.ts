@@ -115,6 +115,7 @@ export class ProductRepository {
       slug: product.slug,
       category: product.category,
       brand: product.brand,
+      thumbnail: product.slug,
       price: Number(product.price),
       stock: product.stock,
       description: product.description,
