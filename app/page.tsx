@@ -2,7 +2,9 @@ import NavigationBar from '@/components/navigation-bar';
 import Footer from '@/components/footer';
 import Hero from '@/components/hero';
 
-import ProductsTable from "@/components/products-table";
+import ProductsTable from '@/components/products-table';
+
+import { CategoryRepository } from '@/repositories/category-repository';
 
 type PageProps = {
   searchParams: Promise<{
@@ -14,14 +16,18 @@ type PageProps = {
 };
 
 export default async function Home({ searchParams }: PageProps) {
-    return (
-        <main className="min-h-screen">
-            <div className="container max-w-7xl mx-auto px-6 py-6">
-                <NavigationBar />
-                <Hero />
-                <ProductsTable searchParams={searchParams}/>
-            </div>
-            <Footer />
-        </main>
-    )
+  const categoryRepository = new CategoryRepository();
+  const categories = await categoryRepository.getAll();
+  console.log(categories);
+
+  return (
+    <main className="min-h-screen">
+      <div className="container max-w-7xl mx-auto px-6 py-6">
+        <NavigationBar />
+        <Hero />
+        {/* <ProductsTable searchParams={searchParams} /> */}
+      </div>
+      <Footer />
+    </main>
+  );
 }
