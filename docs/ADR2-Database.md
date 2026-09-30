@@ -4,7 +4,7 @@
 
 # ADR-2: [Database]
 
-* **Status:** [ Föreslagen | ~~Beslutad~~ | ~~Ersatt | Förkastad~~ ]
+* **Status:** [ ~~Föreslagen~~ | Beslutad | ~~Ersatt | Förkastad~~ ]
 * **Datum:** 2026-09-29
 * **Deltagare:** Leo, Lizzy, Patrick, Perjin, David
 * **Relaterad Issue/Ticket:** #[36]
@@ -59,7 +59,7 @@ USING GIN ("search_vector");
 ## 3. Beslut
 *Vilket alternativ valde vi och varför?*
 
-*Exempel: Vi beslutar att använda **Alternativ B: Databasen**. Detta ger oss full kontroll och vi får lära oss något nytt.*
+*Vi beslutar att använda **Alternativ B: Databasen**. Detta ger oss full kontroll och vi får lära oss något nytt.*
 ---
 
 ## 4. Konsekvenser

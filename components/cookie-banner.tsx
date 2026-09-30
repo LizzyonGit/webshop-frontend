@@ -26,7 +26,7 @@ export default function CookieBanner() {
   }
 
   return (
-    <aside aria-labelledby="cookie-title" className="fixed bottom-6 left-1/2 z-50 w-full max-w-2xl -translate-x-1/2 rounded-2xl border border-gray-300 p-6 shadow-2xl">
+    <aside aria-labelledby="cookie-title" className="fixed bottom-6 left-1/2 z-50 w-full max-w-2xl -translate-x-1/2 rounded-2xl bg-white border border-gray-300 p-6 shadow-2xl">
       <div>
         <h2 id="cookie-title" className="mb-2 text-xl font-semibold text-black-600">
           Cookies
