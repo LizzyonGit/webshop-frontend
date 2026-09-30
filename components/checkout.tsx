@@ -19,16 +19,6 @@ import { useActionState, useState } from "react";
 const initialState = { status: "idle" as const };
 
 export default function Checkout() {
-    const [state, formAction, pending] = useActionState(createOrder, initialState);
-
-    if (state.status === "success"){
-        return (
-            <section role="status">
-                <h2>Order created!</h2>
-                <p>Your order number is ${state.orderNumber}</p>
-            </section>
-        );
-    }
     return (
         <Card className="overflow-hidden">
             <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -38,7 +28,7 @@ export default function Checkout() {
                 </div>
             </CardHeader> 
             <CardContent className="grid grid-cols-1 gap-6">   
-                <form className="grid gap-3" action={formAction}>
+                <form className="grid gap-3" action="">
                     <label htmlFor="name">Name</label>
                     <Input id="name" name="name" type="text" placeholder="Your name" required />
                     <label htmlFor="email">Email</label>
@@ -325,10 +315,8 @@ export default function Checkout() {
                     <div className="flex flex-col gap-2 col-span-full">
                         <label htmlFor="message">Message</label>
                         <Textarea id="message" name="message" maxLength={500} placeholder="Enter more order details (up to 500 characters)"></Textarea>
-                        {state.status === "error" && <p role="alert">{state.message}</p>}
-                        <Button type="submit" variant="default" className="mx-auto" disabled={pending}>
-                            {pending ? "Sending..." : "Send order"}
-                            {/*<Link href="/shipping">Send order</Link>*/}
+                        <Button type="submit" variant="default" className="mx-auto">
+                            {<Link href="/shipping">Send order</Link>}
                         </Button>
                     </div>
                 </form>
