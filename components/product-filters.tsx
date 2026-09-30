@@ -17,7 +17,7 @@ export default function ProductFiltering() {
         <Button type="submit" className="border border-zinc-200  rounded-sm flex gap-2 p-2 justify-center">
           {' '}
           <Search size={18} fill="black" aria-hidden="true" />
-          Sök
+          Search
         </Button>
       </form>
     </section>
