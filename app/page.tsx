@@ -15,12 +15,15 @@ type PageProps = {
 };
 
 export default async function Home({ searchParams }: PageProps) {
+  const params = await searchParams;
+  const categoryParams = params.category ?? '';
+
   return (
     <main className="min-h-screen">
       <div className="container max-w-7xl mx-auto px-6 py-6">
         <NavigationBar />
         <Hero />
-        <ProductFiltering />
+        <ProductFiltering categoryParam={categoryParams} />
         <ProductsTable searchParams={searchParams} />
       </div>
       <Footer />
