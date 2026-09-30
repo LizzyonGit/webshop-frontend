@@ -11,7 +11,7 @@ type ProductsTableProps = {
     page?: string;
     category?: string;
     stock?: string;
-    query?: string;
+    search?: string;
   }>;
 };
 
@@ -22,20 +22,18 @@ export default async function ProductsTable({ searchParams }: ProductsTableProps
   const currentPage = Number(params.page ?? '1');
   const category = params.category ?? '';
   const stock = params.stock ?? '';
-  const query = params.query ?? '';
+  const search = params.search ?? '';
 
   const repository = new ProductRepository();
 
   // Send pagination and filter parameters to the backend
   // and receive the paginated product response
-  const response = await repository.getProducts(currentPage, category, stock, query);
+  const response = await repository.getProducts(currentPage, category, stock, search);
   // Get the products from the response
   const products = response.products;
 
   //function to display category not as slug
-  function formatCategory(category?: string) {
-    if (!category) return 'Uncategorized';
-
+  function formatCategory(category: string) {
     return category
       .split('-')
       .map((word, index) => (index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word))
