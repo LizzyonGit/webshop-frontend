@@ -7,6 +7,7 @@ import { toast } from 'sonner';
 import { Mail, LockKeyhole } from 'lucide-react';
 import { signInEmailAction } from '@/actions/user/sign-in-email-action';
 import FormField from '@/components/ui/form-field';
+import PasswordInput from '@/components/ui/input-password';
 import Input from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 
@@ -31,6 +32,7 @@ export default function LoginForm() {
       const formData = new FormData(evt.currentTarget);
       const result = await signInEmailAction(formData);
 
+      console.log(result);
       if (!result.success) {
         toast.error(result.message, { duration: 1000 });
 
@@ -73,8 +75,8 @@ export default function LoginForm() {
       </FormField>
 
       {/* Password */}
-      <FormField label="Password" htmlFor="password" error={errors.password?.[0]} icon={<LockKeyhole className="h-4 w-4" />}>
-        <Input
+      <FormField label="Password" htmlFor="password" error={errors.password?.[0]} icon={<LockKeyhole className="h-5 w-5" />}>
+        <PasswordInput
           id="password"
           name="password"
           placeholder="Enter your password"

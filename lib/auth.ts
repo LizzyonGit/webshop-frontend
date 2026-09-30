@@ -3,6 +3,7 @@ import { prismaAdapter } from 'better-auth/adapters/prisma';
 import { prisma } from '@/lib/prisma';
 import { resetPasswordEmail } from '@/lib/email-templates/reset-password-email';
 import { sendEmail } from '@/lib/resend';
+import { nextCookies } from 'better-auth/next-js';
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -11,15 +12,13 @@ export const auth = betterAuth({
 
   emailAndPassword: {
     enabled: true,
-    // Send reset password email
+
     sendResetPassword: async ({ user, url }) => {
-      //TDO: Add sky market loggo to env file.
       const logoUrl = process.env.NEXT_PUBLIC_LOGO_URL ?? '';
 
       await sendEmail({
         to: user.email,
         subject: 'Reset your Sky Market password',
-
         html: resetPasswordEmail({
           userName: user.name || 'there',
           resetUrl: url,
@@ -28,7 +27,6 @@ export const auth = betterAuth({
       });
     },
 
-    // Revoke sessions after password reset
     revokeSessionsOnPasswordReset: true,
   },
 
@@ -42,4 +40,6 @@ export const auth = betterAuth({
       },
     },
   },
+
+  plugins: [nextCookies()],
 });
