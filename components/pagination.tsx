@@ -2,6 +2,16 @@
 
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
+import {
+  Pagination as ShadcnPagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "@/components/ui/pagination"
+
 type PaginationProps = {
   currentPage: number;
   totalPages: number;
@@ -69,102 +79,73 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
   const pageItems = getPageItems();
 
   return (
-    <nav aria-label="Pagination" className="mt-10 flex items-center justify-center">
-      <div className="flex items-center gap-2">
+    <ShadcnPagination>
+      <PaginationContent>
+
         {/* Previous */}
-        <button
-          type="button"
-          onClick={() => goToPage(safeCurrentPage - 1)}
-          disabled={safeCurrentPage === 1}
-          aria-label="Go to previous page"
-          className="
-            border
-            border-border
-            px-4
-            py-2
-            text-sm
-            transition-colors
-            hover:bg-surface
-            disabled:cursor-not-allowed
-            disabled:opacity-40
-          "
-        >
-          Previous
-        </button>
+        <PaginationItem>
+          <PaginationPrevious
+            href="#"
+            onClick={(event) => {
+              event.preventDefault();
+              goToPage(safeCurrentPage - 1);
+            }}
+            className={
+              safeCurrentPage === 1
+                ? "pointer-events-none opacity-40"
+                : ""
+            }
+          />
+        </PaginationItem>
 
         {/* Page numbers */}
-        <div className="flex items-center gap-1">
-          {pageItems.map((item, index) => {
-            if (item === 'ellipsis') {
-              return (
-                <span
-                  key={`ellipsis-${index}`}
-                  className="
-                    flex
-                    h-10
-                    min-w-10
-                    items-center
-                    justify-center
-                    px-2
-                    text-sm
-                  "
-                  aria-hidden="true"
-                >
-                  ...
-                </span>
-              );
-            }
-
-            const active = item === safeCurrentPage;
-
+        {pageItems.map((item, index) => {
+          if (item === "ellipsis") {
             return (
-              <button
-                key={item}
-                type="button"
-                onClick={() => goToPage(item)}
-                aria-current={active ? 'page' : undefined}
-                aria-label={`Go to page ${item}`}
-                className={`
-                  flex
-                  h-10
-                  min-w-10
-                  items-center
-                  justify-center
-                  border
-                  border-border
-                  px-3
-                  text-sm
-                  transition-colors
-                  ${active ? 'font-semibold' : 'hover:bg-surface'}
-                `}
+              <PaginationItem key={`ellipsis-${index}`}>
+                <PaginationEllipsis />
+              </PaginationItem>
+            );
+          }
+
+          const active = item === safeCurrentPage;
+
+          return (
+            <PaginationItem key={item}>
+              <PaginationLink
+                href="#"
+                isActive={active}
+                onClick={(event) => {
+                  event.preventDefault();
+                  goToPage(item);
+                }}
               >
                 {item}
-              </button>
-            );
-          })}
-        </div>
+              </PaginationLink>
+            </PaginationItem>
+          );
+        })}
 
         {/* Next */}
-        <button
-          type="button"
-          onClick={() => goToPage(safeCurrentPage + 1)}
-          disabled={safeCurrentPage === totalPages}
-          aria-label="Go to next page"
-          className="
-            border
-            border-border
-            px-4
-            py-2
-            text-sm
-            transition-colors
-            hover:bg-surface
-            disabled:cursor-not-allowed
-            disabled:opacity-40
-          "
-        >
-          Next
-        </button>
-      </div>
-    </nav>
+        <PaginationItem>
+          <PaginationNext
+            href="#"
+            onClick={(event) => {
+              event.preventDefault();
+              goToPage(safeCurrentPage + 1);
+            }}
+            className={
+              safeCurrentPage === totalPages
+                ? "pointer-events-none opacity-40"
+                : ""
+            }
+          />
+        </PaginationItem>
+
+      </PaginationContent>
+    </ShadcnPagination>
   );
+
+
+  
 }

@@ -32,16 +32,7 @@ export default async function ProductsTable({ searchParams }: ProductsTableProps
   // Get the products from the response
   const products = response.products;
 
-  //function to display category not as slug
-  function formatCategory(category?: string) {
-    if (!category) return 'Uncategorized';
-
-    return category
-      .split('-')
-      .map((word, index) => (index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word))
-      .join(' ');
-  }
-
+  
   return (
     <div>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
@@ -66,10 +57,12 @@ export default async function ProductsTable({ searchParams }: ProductsTableProps
                 <CardTitle className="flex">
                   {product.title}
                   <Badge variant="default" className="ml-auto">
-                    {formatCategory(product.category)}
+                    {product.category}
                   </Badge>
+              
                 </CardTitle>
               </CardHeader>
+              
 
               <CardContent>€{product.price}</CardContent>
             </Card>
