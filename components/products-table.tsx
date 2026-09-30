@@ -102,10 +102,12 @@ export default async function ProductsTable({searchParams,}: ProductsTableProps)
 
         </div>
         {/* Pagination */}
+        <div className="mt-2">
       <Pagination
         currentPage={response.currentPage}
         totalPages={response.totalPages}
       />
+      </div>
                 
 
 </div>
