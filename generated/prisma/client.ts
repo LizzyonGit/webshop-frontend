@@ -31,8 +31,8 @@ export * from "./enums"
  * const prisma = new PrismaClient({
  *   adapter: new PrismaPg({ connectionString: process.env.DATABASE_URL })
  * })
- * // Fetch zero or more Products
- * const products = await prisma.product.findMany()
+ * // Fetch zero or more Categories
+ * const categories = await prisma.category.findMany()
  * ```
  * 
  * Read more in our [docs](https://pris.ly/d/client).
@@ -42,7 +42,7 @@ export type PrismaClient<LogOpts extends Prisma.LogLevel = never, OmitOpts exten
 export { Prisma }
 
 /**
- * Model Product
+ * Model Category
  * *
  *  * Prisma's built-in search (preview, quick, limited)
  *  * In Prisma 7 this is still a preview feature — Prisma Client supports full-text search for MySQL and for PostgreSQL
@@ -57,7 +57,32 @@ export { Prisma }
  *  * fine on a small table but does a sequential scan with to_tsvector() computed on the fly for every row on every
  *  * query — not something you want once you have more than a few thousand posts
  */
+export type Category = Prisma.CategoryModel
+/**
+ * Model Product
+ * 
+ */
 export type Product = Prisma.ProductModel
+/**
+ * Model Order
+ * 
+ */
+export type Order = Prisma.OrderModel
+/**
+ * Model OrderItem
+ * 
+ */
+export type OrderItem = Prisma.OrderItemModel
+/**
+ * Model OrderAddress
+ * 
+ */
+export type OrderAddress = Prisma.OrderAddressModel
+/**
+ * Model StripeEvent
+ * 
+ */
+export type StripeEvent = Prisma.StripeEventModel
 /**
  * Model User
  * 
