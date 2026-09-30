@@ -10,6 +10,7 @@ export default async function Home() {
       <div className="container max-w-7xl mx-auto px-6 py-6">
         <NavigationBar />
         <Hero />
+        <ProductsTable />
       </div>
       <Footer />
     </main>

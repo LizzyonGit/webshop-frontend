@@ -43,9 +43,10 @@ export default async function ProductsTable(){
                     <Image
                     src={`/images/${product.slug}.webp`}
                     alt={product.title}
-                    fill
+                    fill={true}
                     className="object-cover"
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"/>
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                    loading="eager"/>
                 </div>
                 
                 <CardHeader><CardTitle className="flex">
