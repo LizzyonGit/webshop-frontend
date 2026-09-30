@@ -23,7 +23,7 @@ export default function Checkout() {
                 </div>
             </CardHeader> 
             <CardContent className="grid grid-cols-1 gap-6">   
-                <form>
+                <form className="grid gap-3">
                     <label htmlFor="name">Name</label>
                     <Input id="name" name="name" type="text" placeholder="Your name" required />
                     <label htmlFor="email">Email</label>

@@ -10,33 +10,29 @@ import {
 } from "@/components/ui/card"
 import Image from "next/image";
 import Link from "next/link"
+import { prisma } from "@/lib/prisma";
+import { notFound } from "next/navigation";
 
-const cartItems = [
-  {
-    id: "1",
-    slug: "classic-leather-backpack",
-    title: "Classic Leather Backpack",
-    price: 129,
-    quantity: 4,
-  },
-  {
-    id: "2",
-    slug: "minimalist-water-bottle",
-    title: "Minimalist Water Bottle",
-    price: 28.5,
-    quantity: 2,
-  },
-  {
-    id: "3",
-    slug: "wireless-noise-canceling-headphones",
-    title: "Wireless Noise-Canceling Headphones",
-    price: 199,
-    quantity: 1,
-  },
-];
+type ProductPageProps = {
+    params: Promise<{
+        slug: string;
+    }>;
+};
 
-export default function Cart() {
-    const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+export default async function Cart( {params,}: ProductPageProps) {
+    const { slug } = await params;
+    
+        const product = await prisma.product.findUnique({
+            where: {
+                slug,
+            },
+        });
+    
+        if (!product) {
+            notFound();
+        }
+
+    const subtotal = product.reduce((sum, product) => sum + product.price * product.stock, 0);
     return (
         <Card className="overflow-hidden">
             <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
@@ -51,43 +47,41 @@ export default function Cart() {
                 </div>
             </CardHeader>
             <CardContent className="grid grid-cols-1 gap-6">
-                {cartItems.map((item) => 
                     <div 
-                        key={item.id}
+                        key={product.id}
                         className="h-full w-full"
                         >
-                    <div className="relative border-b border-border">
+                    <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl">
                         <Image 
-                        src={`/thumbnails/${item.slug}.webp`}
-                        alt={item.title}
+                        src={`/thumbnails/${product.slug}.webp`}
+                        alt={product.title}
                         fill={true}
                         className="object-cover"
                         sizes="96px"
                         />
                     </div>
-                    <div>
-                        <div>
+                    <div className="flex gap-4">
+                        <div className="flex-1 min-w-0">
                             <Link
-                                href={`/products/${item.slug}`}
+                                href={`/products/${product.slug}`}
                                 >
-                                {item.title}
+                                {product.title}
                             </Link>
                             <p className="text-muted-foreground">
-                                €{item.price.toFixed(2)}
+                                €{product.price.toFixed(2)}
                             </p>
                         </div>
-                        <div className="border-3 w-fit">
+                        <div className="border-3 rounded-xl w-fit">
                             <Button type="button" variant="ghost" size="sm">
                                 -
                             </Button>
-                            <span>{item.quantity}</span>
+                            <span>{product.stock}</span>
                             <Button type="button" variant="ghost" size="sm">
                                 +
                             </Button>
                         </div>
                     </div>
                     </div>
-                )}
             </CardContent>
             <CardFooter className="flex flex-col gap-2">
                 <h2 className="text-2xl font-semibold">Order summary</h2>
