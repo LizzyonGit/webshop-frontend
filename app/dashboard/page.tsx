@@ -1,40 +1,69 @@
-import { headers } from "next/headers";
-import { redirect } from "next/navigation";
-import { auth } from "@/lib/auth";
-import { LogoutButton } from "@/components/auth/logout-button";
+import { headers } from 'next/headers';
+import { redirect } from 'next/navigation';
+import { auth } from '@/lib/auth';
+import { LogoutButton } from '@/components/auth/logout-button';
+import { DashboardRepository } from '@/repositories/dashboard-repository';
+import { Smile } from 'lucide-react';
 
 export default async function DashboardPage() {
-    const session = await auth.api.getSession({
-        headers: await headers(),
-    });
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
 
-    if (!session) {
-        redirect("/login");
-    }
+  if (!session) {
+    redirect('/login');
+  }
 
-    if (session.user.role === "ADMIN") {
-        redirect("/admin");
-    }
+  if (session.user.role === 'ADMIN') {
+    redirect('/admin');
+  }
 
-    return (
-        <main className="flex min-h-screen items-center justify-center p-6">
-            <div className="text-center">
-                <h1 className="text-3xl font-bold">
-                    Login successful [User Dashboard]
-                </h1>
+  const dashboardRepository = new DashboardRepository();
+  const dashboardData = await dashboardRepository.getUserDashboard(session.user.id);
 
-                <p className="mt-4">
-                    Welcome, {session.user.name}
-                </p>
+  const orders = dashboardData?.orders;
 
-                <p className="mt-2">
-                    Role: {session.user.role}
-                </p>
+  return (
+    <section className="min-h-screen w-full bg-gray-50 p-6">
+      <div className="mx-auto max-w-7xl space-y-8">
+        <div className="flex items-center justify-between rounded-2xl bg-white p-6 shadow-sm">
+          <div>
+            <h1 className="flex items-center gap-3 text-3xl font-bold tracking-tight">
+              <Smile className="h-8 w-8" />
+              Hello, {session.user.name}!
+            </h1>
+            <p className="mt-2 text-muted-foreground">Heres an overview of your orders.</p>
+          </div>
 
-                <div className="mt-6">
-                    <LogoutButton />
-                </div>
-            </div>
-        </main>
-    );
+          <LogoutButton />
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="rounded-2xl bg-white p-6 shadow-sm">
+            <p className="text-sm text-muted-foreground">Total Orders</p>
+            <p className="mt-2 text-3xl font-bold">{dashboardData?.totalOrders}</p>
+          </div>
+
+          <div className="rounded-2xl bg-white p-6 shadow-sm">
+            <p className="text-sm text-muted-foreground">Completed Orders</p>
+            <p className="mt-2 text-3xl font-bold">{dashboardData?.completedOrders}</p>
+          </div>
+
+          <div className="rounded-2xl bg-white p-6 shadow-sm">
+            <p className="text-sm text-muted-foreground">Total Spent</p>
+            <p className="mt-2 text-3xl font-bold">{`${dashboardData?.totalSpent}`} €</p>
+          </div>
+        </div>
+
+        {/* Orders */}
+        <div className="rounded-2xl bg-white p-6 shadow-sm">
+          <div className="mb-6 flex items-center justify-between">
+            <h2 className="text-xl font-semibold">History of orders</h2>
+          </div>
+
+          {/* Orders will go here */}
+        </div>
+      </div>
+    </section>
+  );
 }
