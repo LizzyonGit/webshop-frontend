@@ -4,6 +4,7 @@ import { auth } from '@/lib/auth';
 import { LogoutButton } from '@/components/auth/logout-button';
 import { DashboardRepository } from '@/repositories/dashboard-repository';
 import { Smile } from 'lucide-react';
+import Orders from '@/components/orders';
 
 export default async function DashboardPage() {
   const session = await auth.api.getSession({
@@ -61,7 +62,7 @@ export default async function DashboardPage() {
             <h2 className="text-xl font-semibold">History of orders</h2>
           </div>
 
-          {/* Orders will go here */}
+          <Orders orders={orders} />
         </div>
       </div>
     </section>
