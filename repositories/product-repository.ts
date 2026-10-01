@@ -11,7 +11,16 @@ export class ProductRepository {
     const category = categoryParams.trim();
 
     //Sort by lowest, highest price & asc, desc
-    const sortBy = sortByParam === 'lowest' ? { price: 'asc' as const } : sortByParam === 'highest' ? { price: 'desc' as const } : { createdAt: 'desc' as const };
+    const sortBy: Prisma.ProductOrderByWithRelationInput =
+      sortByParam === 'lowest'
+        ? { price: 'asc' }
+        : sortByParam === 'highest'
+          ? { price: 'desc' }
+          : sortByParam === 'asc'
+            ? { title: 'asc' }
+            : sortByParam === 'desc'
+              ? { title: 'desc' }
+              : { createdAt: 'desc' };
 
     const condition: Prisma.ProductWhereInput[] = [];
 
