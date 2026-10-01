@@ -15,6 +15,7 @@ export default async function NavigationBar() {
   const cartCount = 0; // TODO: replace with the real cart item count
 
   return (
+    <div className="container max-w-7xl mx-auto px-2 pbe-2 pbs-4">
     <NavigationMenu className="w-full max-w-none border-be-3 pbe-2">
       <NavigationMenuList className="w-full justify-between">
         <NavigationMenuItem className="flex w-full items-center justify-between">
@@ -48,5 +49,6 @@ export default async function NavigationBar() {
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
+    </div>
   );
 }

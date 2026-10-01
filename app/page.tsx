@@ -20,12 +20,10 @@ export default async function Home({ searchParams }: PageProps) {
   const searchParam = params.search ?? '';
 
   return (
-    <main className="min-h-screen">
-      <div className="container max-w-7xl mx-auto px-6 py-6">
+    <>
         <Hero />
         <ProductFiltering categoryParam={categoryParams} sortByParam={sortByParams} searchParam={searchParam} />
         <ProductsTable searchParams={searchParams} />
-      </div>
-    </main>
+    </>
   );
 }
