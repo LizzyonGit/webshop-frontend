@@ -80,8 +80,7 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
 
   return (
     <ShadcnPagination>
-      <PaginationContent>
-
+      <PaginationContent className="pbs-2">
         {/* Previous */}
         <PaginationItem>
           <PaginationPrevious
@@ -90,17 +89,13 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
               event.preventDefault();
               goToPage(safeCurrentPage - 1);
             }}
-            className={
-              safeCurrentPage === 1
-                ? "pointer-events-none opacity-40"
-                : ""
-            }
+            className={safeCurrentPage === 1 ? 'pointer-events-none opacity-40' : ''}
           />
         </PaginationItem>
 
         {/* Page numbers */}
         {pageItems.map((item, index) => {
-          if (item === "ellipsis") {
+          if (item === 'ellipsis') {
             return (
               <PaginationItem key={`ellipsis-${index}`}>
                 <PaginationEllipsis />
@@ -134,14 +129,9 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
               event.preventDefault();
               goToPage(safeCurrentPage + 1);
             }}
-            className={
-              safeCurrentPage === totalPages
-                ? "pointer-events-none opacity-40"
-                : ""
-            }
+            className={safeCurrentPage === totalPages ? 'pointer-events-none opacity-40' : ''}
           />
         </PaginationItem>
-
       </PaginationContent>
     </ShadcnPagination>
   );
