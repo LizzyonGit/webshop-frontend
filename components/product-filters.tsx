@@ -1,182 +1,63 @@
-"use client";
+import { Search } from 'lucide-react';
+import { Button } from './ui/button';
+import Input from './ui/input';
+import ResetFilteringButton from './reset-filter-button';
+import { CategoryRepository } from '@/repositories/category-repository';
 
-import { useSearchParams, useRouter } from "next/navigation";
-import { useState, useTransition } from "react";
+type Props = {
+  categoryParam: string;
+};
 
-import { CATEGORIES } from "@/lib/constants/categories";
-import { SORT_OPTIONS } from "@/lib/constants/sort-options";
+export default async function ProductFiltering({ categoryParam }: Props) {
+  const categoryRepository = new CategoryRepository();
+  const categories = await categoryRepository.getAll();
 
-export default function ProductFilters() {
-    const router = useRouter();
-    const searchParams = useSearchParams();
+  return (
+    <section className="mb-6" aria-labelledby="search-heading">
+      <h2 id="search-heading" className="sr-only">
+        Search and filter products
+      </h2>
 
-    const [isPending, startTransition] = useTransition();
+      <form action="/" method="GET" className="flex items-center gap-3 rounded-2xl border border-zinc-200 bg-white p-4 shadow-sm">
+        <label htmlFor="search" className="sr-only">
+          Search products
+        </label>
 
-    const currentSearch = searchParams.get("search") ?? "";
-    const currentCategory = searchParams.get("category") ?? "";
-    const currentSort = searchParams.get("sort") ?? "newest";
-
-    const [search, setSearch] = useState(currentSearch);
-
-    function updateUrl(
-        key: string,
-        value: string
-    ) {
-        const params = new URLSearchParams(searchParams.toString());
-
-        if (value) {
-            params.set(key, value);
-        } else {
-            params.delete(key);
-        }
-
-        startTransition(() => {
-            router.push(`/products?${params.toString()}`);
-        });
-    }
-
-    function handleSearch(event: React.FormEvent) {
-        event.preventDefault();
-
-        updateUrl("search", search.trim());
-    }
-
-    function handleCategory(value: string) {
-        updateUrl("category", value);
-    }
-
-    function handleSort(value: string) {
-        updateUrl("sort", value);
-    }
-
-    function clearFilters() {
-        setSearch("");
-
-        startTransition(() => {
-            router.push("/products");
-        });
-    }
-
-    return (
-        <div className="flex flex-col gap-6">
-
-            {/* Search */}
-            <form
-                onSubmit={handleSearch}
-                className="flex gap-2"
-            >
-                <input
-                    type="search"
-                    value={search}
-                    onChange={(event) =>
-                        setSearch(event.target.value)
-                    }
-                    placeholder="Search products..."
-                    className="
-            flex-1
-            border border-gray-300
-            px-4 py-3
-            outline-none
-            focus:border-black
-          "
-                />
-
-                <button
-                    type="submit"
-                    disabled={isPending}
-                    className="
-            bg-black
-            px-6 py-3
-            text-white
-            disabled:opacity-50
-          "
-                >
-                    {isPending ? "Searching..." : "Search"}
-                </button>
-            </form>
-
-            {/* Category */}
-            <div className="flex flex-col gap-2">
-                <label
-                    htmlFor="category"
-                    className="font-medium"
-                >
-                    Category
-                </label>
-
-                <select
-                    id="category"
-                    value={currentCategory}
-                    onChange={(event) =>
-                        handleCategory(event.target.value)
-                    }
-                    className="
-            border border-gray-300
-            px-4 py-3
-            bg-white
-          "
-                >
-                    <option value="">
-                        All categories
-                    </option>
-
-                    {CATEGORIES.map((category) => (
-                        <option key={category.value} value={category.value}>
-                            {category.label}
-                        </option>
-                    ))}
-                </select>
-            </div>
-
-            {/* Sort */}
-            <div className="flex flex-col gap-2">
-                <label
-                    htmlFor="sort"
-                    className="font-medium"
-                >
-                    Sort by
-                </label>
-
-                <select
-                    id="sort"
-                    value={currentSort}
-                    onChange={(event) =>
-                        handleSort(event.target.value)
-                    }
-                    className="
-            border border-gray-300
-            px-4 py-3
-            bg-white
-          "
-                >
-                    {SORT_OPTIONS.map((option) => (
-                        <option
-                            key={option.value}
-                            value={option.value}
-                        >
-                            {option.label}
-                        </option>
-                    ))}
-                </select>
-            </div>
-
-            {/* Clear */}
-            {(currentSearch ||
-                currentCategory ||
-                currentSort !== "newest") && (
-                <button
-                    type="button"
-                    onClick={clearFilters}
-                    className="
-            self-start
-            border border-gray-300
-            px-4 py-2
-            hover:border-black
-          "
-                >
-                    Clear filters
-                </button>
-            )}
+        {/* Search on products*/}
+        <div className="relative flex-1">
+          <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" aria-hidden="true" />
+          <Input type="search" name="search" id="search" placeholder="Search products..." className="h-10 rounded-xl  border-zinc-200 pl-10 shadow-none focus-visible:ring-1" />
         </div>
-    );
+
+        {/* Filter on categories */}
+        <div className="relative flex-1">
+          <label htmlFor="category" className="sr-only">
+            Filter by category
+          </label>
+          <select
+            key={categoryParam}
+            name="category"
+            id="category"
+            defaultValue={categoryParam}
+            className="h-12 rounded-xl border px-4 text-base leading-relaxed text-grey-700 outline-none"
+          >
+            <option value="">All Categories</option>
+
+            {categories.map((category) => (
+              <option value={category.name} key={category.id}>
+                {category.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <Button type="submit" className=" h-10 gap-2 rounded-xl px-5">
+          <Search size={17} aria-hidden="true" />
+          Search
+        </Button>
+
+        <ResetFilteringButton />
+      </form>
+    </section>
+  );
 }

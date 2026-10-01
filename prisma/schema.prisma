@@ -24,22 +24,38 @@ datasource db {
   provider = "postgresql"
 }
 
+model Category {
+  id       Int       @id
+  name     String
+  slug     String    @unique
+  products Product[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([name])
+  @@map("categories")
+}
+
 model Product {
-  id          String   @id @default(uuid()) @db.Uuid
-  slug        String   @unique
+  id          String  @id @default(uuid()) @db.Uuid
+  slug        String  @unique
   title       String
   description String
-  price       Decimal  @db.Decimal(10, 2)
-  category    String
-  stock       Int      @default(0)
-  brand       String?
-  sku         String   @unique
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  price       Decimal @db.Decimal(10, 2)
+
+  categoryId Int
+  category   Category @relation(fields: [categoryId], references: [id])
+
+  stock     Int      @default(0)
+  brand     String?
+  sku       String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 
   orderItems OrderItem[]
 
-  @@index([category])
+  @@index([categoryId])
   @@index([brand])
   @@index([createdAt])
   @@index([title])

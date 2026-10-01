@@ -2,6 +2,7 @@ import { getProducts, ProductSort } from "@/lib/products";
 import ProductFilters from "@/components/product-filters";
 import Pagination from "@/components/pagination";
 import Link from "next/link";
+import Image from 'next/image';
 
 type ProductsPageProps = {
     searchParams: Promise<{
@@ -49,46 +50,42 @@ export default async function ProductsPage({
     });
 
     return (
-        <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <main className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-8 flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-semibold">Products</h1>
 
-            <div className="mb-8 flex items-center justify-between">
-                <div>
-                    <h1 className="text-3xl font-semibold">
-                        Products
-                    </h1>
+            <p className="mt-2 text-sm text-gray-600">{result.total} products</p>
+          </div>
 
-                    <p className="mt-2 text-sm text-gray-600">
-                        {result.total} products
-                    </p>
-                </div>
+          <Link href="/products/new" className="border border-blue bg-blue px-5 py-3 text-sm text-blue-700">
+            Add product
+          </Link>
+        </div>
 
-                <Link
-                    href="/products/new"
-                    className="border border-blue bg-blue px-5 py-3 text-sm text-blue-700"
-                >
-                    Add product
-                </Link>
-            </div>
+        <ProductFilters />
 
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+          {result.products.map((product) => (
+            <article key={product.id}>
+              <div className="relative aspect-square border-b border-border">
+                <Image
+                  src={`/images/${product.slug}.webp`}
+                  alt={product.title}
+                  fill={true}
+                  className="object-cover"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  loading="eager"
+                />
+              </div>
+              <h2>{product.title}</h2>
 
-            <ProductFilters />
+              <p>${product.price.toFixed(2)}</p>
+            </article>
+          ))}
+        </div>
 
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                {result.products.map((product) => (
-                    <article key={product.id}>
-                        <h2>{product.title}</h2>
-
-                        <p>
-                            ${product.price.toFixed(2)}
-                        </p>
-                    </article>
-                ))}
-            </div>
-
-            <Pagination
-                currentPage={result.page}
-                totalPages={result.totalPages}
-            />
-        </main>
+        <Pagination currentPage={result.page} totalPages={result.totalPages} />
+      </main>
     );
 }

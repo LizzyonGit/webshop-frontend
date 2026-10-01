@@ -51,7 +51,12 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Category: 'Category',
   Product: 'Product',
+  Order: 'Order',
+  OrderItem: 'OrderItem',
+  OrderAddress: 'OrderAddress',
+  StripeEvent: 'StripeEvent',
   User: 'User',
   Session: 'Session',
   Account: 'Account',
@@ -74,13 +79,24 @@ export const TransactionIsolationLevel = runtime.makeStrictEnum({
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
 
 
+export const CategoryScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  slug: 'slug',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
 export const ProductScalarFieldEnum = {
   id: 'id',
   slug: 'slug',
   title: 'title',
   description: 'description',
   price: 'price',
-  category: 'category',
+  categoryId: 'categoryId',
   stock: 'stock',
   brand: 'brand',
   sku: 'sku',
@@ -89,6 +105,77 @@ export const ProductScalarFieldEnum = {
 } as const
 
 export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
+
+
+export const OrderScalarFieldEnum = {
+  id: 'id',
+  orderNumber: 'orderNumber',
+  userId: 'userId',
+  email: 'email',
+  status: 'status',
+  paymentStatus: 'paymentStatus',
+  currency: 'currency',
+  subtotal: 'subtotal',
+  shippingTotal: 'shippingTotal',
+  taxTotal: 'taxTotal',
+  discountTotal: 'discountTotal',
+  total: 'total',
+  stripeCustomerId: 'stripeCustomerId',
+  stripeCheckoutSessionId: 'stripeCheckoutSessionId',
+  stripePaymentIntentId: 'stripePaymentIntentId',
+  stripeChargeId: 'stripeChargeId',
+  paidAt: 'paidAt',
+  refundedAt: 'refundedAt',
+  notes: 'notes',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrderScalarFieldEnum = (typeof OrderScalarFieldEnum)[keyof typeof OrderScalarFieldEnum]
+
+
+export const OrderItemScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  productId: 'productId',
+  title: 'title',
+  sku: 'sku',
+  unitPrice: 'unitPrice',
+  quantity: 'quantity',
+  lineTotal: 'lineTotal',
+  createdAt: 'createdAt'
+} as const
+
+export type OrderItemScalarFieldEnum = (typeof OrderItemScalarFieldEnum)[keyof typeof OrderItemScalarFieldEnum]
+
+
+export const OrderAddressScalarFieldEnum = {
+  id: 'id',
+  orderId: 'orderId',
+  type: 'type',
+  fullName: 'fullName',
+  company: 'company',
+  line1: 'line1',
+  line2: 'line2',
+  city: 'city',
+  state: 'state',
+  postalCode: 'postalCode',
+  country: 'country',
+  phone: 'phone',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type OrderAddressScalarFieldEnum = (typeof OrderAddressScalarFieldEnum)[keyof typeof OrderAddressScalarFieldEnum]
+
+
+export const StripeEventScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  processedAt: 'processedAt'
+} as const
+
+export type StripeEventScalarFieldEnum = (typeof StripeEventScalarFieldEnum)[keyof typeof StripeEventScalarFieldEnum]
 
 
 export const UserScalarFieldEnum = {
