@@ -73,8 +73,8 @@ export default async function ProductFiltering({ categoryParam, sortByParam, sea
             className="h-12 rounded-xl border px-4 text-base leading-relaxed text-grey-700 outline-none"
           >
             <option value="">Sort by</option>
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
+            <option value="asc">A-Z</option>
+            <option value="desc">Z-A</option>
             <option value="lowest">Lowest first</option>
             <option value="highest">Highest first</option>
           </select>
