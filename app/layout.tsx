@@ -4,6 +4,8 @@ import './globals.css';
 
 import { Toaster } from 'sonner';
 import { cn } from '@/lib/utils';
+import NavigationBar from '@/components/navigation-bar';
+import Footer from '@/components/footer';
 
 const notoSansHeading = Noto_Sans({ subsets: ['latin'], variable: '--font-heading' });
 
@@ -40,7 +42,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn('h-full', 'antialiased', geistSans.variable, geistMono.variable, inter.variable, 'font-sans', nunitoSans.variable, notoSansHeading.variable)}>
       <body className="min-h-full flex flex-col">
+         <NavigationBar />
         {children}
+          <Footer />
+
         <Toaster richColors position="top-right" />
         <CookieBanner />
       </body>
