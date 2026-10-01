@@ -10,9 +10,27 @@ import {
 } from "@/components/ui/card"
 import Image from "next/image";
 import Link from "next/link"
+import { useCart } from "@/hooks/use-cart";
+
 
 export default async function Cart() {
-    return (
+    const {
+    items,
+    subtotal,
+    hydrated,
+    setQuantity,
+    removeItem,
+    clearCart,
+  } = useCart();
+
+    if (!hydrated) return null;//empty page when no items
+
+    if (items.length === 0) {
+        return(<CardTitle>No items</CardTitle>)}
+
+
+
+return (
         <Card className="overflow-hidden">
             <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex flex-col gap-2">

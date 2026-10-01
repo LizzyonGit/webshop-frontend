@@ -5,6 +5,8 @@ import Input from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart } from 'lucide-react';
 import type { Metadata } from 'next';
+import AddToCart from '@/components/add-to-cart';
+
 
 const productRepository = new ProductRepository();
 
@@ -75,10 +77,16 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
 
           <div className="mt-4 flex gap-2">
-            <Button>
-              <ShoppingCart />
-              Add to cart
-            </Button>
+            
+              <AddToCart
+              product={{
+                slug: product.slug,
+                name: product.title, 
+                price: Number(product.price),
+                image: product.image,
+                stock: product.stock,
+              }}
+            />
           </div>
         </div>
       </div>
