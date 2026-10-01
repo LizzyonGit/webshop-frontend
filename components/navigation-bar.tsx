@@ -34,6 +34,11 @@ export default async function NavigationBar() {
               Contact
             </NavigationMenuLink>
 
+            {/* User dashboard */}
+            <NavigationMenuLink render={<Link href="/dashboard" />} className={navigationMenuTriggerStyle()}>
+              Dashboard
+            </NavigationMenuLink>
+
             {/* cart */}
             <NavigationMenuLink render={<Link href="/cart" />} className={navigationMenuTriggerStyle()}>
               <CartIcon count={cartCount} />
