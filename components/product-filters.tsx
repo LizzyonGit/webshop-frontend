@@ -30,7 +30,7 @@ export default async function ProductFiltering({ categoryParam }: Props) {
         </div>
 
         {/* Filter on categories */}
-        <div className="relative flex-1">
+        <div className="relative">
           <label htmlFor="category" className="sr-only">
             Filter by category
           </label>
