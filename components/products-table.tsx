@@ -39,7 +39,7 @@ export default async function ProductsTable({ searchParams }: ProductsTableProps
         {products.map((product) => (
           <Link
             key={product.id}
-            href={`/products/${product.slug}`} //adjust to final product detail page link
+            href={`/${product.slug}`} //adjust to final product detail page link
           >
             <Card key={product.id} className="h-full w-full">
               <div className="relative aspect-square border-b border-border">
