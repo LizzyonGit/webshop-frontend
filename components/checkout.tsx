@@ -1,22 +1,13 @@
-"use client";
-
 import { Button } from "@/components/ui/button"
 import {
   Card,
-  CardAction,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import Image from "next/image";
-import Link from "next/link"
 import Input from "./ui/input";
 import { Textarea } from "./ui/textarea";
-import { useActionState, useState } from "react";
-
-const initialState = { status: "idle" as const };
 
 export default function Checkout() {
     return (
@@ -30,23 +21,35 @@ export default function Checkout() {
             <CardContent className="grid grid-cols-1 gap-6">   
                 <form className="grid grid-cols-1 sm:grid-cols-2 gap-4" action="">
                     
-                    <label htmlFor="name">Name</label>
-                    <Input className="text-sm font-medium text-foreground sm:col-span-2" id="name" name="name" type="text" placeholder="Your name" required />
+                    <div className="flex flex-col gap-1.5 sm:col-span-2">
+                        <label htmlFor="name">Name</label>
+                        <Input id="name" name="name" type="text" placeholder="Your name" required />
+                    </div>
+                    
+                    <div className="flex flex-col gap-1.5 sm:col-span-2">
+                        <label htmlFor="email">Email</label>
+                        <Input id="email" name="email" type="email" placeholder="Your email" required />
+                    </div>
 
-                    <label htmlFor="email">Email</label>
-                    <Input className="text-sm font-medium text-foreground sm:col-span-2" id="email" name="email" type="email" placeholder="Your email" required />
+                    <div className="flex flex-col gap-1.5 sm:col-span-2">
+                        <label htmlFor="phone">Phone</label>
+                        <Input id="phone" name="phone" type="tel" placeholder="Your phone number" required />
+                    </div>
 
-                    <label htmlFor="phone">Phone</label>
-                    <Input className="text-sm font-medium text-foreground sm:col-span-2" id="phone" name="phone" type="tel" placeholder="Your phone number" required />
+                    <div className="flex flex-col gap-1.5 sm:col-span-2">
+                        <label htmlFor="address">Address</label>
+                        <Input id="address" name="address" type="text" placeholder="Your address" required />
+                    </div>
+                    
+                    <div className="flex flex-col gap-1.5 sm:col-span-1">
+                        <label htmlFor="zip">ZIP code</label>
+                        <Input id="zip" name="zip" type="text" placeholder="Your zip code" required />
+                    </div>
 
-                    <label htmlFor="address">Address</label>
-                    <Input className="text-sm font-medium text-foreground sm:col-span-2" id="address" name="address" type="text" placeholder="Your address" required />
-
-                    <label htmlFor="zip">ZIP code</label>
-                    <Input className="text-sm font-medium text-foreground sm:col-span-2" id="zip" name="zip" type="text" placeholder="Your zip code" required />
-
-                    <label htmlFor="city">City</label>
-                    <Input className="text-sm font-medium text-foreground sm:col-span-2" id="city" name="city" type="text" placeholder="Your city" required />
+                    <div className="flex flex-col gap-1.5 sm:col-span-1">
+                        <label htmlFor="city">City</label>
+                        <Input id="city" name="city" type="text" placeholder="Your city" required />
+                    </div>
 
                     <div className="flex flex-col gap-2 col-span-full">
                         <label htmlFor="country">Country</label>
@@ -209,7 +212,7 @@ export default function Checkout() {
                                     <option value="OM" label="Oman">Oman</option>
                                     <option value="PK" label="Pakistan">Pakistan</option>
                                     <option value="PS" label="Palestinian Territories">Palestinian Territories</option>
-                                    <option value="YD" label="People's Democratic Republic of Yemen">People's Democratic Republic of Yemen</option>
+                                    <option value="YD" label="People&apos;s Democratic Republic of Yemen">People's Democratic Republic of Yemen</option>
                                     <option value="PH" label="Philippines">Philippines</option>
                                     <option value="QA" label="Qatar">Qatar</option>
                                     <option value="SA" label="Saudi Arabia">Saudi Arabia</option>
@@ -328,12 +331,12 @@ export default function Checkout() {
                     <div className="flex flex-col gap-2 col-span-full">
                         <label htmlFor="message">Message</label>
                         <Textarea id="message" name="message" maxLength={500} placeholder="Enter more order details (up to 500 characters)"></Textarea>
+                    </div>
                     
-                    <CardFooter>
+                    <div className="sm:col-span-2 pt-2">
                         <Button type="submit" variant="default" className="w-full text-base font-semibold py-6">
                             Send order
                         </Button>
-                    </CardFooter>
                     </div>
 
                 </form>

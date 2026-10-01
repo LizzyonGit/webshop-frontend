@@ -10,8 +10,6 @@ import {
 } from "@/components/ui/card"
 import Image from "next/image";
 import Link from "next/link"
-import { prisma } from "@/lib/prisma";
-import { notFound } from "next/navigation";
 
 export default async function Cart() {
     return (
@@ -38,16 +36,16 @@ export default async function Cart() {
                         sizes="96px"
                         />
                     </div>
-                    <div className="flex gap-4">
+                    <div className="flex flex-1 items-center justify-between gap-4">
                         <div className="flex-1 min-w-0">
-                            <Link href="#">
+                            <Link href="#" className="font-medium hover:underline">
                                 (Title)
                             </Link>
-                            <p className="text-muted-foreground">
+                            <p className="text-muted-foreground text-sm">
                                 €29.99
                             </p>
                         </div>
-                        <div className="border-2 rounded-xl w-fit">
+                        <div className="border-2 rounded-xl w-fit flex items-center">
                             <Button type="button" variant="ghost" size="sm">
                                 -
                             </Button>
