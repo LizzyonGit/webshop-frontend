@@ -12,6 +12,7 @@ type ProductsTableProps = {
     category?: string;
     stock?: string;
     search?: string;
+    sortBy?: string;
   }>;
 };
 
@@ -23,22 +24,15 @@ export default async function ProductsTable({ searchParams }: ProductsTableProps
   const category = params.category ?? '';
   const stock = params.stock ?? '';
   const search = params.search ?? '';
+  const sortBy = params.sortBy ?? '';
 
   const repository = new ProductRepository();
 
   // Send pagination and filter parameters to the backend
   // and receive the paginated product response
-  const response = await repository.getProducts(currentPage, category, stock, search);
+  const response = await repository.getProducts(currentPage, category, stock, search, sortBy);
   // Get the products from the response
   const products = response.products;
-
-  //function to display category not as slug
-  function formatCategory(category: string) {
-    return category
-      .split('-')
-      .map((word, index) => (index === 0 ? word.charAt(0).toUpperCase() + word.slice(1) : word))
-      .join(' ');
-  }
 
   return (
     <div>
@@ -46,7 +40,7 @@ export default async function ProductsTable({ searchParams }: ProductsTableProps
         {products.map((product) => (
           <Link
             key={product.id}
-            href={`/products/${product.slug}`} //adjust to final product detail page link
+            href={`/${product.slug}`} //adjust to final product detail page link
           >
             <Card key={product.id} className="h-full w-full">
               <div className="relative aspect-square border-b border-border">
@@ -64,7 +58,7 @@ export default async function ProductsTable({ searchParams }: ProductsTableProps
                 <CardTitle className="flex">
                   {product.title}
                   <Badge variant="default" className="ml-auto">
-                    {formatCategory(product.category)}
+                    {product.category}
                   </Badge>
                 </CardTitle>
               </CardHeader>

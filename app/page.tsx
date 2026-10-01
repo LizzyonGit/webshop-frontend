@@ -11,19 +11,22 @@ type PageProps = {
     category?: string;
     stock?: string;
     search?: string;
+    sortBy?: string;
   }>;
 };
 
 export default async function Home({ searchParams }: PageProps) {
   const params = await searchParams;
   const categoryParams = params.category ?? '';
+  const sortByParams = params.sortBy ?? '';
+  const searchParam = params.search ?? '';
 
   return (
     <main className="min-h-screen">
       <div className="container max-w-7xl mx-auto px-6 py-6">
         <NavigationBar />
         <Hero />
-        <ProductFiltering categoryParam={categoryParams} />
+        <ProductFiltering categoryParam={categoryParams} sortByParam={sortByParams} searchParam={searchParam} />
         <ProductsTable searchParams={searchParams} />
       </div>
       <Footer />

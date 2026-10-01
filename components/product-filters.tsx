@@ -6,9 +6,11 @@ import { CategoryRepository } from '@/repositories/category-repository';
 
 type Props = {
   categoryParam: string;
+  sortByParam: string;
+  searchParam: string;
 };
 
-export default async function ProductFiltering({ categoryParam }: Props) {
+export default async function ProductFiltering({ categoryParam, sortByParam, searchParam }: Props) {
   const categoryRepository = new CategoryRepository();
   const categories = await categoryRepository.getAll();
 
@@ -26,11 +28,18 @@ export default async function ProductFiltering({ categoryParam }: Props) {
         {/* Search on products*/}
         <div className="relative flex-1">
           <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" aria-hidden="true" />
-          <Input type="search" name="search" id="search" placeholder="Search products..." className="h-10 rounded-xl  border-zinc-200 pl-10 shadow-none focus-visible:ring-1" />
+          <Input
+            defaultValue={searchParam}
+            type="search"
+            name="search"
+            id="search"
+            placeholder="Search products..."
+            className="h-10 rounded-xl  border-zinc-200 pl-10 shadow-none focus-visible:ring-1"
+          />
         </div>
 
         {/* Filter on categories */}
-        <div className="relative flex-1">
+        <div className="relative">
           <label htmlFor="category" className="sr-only">
             Filter by category
           </label>
@@ -48,6 +57,26 @@ export default async function ProductFiltering({ categoryParam }: Props) {
                 {category.name}
               </option>
             ))}
+          </select>
+        </div>
+
+        {/* Sort products */}
+        <div className="relative">
+          <label htmlFor="sortBy" className="sr-only">
+            Sort by
+          </label>
+          <select
+            key={sortByParam}
+            name="sortBy"
+            id="sortBy"
+            defaultValue={sortByParam}
+            className="h-12 rounded-xl border px-4 text-base leading-relaxed text-grey-700 outline-none"
+          >
+            <option value="">Sort by</option>
+            <option value="asc">A-Z</option>
+            <option value="desc">Z-A</option>
+            <option value="lowest">Lowest first</option>
+            <option value="highest">Highest first</option>
           </select>
         </div>
 
