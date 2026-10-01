@@ -6,9 +6,10 @@ import { CategoryRepository } from '@/repositories/category-repository';
 
 type Props = {
   categoryParam: string;
+  sortByParam: string;
 };
 
-export default async function ProductFiltering({ categoryParam }: Props) {
+export default async function ProductFiltering({ categoryParam, sortByParam }: Props) {
   const categoryRepository = new CategoryRepository();
   const categories = await categoryRepository.getAll();
 
@@ -48,6 +49,26 @@ export default async function ProductFiltering({ categoryParam }: Props) {
                 {category.name}
               </option>
             ))}
+          </select>
+        </div>
+
+        {/* Sort products */}
+        <div className="relative">
+          <label htmlFor="sortBy" className="sr-only">
+            Sort by
+          </label>
+          <select
+            key={sortByParam}
+            name="sortBy"
+            id="sortBy"
+            defaultValue={sortByParam}
+            className="h-12 rounded-xl border px-4 text-base leading-relaxed text-grey-700 outline-none"
+          >
+            <option value="">Sort by</option>
+            <option value="asc">Ascending</option>
+            <option value="desc">Descending</option>
+            <option value="lowest">Lowest first</option>
+            <option value="highest">Highest first</option>
           </select>
         </div>
 

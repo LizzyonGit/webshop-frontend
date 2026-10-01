@@ -12,6 +12,7 @@ type ProductsTableProps = {
     category?: string;
     stock?: string;
     query?: string;
+    sortBy?: string;
   }>;
 };
 
@@ -23,16 +24,16 @@ export default async function ProductsTable({ searchParams }: ProductsTableProps
   const category = params.category ?? '';
   const stock = params.stock ?? '';
   const query = params.query ?? '';
+  const sortBy = params.sortBy ?? '';
 
   const repository = new ProductRepository();
 
   // Send pagination and filter parameters to the backend
   // and receive the paginated product response
-  const response = await repository.getProducts(currentPage, category, stock, query);
+  const response = await repository.getProducts(currentPage, category, stock, query, sortBy);
   // Get the products from the response
   const products = response.products;
 
-  
   return (
     <div>
       <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
@@ -59,10 +60,8 @@ export default async function ProductsTable({ searchParams }: ProductsTableProps
                   <Badge variant="default" className="ml-auto">
                     {product.category}
                   </Badge>
-              
                 </CardTitle>
               </CardHeader>
-              
 
               <CardContent>€{product.price}</CardContent>
             </Card>

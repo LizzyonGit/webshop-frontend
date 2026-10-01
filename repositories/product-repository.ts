@@ -3,12 +3,15 @@ import { prisma } from '@/lib/prisma';
 import { Product, ProductListResponse } from '@/types/product';
 
 export class ProductRepository {
-  async getProducts(currentPage: number, categoryParams: string, stockParams: string, queryParams: string): Promise<ProductListResponse> {
+  async getProducts(currentPage: number, categoryParams: string, stockParams: string, queryParams: string, sortByParam: string): Promise<ProductListResponse> {
     const pageSize = 12;
     const skip = (currentPage - 1) * pageSize;
 
     const search = queryParams.trim();
     const category = categoryParams.trim();
+
+    //Sort by lowest, highest price & asc, desc
+    const sortBy = sortByParam === 'lowest' ? { price: 'asc' as const } : sortByParam === 'highest' ? { price: 'desc' as const } : { createdAt: 'desc' as const };
 
     const condition: Prisma.ProductWhereInput[] = [];
 
@@ -73,9 +76,7 @@ export class ProductRepository {
         where,
         skip,
         take: pageSize,
-        orderBy: {
-          title: 'asc',
-        },
+        orderBy: sortBy,
         include: {
           category: true,
         },
