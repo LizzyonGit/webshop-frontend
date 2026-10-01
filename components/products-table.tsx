@@ -11,7 +11,7 @@ type ProductsTableProps = {
     page?: string;
     category?: string;
     stock?: string;
-    query?: string;
+    search?: string;
     sortBy?: string;
   }>;
 };
@@ -23,14 +23,14 @@ export default async function ProductsTable({ searchParams }: ProductsTableProps
   const currentPage = Number(params.page ?? '1');
   const category = params.category ?? '';
   const stock = params.stock ?? '';
-  const query = params.query ?? '';
+  const search = params.search ?? '';
   const sortBy = params.sortBy ?? '';
 
   const repository = new ProductRepository();
 
   // Send pagination and filter parameters to the backend
   // and receive the paginated product response
-  const response = await repository.getProducts(currentPage, category, stock, query, sortBy);
+  const response = await repository.getProducts(currentPage, category, stock, search, sortBy);
   // Get the products from the response
   const products = response.products;
 

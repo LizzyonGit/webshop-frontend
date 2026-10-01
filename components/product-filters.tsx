@@ -7,9 +7,10 @@ import { CategoryRepository } from '@/repositories/category-repository';
 type Props = {
   categoryParam: string;
   sortByParam: string;
+  searchParam: string;
 };
 
-export default async function ProductFiltering({ categoryParam, sortByParam }: Props) {
+export default async function ProductFiltering({ categoryParam, sortByParam, searchParam }: Props) {
   const categoryRepository = new CategoryRepository();
   const categories = await categoryRepository.getAll();
 
@@ -27,7 +28,14 @@ export default async function ProductFiltering({ categoryParam, sortByParam }: P
         {/* Search on products*/}
         <div className="relative flex-1">
           <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400" aria-hidden="true" />
-          <Input type="search" name="search" id="search" placeholder="Search products..." className="h-10 rounded-xl  border-zinc-200 pl-10 shadow-none focus-visible:ring-1" />
+          <Input
+            defaultValue={searchParam}
+            type="search"
+            name="search"
+            id="search"
+            placeholder="Search products..."
+            className="h-10 rounded-xl  border-zinc-200 pl-10 shadow-none focus-visible:ring-1"
+          />
         </div>
 
         {/* Filter on categories */}
