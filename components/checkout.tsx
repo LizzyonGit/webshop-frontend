@@ -28,25 +28,37 @@ export default function Checkout() {
                 </div>
             </CardHeader> 
             <CardContent className="grid grid-cols-1 gap-6">   
-                <form className="grid gap-3" action="">
+                <form className="grid grid-cols-1 sm:grid-cols-2 gap-4" action="">
+                    
                     <label htmlFor="name">Name</label>
-                    <Input id="name" name="name" type="text" placeholder="Your name" required />
+                    <Input className="text-sm font-medium text-foreground sm:col-span-2" id="name" name="name" type="text" placeholder="Your name" required />
+
                     <label htmlFor="email">Email</label>
-                    <Input id="email" name="email" type="email" placeholder="Your email" required />
+                    <Input className="text-sm font-medium text-foreground sm:col-span-2" id="email" name="email" type="email" placeholder="Your email" required />
+
                     <label htmlFor="phone">Phone</label>
-                    <Input id="phone" name="phone" type="tel" placeholder="Your phone number" required />
+                    <Input className="text-sm font-medium text-foreground sm:col-span-2" id="phone" name="phone" type="tel" placeholder="Your phone number" required />
+
                     <label htmlFor="address">Address</label>
-                    <Input id="address" name="address" type="text" placeholder="Your address" required />
+                    <Input className="text-sm font-medium text-foreground sm:col-span-2" id="address" name="address" type="text" placeholder="Your address" required />
+
                     <label htmlFor="zip">ZIP code</label>
-                    <Input id="zip" name="zip" type="text" placeholder="Your zip code" required />
-                    <label htmlFor="zip">ZIP code</label>
-                    <Input id="city" name="city" type="text" placeholder="Your city" required />
+                    <Input className="text-sm font-medium text-foreground sm:col-span-2" id="zip" name="zip" type="text" placeholder="Your zip code" required />
+
+                    <label htmlFor="city">City</label>
+                    <Input className="text-sm font-medium text-foreground sm:col-span-2" id="city" name="city" type="text" placeholder="Your city" required />
+
                     <div className="flex flex-col gap-2 col-span-full">
                         <label htmlFor="country">Country</label>
     {/* Souce - https://stackoverflow.com/a/62842301
     Posted y Szymon Zachariasz, modified by community. See post 'Timeline' for change history
     Retrievd 2026-09-30, License - CC BY-SA 4.0 */}
-                        <select className="border rounded-xl p-2" name="country" id="country" required>
+                        <select 
+                            className="h-12 rounded-xl border border-input bg-background px-4 text-base col-span-full" 
+                            name="country" 
+                            id="country" 
+                            required
+                            >
                             <option value="0" label="Select your country..." defaultValue="0">Select a country ... </option>
                                 <optgroup id="country-optgroup-Africa" label="Africa">
                                     <option value="DZ" label="Algeria">Algeria</option>
@@ -312,15 +324,19 @@ export default function Checkout() {
                                 </optgroup>
                             </select>
                     </div>
+
                     <div className="flex flex-col gap-2 col-span-full">
                         <label htmlFor="message">Message</label>
                         <Textarea id="message" name="message" maxLength={500} placeholder="Enter more order details (up to 500 characters)"></Textarea>
-                        <Button type="submit" variant="default" className="mx-auto">
-                            {<Link href="/shipping">Send order</Link>}
+                    
+                    <CardFooter>
+                        <Button type="submit" variant="default" className="w-full text-base font-semibold py-6">
+                            Send order
                         </Button>
+                    </CardFooter>
                     </div>
-                </form>
 
+                </form>
             </CardContent>
         </Card>  
     )
