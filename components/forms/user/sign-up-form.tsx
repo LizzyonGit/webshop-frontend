@@ -4,7 +4,7 @@ import { signUpEmailAction } from '@/actions/user/sign-up-action';
 import FormField from '@/components/ui/form-field';
 import Input from '@/components/ui/input';
 import { useRouter } from 'next/navigation';
-import { FormEvent, useState } from 'react';
+import { SubmitEvent, useState } from 'react';
 import { toast } from 'sonner';
 import { Button } from '@/components/ui/button';
 import { User2, LockKeyhole, Mail } from 'lucide-react';
@@ -25,7 +25,7 @@ export default function SignUpForm() {
   const [error, setError] = useState('');
   const [isPending, setPending] = useState(false);
 
-  async function handleSubmit(evt: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(evt: SubmitEvent<HTMLFormElement>) {
     evt.preventDefault();
 
     setPending(true);

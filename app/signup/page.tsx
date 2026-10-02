@@ -10,8 +10,8 @@ import SignUpForm from '@/components/forms/user/sign-up-form';
 
 export default function SignupPage() {
   return (
-    <main className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      <div className="w-full max-w-md rounded-2xl border p-8 shadow-lg">
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden bg-muted-foreground">
+      <div className="w-full max-w-md rounded-2xl border p-8 shadow-lg bg-card">
         <div className="mb-8 text-center">
           <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full border border-[#C09721]/40 bg-[#2A2414] shadow-[0_0_24px_rgba(192,151,33,0.08)]">
             <User className="h-6 w-6 text-white" strokeWidth={1.6} />

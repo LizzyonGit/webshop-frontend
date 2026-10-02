@@ -1,8 +1,7 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { SubmitEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
-
 import { toast } from 'sonner';
 import { Mail, LockKeyhole } from 'lucide-react';
 import { signInEmailAction } from '@/actions/user/sign-in-email-action';
@@ -10,6 +9,7 @@ import FormField from '@/components/ui/form-field';
 import PasswordInput from '@/components/ui/input-password';
 import Input from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default function LoginForm() {
   const router = useRouter();
@@ -22,7 +22,7 @@ export default function LoginForm() {
 
   const [isPending, setPending] = useState(false);
 
-  async function handleSubmit(evt: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(evt: SubmitEvent<HTMLFormElement>) {
     evt.preventDefault();
 
     setPending(true);
@@ -87,10 +87,17 @@ export default function LoginForm() {
         />
       </FormField>
 
-      {/* Submit */}
-      <Button type="submit" variant="default" disabled={isPending}>
-        {isPending ? 'Logging in...' : 'Login'}
-      </Button>
+      <div className="flex flex-col justify-center gap-4 sm:flex-row">
+        {/* Submit */}
+        <Button type="submit" variant="default" disabled={isPending}>
+          {isPending ? 'Logging in...' : 'Login'}
+        </Button>
+
+        {/* Cancel */}
+        <Button variant="destructive">
+          <Link href="/">Cancel</Link>
+        </Button>
+      </div>
     </form>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { SubmitEvent, useState } from 'react';
 import { toast } from 'sonner';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Input from '@/components/ui/input';
@@ -28,7 +28,7 @@ export default function ResetPasswordForm() {
 
   const isValidToken = !!token;
 
-  async function handleSubmit(evt: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(evt: SubmitEvent<HTMLFormElement>) {
     evt.preventDefault();
 
     setPending(true);
