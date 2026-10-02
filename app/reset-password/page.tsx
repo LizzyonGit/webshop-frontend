@@ -1,4 +1,10 @@
+
 import Link from 'next/link';
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Reset Password | Sky Market',
+  description: 'Create a new password for your Sky Market account.',
+};
 
 import { User } from 'lucide-react';
 import ResetPasswordForm from '@/components/forms/user/reset-password-form';

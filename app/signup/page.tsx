@@ -1,4 +1,9 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Sign Up | Sky Market',
+  description: 'Create a Sky Market account to start shopping.',
+};
 
 import { User } from 'lucide-react';
 import SignUpForm from '@/components/forms/user/sign-up-form';

@@ -28,7 +28,7 @@ export default function AuthActionButtonMobile({ isLoggedIn }: Props) {
     return <Button onClick={handleLogout}>Log out</Button>;
   } else {
     return (
-      <DrawerClose render={<Link href="/cart" />} nativeButton={false} className={`${linkClass} flex items-center gap-3`}>
+      <DrawerClose render={<Link href="/login" />} nativeButton={false} className={`${linkClass} flex items-center gap-3`}>
         Login
       </DrawerClose>
 

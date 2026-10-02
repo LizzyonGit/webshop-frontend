@@ -79,7 +79,7 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
   const pageItems = getPageItems();
 
   return (
-    <ShadcnPagination>
+    <ShadcnPagination className="pbs-6 pbe-6">
       <PaginationContent className="pbs-2">
         {/* Previous */}
         <PaginationItem>

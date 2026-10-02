@@ -15,38 +15,45 @@ export default async function NavigationBar() {
   const cartCount = 0; // TODO: replace with the real cart item count
 
   return (
-    <NavigationMenu className="w-full max-w-none border-be-3 pbe-2">
-      <NavigationMenuList className="w-full justify-between">
-        <NavigationMenuItem className="flex w-full items-center justify-between">
-          <NavigationMenuLink render={<Link href="/" />} className={navigationMenuTriggerStyle()}>
-            <Image src="/sky-market-transparent.png" alt="Sky Market logo" width={200} height={100} priority className="h-auto w-40 object-contain" />
-          </NavigationMenuLink>
-
-          {/* Desktop links */}
-          <div className="hidden items-center gap-2 md:flex">
-            {/* home */}
+    <div className="container max-w-7xl mx-auto px-2 pbe-2 pbs-4">
+      <NavigationMenu className="w-full max-w-none border-be-3 pbe-2">
+        <NavigationMenuList className="w-full justify-between">
+          <NavigationMenuItem className="flex w-full items-center justify-between">
             <NavigationMenuLink render={<Link href="/" />} className={navigationMenuTriggerStyle()}>
-              Home
+              <Image src="/sky-market-transparent.png" alt="Sky Market logo" width={200} height={100} priority className="h-auto w-40 object-contain" loading="eager" />
             </NavigationMenuLink>
 
-            {/* contact */}
-            <NavigationMenuLink render={<Link href="/contact" />} className={navigationMenuTriggerStyle()}>
-              Contact
-            </NavigationMenuLink>
+            {/* Desktop links */}
+            <div className="hidden items-center gap-2 md:flex">
+              {/* home */}
+              <NavigationMenuLink render={<Link href="/" />} className={navigationMenuTriggerStyle()}>
+                Home
+              </NavigationMenuLink>
 
-            {/* cart */}
-            <NavigationMenuLink render={<Link href="/cart" />} className={navigationMenuTriggerStyle()}>
-              <CartIcon count={cartCount} />
-            </NavigationMenuLink>
+              {/* contact */}
+              <NavigationMenuLink render={<Link href="/contact" />} className={navigationMenuTriggerStyle()}>
+                Contact
+              </NavigationMenuLink>
 
-            {/* login button */}
-            <AuthActionButton isLoggedIn={isLoggedIn} />
-          </div>
+              {/* User dashboard */}
+              <NavigationMenuLink render={<Link href="/dashboard" />} className={navigationMenuTriggerStyle()}>
+                Dashboard
+              </NavigationMenuLink>
 
-          {/* Mobile hamburger + drawer */}
-          <MobileMenu isLoggedIn={isLoggedIn} />
-        </NavigationMenuItem>
-      </NavigationMenuList>
-    </NavigationMenu>
+              {/* cart */}
+              <NavigationMenuLink render={<Link href="/cart" />} className={navigationMenuTriggerStyle()}>
+                <CartIcon count={cartCount} />
+              </NavigationMenuLink>
+
+              {/* login button */}
+              <AuthActionButton isLoggedIn={isLoggedIn} />
+            </div>
+
+            {/* Mobile hamburger + drawer */}
+            <MobileMenu isLoggedIn={isLoggedIn} />
+          </NavigationMenuItem>
+        </NavigationMenuList>
+      </NavigationMenu>
+    </div>
   );
 }
