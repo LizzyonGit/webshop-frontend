@@ -14,6 +14,11 @@ import Link from "next/link"
 import { useCart } from "@/hooks/use-cart";
 import { productImageFileSchema } from "@/lib/validation/product-image";
 
+const formatPrice = (n: number) =>
+  new Intl.NumberFormat('en-US', {
+    style: 'currency',
+    currency: 'EUR',
+  }).format(n);
 
 export default function Cart() {
     const {
@@ -65,7 +70,7 @@ return (
                                 {item.name}
                             </Link>
                             <p className="text-muted-foreground text-sm">
-                                €{item.price}
+                                {formatPrice(item.price)}
                             </p>
                         </div>
                         <div className="border-2 rounded-xl w-fit flex items-center">
@@ -84,50 +89,13 @@ return (
                     ))}
                 </ul>
                 
-                //ul från patrik
-                <ul className="divide-y">
-                    {items.map((item) => (
-                    <li key={item.slug} className="flex items-center gap-4 py-4">
-                        {item.image && <Image src={item.image} alt={item.name} width={80} height={80} className="size-20 rounded-md object-contain" />}
-
-                        <div className="flex-1">
-                        {/* adjust to your product route */}
-                        <Link href={`/products/${item.slug}`} className="font-medium hover:underline">
-                            {item.name}
-                        </Link>
-                        <p className="text-sm text-muted-foreground">{item.price}</p>
-                        </div>
-
-                        <div className="flex items-center gap-2">
-                        <Button variant="outline" size="icon" aria-label="Decrease quantity" onClick={() => setQuantity(item.slug, item.quantity - 1)}>
-                            -
-                        </Button>
-                        <span className="w-6 text-center tabular-nums">{item.quantity}</span>
-                        <Button
-                            variant="outline"
-                            size="icon"
-                            aria-label="Increase quantity"
-                            disabled={item.stock !== undefined && item.quantity >= item.stock}
-                            onClick={() => setQuantity(item.slug, item.quantity + 1)}
-                        >
-                            +
-                        </Button>
-                        </div>
-
-                        <p className="w-20 text-right font-medium tabular-nums">{(item.price * item.quantity)}</p>
-
-                        <Button variant="ghost" size="icon" aria-label={`Remove ${item.name}`} onClick={() => removeItem(item.slug)}>
-                        {/*<Trash2 className="size-4" />*/}
-                        </Button>
-                    </li>
-                    ))}
-                </ul>
+                
             </CardContent>
             <CardFooter className="flex flex-col gap-2">
                 <h2 className="text-2xl font-semibold">Order summary</h2>
                     <div className="flex justify-between w-full">
                         <p className="font-bold">Subtotal</p>
-                        <span>{subtotal}</span>
+                        <span>{formatPrice(subtotal)}</span>
                     </div>
                     <div className="flex justify-between w-full">
                         <p className="font-bold">Shipping cost</p>
@@ -135,7 +103,7 @@ return (
                     </div>
                     <div className="flex justify-between border-y-2 py-2 text-xl font-bold w-full">
                         <p>Total</p>
-                        <span>€29.99</span>
+                        <span>{formatPrice(subtotal)}</span>
                     </div>  
             </CardFooter>
         </Card>
