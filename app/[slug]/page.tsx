@@ -83,7 +83,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
                 slug: product.slug,
                 name: product.title, 
                 price: Number(product.price),
-                image: product.image,
+                image: `/images/${product.thumbnail}.webp`,
                 stock: product.stock,
               }}
             />

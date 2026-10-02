@@ -12,9 +12,10 @@ import {
 import Image from "next/image";
 import Link from "next/link"
 import { useCart } from "@/hooks/use-cart";
+import { productImageFileSchema } from "@/lib/validation/product-image";
 
 
-export default async function Cart() {
+export default function Cart() {
     const {
     items,
     subtotal,
@@ -45,36 +46,44 @@ return (
                     </CardAction>
             </CardHeader>
             <CardContent className="grid grid-cols-1 gap-6">
-                <div className="flex items-center gap-4 py-4 border-b">
-                    <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl">
-                        <Image 
-                        src={`/thumbnails/apple.webp`}
-                        alt=""
+                
+                <ul className="flex flex-col">
+                    {items.map((item) => (
+                    <li key={item.slug} className="flex items-center gap-4 py-4 border-b">
+                        <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl">
+                        {item.image && (<Image 
+                        src={item.image} 
+                        alt={item.name}
                         fill={true}
                         className="object-cover"
                         sizes="96px"
-                        />
-                    </div>
+                        />)}
+                        </div>
                     <div className="flex flex-1 items-center justify-between gap-4">
                         <div className="flex-1 min-w-0">
-                            <Link href="#" className="font-medium hover:underline">
-                                (Title)
+                            <Link href={`/products/${item.slug}`} className="font-medium hover:underline">
+                                {item.name}
                             </Link>
                             <p className="text-muted-foreground text-sm">
-                                €29.99
+                                €{item.price}
                             </p>
                         </div>
                         <div className="border-2 rounded-xl w-fit flex items-center">
-                            <Button type="button" variant="ghost" size="sm">
+                            <Button type="button" variant="ghost" size="sm" aria-label="Decrease quantity" onClick={() => setQuantity(item.slug, item.quantity - 1)}>
                                 -
                             </Button>
-                            <span className="px-3 text-sm font-medium">1</span>
-                            <Button type="button" variant="ghost" size="sm">
+                            <span className="px-3 text-sm font-medium">{item.quantity}</span>
+                            <Button type="button" variant="ghost" size="sm" aria-label="Increase quantity"
+                            disabled={item.stock !== undefined && item.quantity >= item.stock}
+                            onClick={() => setQuantity(item.slug, item.quantity + 1)}>
                                 +
                             </Button>
                         </div>
                     </div>
-                </div>
+                    </li>
+                    ))}
+                </ul>
+                
                 //ul från patrik
                 <ul className="divide-y">
                     {items.map((item) => (
@@ -118,7 +127,7 @@ return (
                 <h2 className="text-2xl font-semibold">Order summary</h2>
                     <div className="flex justify-between w-full">
                         <p className="font-bold">Subtotal</p>
-                        <span>€29.99</span>
+                        <span>{subtotal}</span>
                     </div>
                     <div className="flex justify-between w-full">
                         <p className="font-bold">Shipping cost</p>
