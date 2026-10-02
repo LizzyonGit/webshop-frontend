@@ -1,4 +1,9 @@
 import Link from 'next/link';
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Login | Sky Market',
+  description: 'Log in to your Sky Market account.',
+};
 
 import { User } from 'lucide-react';
 import LoginForm from '@/components/forms/user/login-form';
