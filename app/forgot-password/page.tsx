@@ -1,6 +1,11 @@
 import ForgotPasswordForm from '@/components/forms/user/forgot-password-form';
 import { LockKeyholeIcon } from 'lucide-react';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Forgot Password | Sky Market',
+  description: 'Reset your Sky Market account password.',
+};
 
 export default function ForgotPasswordPage() {
   return (

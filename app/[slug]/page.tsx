@@ -20,6 +20,11 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
   return {
     title: product ? `${product.title} | Sky Market` : 'Product | Sky Market',
+   description: product
+  ? product.description.length > 155
+    ? `${product.description.slice(0, 152)}...`
+    : product.description
+  : 'Discover products and shop online at Sky Market.',
   };
 }
 
