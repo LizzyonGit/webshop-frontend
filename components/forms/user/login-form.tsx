@@ -1,8 +1,7 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { SubmitEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
 import { toast } from 'sonner';
 import { Mail, LockKeyhole } from 'lucide-react';
 import { signInEmailAction } from '@/actions/user/sign-in-email-action';
@@ -22,7 +21,7 @@ export default function LoginForm() {
 
   const [isPending, setPending] = useState(false);
 
-  async function handleSubmit(evt: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(evt: SubmitEvent<HTMLFormElement>) {
     evt.preventDefault();
 
     setPending(true);
