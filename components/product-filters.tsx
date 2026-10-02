@@ -146,7 +146,7 @@ export default async function ProductFiltering({ categoryParam, sortByParam, sea
         <Button
           type="submit"
           className="
-            h-10 w-full
+            h-12 w-full
             gap-2 rounded-xl
             px-2
             sm:px-3

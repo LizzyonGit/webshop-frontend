@@ -21,7 +21,7 @@ export default function ResetFilteringButton() {
       variant="outline"
       disabled={isPending}
       onClick={handleReset}
-      className="h-10 w-full gap-2 rounded-xl border-zinc-200 px-4 text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900"
+      className="h-12 w-full gap-2 rounded-xl border-zinc-200 px-4 text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900"
     >
       <RotateCcw size={16} className={isPending ? 'animate-spin' : ''} aria-hidden="true" />
 
