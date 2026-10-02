@@ -2,7 +2,7 @@
 
 import { FormEvent, useState } from 'react';
 import { useRouter } from 'next/navigation';
-
+import Link from 'next/link';
 import { toast } from 'sonner';
 import { Mail, LockKeyhole } from 'lucide-react';
 import { signInEmailAction } from '@/actions/user/sign-in-email-action';
@@ -53,6 +53,10 @@ export default function LoginForm() {
     }
   }
 
+  function previousPage() {
+    window.history.back();
+  }
+
   return (
     <form onSubmit={handleSubmit} className="space-y-7">
       {errors.general && (
@@ -87,10 +91,17 @@ export default function LoginForm() {
         />
       </FormField>
 
-      {/* Submit */}
-      <Button type="submit" variant="default" disabled={isPending}>
-        {isPending ? 'Logging in...' : 'Login'}
-      </Button>
+      <div className="flex flex-col justify-center gap-4 sm:flex-row">
+        {/* Submit */}
+        <Button type="submit" variant="default" disabled={isPending}>
+          {isPending ? 'Logging in...' : 'Login'}
+        </Button>
+
+        {/* Cancel */}
+        <Button variant="destructive" onClick={previousPage}>
+          Cancel
+        </Button>
+      </div>
     </form>
   );
 }
