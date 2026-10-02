@@ -9,6 +9,7 @@ import FormField from '@/components/ui/form-field';
 import PasswordInput from '@/components/ui/input-password';
 import Input from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import Link from 'next/link';
 
 export default function LoginForm() {
   const router = useRouter();
@@ -52,10 +53,6 @@ export default function LoginForm() {
     }
   }
 
-  function previousPage() {
-    window.history.back();
-  }
-
   return (
     <form onSubmit={handleSubmit} className="space-y-7">
       {errors.general && (
@@ -97,8 +94,8 @@ export default function LoginForm() {
         </Button>
 
         {/* Cancel */}
-        <Button variant="destructive" onClick={previousPage}>
-          Cancel
+        <Button variant="destructive">
+          <Link href="/">Cancel</Link>
         </Button>
       </div>
     </form>
