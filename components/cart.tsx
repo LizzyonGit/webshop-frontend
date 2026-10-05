@@ -33,37 +33,30 @@ export default function Cart() {
 
     if (!hydrated) return null;//empty page when no items
 
-    
-
-
-
 return (
         <Card className="overflow-hidden">
-            <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <CardHeader className="flex flex-row gap-3 items-start justify-between">
                 <div className="flex flex-col gap-2">
-                    <CardTitle className="text-2xl font-semibold">1. Your Cart</CardTitle>
+                    
+                    <CardTitle className="text-xl sm:text-2xl font-semibold">1. Your Cart</CardTitle>
                     <CardDescription>
                         {items.length === 0
-                        ? "Your cart is currently empty."
+                        ? "Your cart is empty."
                         : "Current items in your cart."}
                     </CardDescription>
                 </div>
-                    <CardAction>
+                    <CardAction className="self-end">
                         <Button variant="link">
                             <Link href ="/" className="flex items-center gap-2">
                             <ArrowLeft />
                             {items.length === 0
                         ? "Start shopping"
-                        : "Continue shopping"}</Link>
+                        : "Shop more"}</Link>{/*Shop more takes less space than Continue shopping*/}
                         </Button>
                     </CardAction>
             </CardHeader>
             <CardContent className="grid grid-cols-1 gap-6">
-                {items.length === 0 ? (
-                    <div className="flex flex-col">
-                        <h2>Your cart is empty</h2>
-                    </div>
-                ) : (
+                
                 <ul className="flex flex-col">
                     {items.map((item) => (
                     <li key={item.slug} className="flex items-center gap-4 py-4 border-b">
@@ -100,12 +93,13 @@ return (
                     </li>
                     ))}
                 </ul>
-            )}
+            
                 
                 
             </CardContent>
+            {items.length > 0 && (
             <CardFooter className="flex flex-col gap-2">
-                <h2 className="text-2xl font-semibold">Order summary</h2>
+                <h2 className="text-xl font-semibold">Order summary</h2>
                     <div className="flex justify-between w-full">
                         <p className="font-bold">Subtotal</p>
                         <span>{formatPrice(subtotal)}</span>
@@ -119,6 +113,7 @@ return (
                         <span>{formatPrice(subtotal)}</span>
                     </div>  
             </CardFooter>
+        )}
         </Card>
     )
 }
