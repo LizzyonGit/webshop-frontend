@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { SubmitEvent, useState } from 'react';
 import { toast } from 'sonner';
 
 import { useRouter } from 'next/navigation';
@@ -23,7 +23,7 @@ export default function ForgotPasswordForm() {
   const [email, setEmail] = useState('');
   const [isPending, setPending] = useState(false);
 
-  async function handleSubmit(evt: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(evt: SubmitEvent<HTMLFormElement>) {
     evt.preventDefault();
 
     setPending(true);

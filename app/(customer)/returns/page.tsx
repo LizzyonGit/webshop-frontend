@@ -1,3 +1,8 @@
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Returns | Sky Market',
+  description: 'Learn about Sky Market returns and our 30-day return policy.',
+};
 export default function ReturnsPage() {
   return (
     <main className="bg-background text-foreground">

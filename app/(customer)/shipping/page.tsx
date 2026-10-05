@@ -1,3 +1,8 @@
+import type { Metadata } from 'next';
+export const metadata: Metadata = {
+  title: 'Shipping | Sky Market',
+  description: 'Learn about shipping at Sky Market and how we deliver your orders safely and reliably.',
+};
 export default function ShippingPage() {
   return (
     <main className="bg-background text-foreground">

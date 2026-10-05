@@ -1,5 +1,3 @@
-import NavigationBar from '@/components/navigation-bar';
-import Footer from '@/components/footer';
 import Hero from '@/components/hero';
 
 import ProductsTable from '@/components/products-table';
@@ -21,15 +19,15 @@ export default async function Home({ searchParams }: PageProps) {
   const sortByParams = params.sortBy ?? '';
   const searchParam = params.search ?? '';
 
+  const hasFilters = searchParam !== '' || categoryParams !== '' || sortByParams !== '';
+
   return (
-    <main className="min-h-screen">
-      <div className="container max-w-7xl mx-auto px-6 py-6">
-        <NavigationBar />
-        <Hero />
-        <ProductFiltering categoryParam={categoryParams} sortByParam={sortByParams} searchParam={searchParam} />
-        <ProductsTable searchParams={searchParams} />
-      </div>
-      <Footer />
-    </main>
+    <>
+      {/* Hide hero when searching or filtering */}
+      {!hasFilters && <Hero />}
+
+      <ProductFiltering categoryParam={categoryParams} sortByParam={sortByParams} searchParam={searchParam} />
+      <ProductsTable searchParams={searchParams} />
+    </>
   );
 }

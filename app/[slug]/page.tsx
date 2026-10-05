@@ -1,5 +1,6 @@
 import { ProductRepository } from '@/repositories/product-repository';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Input from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -22,12 +23,16 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
   return {
     title: product ? `${product.title} | Sky Market` : 'Product | Sky Market',
+   description: product
+  ? product.description.length > 155
+    ? `${product.description.slice(0, 152)}...`
+    : product.description
+  : 'Discover products and shop online at Sky Market.',
   };
 }
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
-
   const product = await productRepository.getProduct(slug);
 
   if (!product) {

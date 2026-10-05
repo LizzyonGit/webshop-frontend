@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Contact | Sky Market',
+  description: 'Contact Sky Market for support, questions, or inquiries about our products and services.',
 };
 
 export default function ContactPage() {
