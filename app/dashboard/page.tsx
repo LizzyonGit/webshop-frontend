@@ -23,7 +23,11 @@ export default async function DashboardPage() {
   const dashboardRepository = new DashboardRepository();
   const dashboardData: Dashboard = await dashboardRepository.getDashboard(session.user.id);
 
-  const orders = dashboardData?.orders;
+  if (!dashboardData.orders) {
+    return <p className="flex justify-self-center">You have no orders...</p>;
+  }
+
+  const orders = dashboardData.orders;
 
   return (
     <section className="min-h-screen w-full bg-gray-50 p-6">
