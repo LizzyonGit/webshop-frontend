@@ -3,6 +3,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { CartItem } from '@/types/cart';
 import { getCart, saveCart } from '@/lib/cart';
+import { toast } from 'sonner';
 
 type CartContextType = {
   cart: CartItem[];
@@ -35,6 +36,8 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
     setCart(updatedCart);
     saveCart(updatedCart);
+
+    toast.success('Product added to cart', { duration: 1000 });
   }
 
   const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
