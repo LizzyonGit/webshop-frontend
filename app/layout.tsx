@@ -6,6 +6,7 @@ import { Toaster } from 'sonner';
 import { cn } from '@/lib/utils';
 import NavigationBar from '@/components/navigation-bar';
 import Footer from '@/components/footer';
+import { CartProvider } from '@/components/providers/cart-provider';
 
 const notoSansHeading = Noto_Sans({ subsets: ['latin'], variable: '--font-heading' });
 
@@ -34,10 +35,9 @@ export const metadata: Metadata = {
   description: 'Buy high quality products from trusted seller with fast delivery and easy return with Sky Market',
 };
 
-
 export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
+  children,
+}: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
@@ -55,15 +55,19 @@ export default function RootLayout({
         'scrollbar-gutter-stable',
       )}
     >
-    <body className="flex min-h-dvh flex-col">
-    <NavigationBar />
-    <main className="flex-1">
-      <div className="container max-w-7xl mx-auto px-6">{children}</div>
-    </main>
-    <Footer />
-    <Toaster richColors position="top-right" />
-    <CookieBanner />
-    </body>
+      <body className="flex min-h-dvh flex-col">
+        <CartProvider>
+          <NavigationBar />
+
+          <main className="flex-1">
+            <div className="container max-w-7xl mx-auto px-6">{children}</div>
+          </main>
+
+          <Footer />
+          <Toaster richColors position="top-right" />
+          <CookieBanner />
+        </CartProvider>
+      </body>
     </html>
   );
 }

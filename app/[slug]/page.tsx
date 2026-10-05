@@ -2,9 +2,8 @@ import { ProductRepository } from '@/repositories/product-repository';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
 import Input from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { ShoppingCart } from 'lucide-react';
 import type { Metadata } from 'next';
+import AddToCartButton from '@/components/add-to-cart-button';
 
 const productRepository = new ProductRepository();
 
@@ -20,11 +19,11 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
   return {
     title: product ? `${product.title} | Sky Market` : 'Product | Sky Market',
-   description: product
-  ? product.description.length > 155
-    ? `${product.description.slice(0, 152)}...`
-    : product.description
-  : 'Discover products and shop online at Sky Market.',
+    description: product
+      ? product.description.length > 155
+        ? `${product.description.slice(0, 152)}...`
+        : product.description
+      : 'Discover products and shop online at Sky Market.',
   };
 }
 
@@ -80,10 +79,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
 
           <div className="mt-4 flex gap-2">
-            <Button>
-              <ShoppingCart />
-              Add to cart
-            </Button>
+            <AddToCartButton productId={product.id} />
           </div>
         </div>
       </div>
