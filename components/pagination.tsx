@@ -10,7 +10,7 @@ import {
   PaginationLink,
   PaginationNext,
   PaginationPrevious,
-} from "@/components/ui/pagination"
+} from '@/components/ui/pagination';
 
 type PaginationProps = {
   currentPage: number;
@@ -45,31 +45,39 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
   }
 
   function getPageItems(): PageItem[] {
-    if (totalPages <= 10) {
+    /*
+     * 5 or fewer pages:
+     *
+     * 1 2 3 4 5
+     */
+    if (totalPages <= 5) {
       return Array.from({ length: totalPages }, (_, index) => index + 1);
     }
 
-    if (safeCurrentPage <= 6) {
-      return [1, 2, 3, 4, 5, 6, 7, 8, 'ellipsis', totalPages];
+    /*
+     * Near beginning:
+     *
+     * 1 2 3 ... 16
+     */
+    if (safeCurrentPage <= 3) {
+      return [1, 2, 3, 'ellipsis', totalPages];
     }
 
-    if (safeCurrentPage >= totalPages - 5) {
-      return [1, 'ellipsis', totalPages - 7, totalPages - 6, totalPages - 5, totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+    /*
+     * Near end:
+     *
+     * 1 ... 14 15 16
+     */
+    if (safeCurrentPage >= totalPages - 2) {
+      return [1, 'ellipsis', totalPages - 2, totalPages - 1, totalPages];
     }
 
-    return [
-      1,
-      'ellipsis',
-      safeCurrentPage - 3,
-      safeCurrentPage - 2,
-      safeCurrentPage - 1,
-      safeCurrentPage,
-      safeCurrentPage + 1,
-      safeCurrentPage + 2,
-      safeCurrentPage + 3,
-      'ellipsis',
-      totalPages,
-    ];
+    /*
+     * Middle:
+     *
+     * 1 ... 7 8 9 ... 16
+     */
+    return [1, 'ellipsis', safeCurrentPage - 1, safeCurrentPage, safeCurrentPage + 1, 'ellipsis', totalPages];
   }
 
   if (totalPages <= 1) {
@@ -79,8 +87,8 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
   const pageItems = getPageItems();
 
   return (
-    <ShadcnPagination className="pbs-6 pbe-6">
-      <PaginationContent className="pbs-2">
+    <ShadcnPagination className="w-full pbs-6 pbe-6">
+      <PaginationContent className="gap-1 pbs-2">
         {/* Previous */}
         <PaginationItem>
           <PaginationPrevious
@@ -89,7 +97,11 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
               event.preventDefault();
               goToPage(safeCurrentPage - 1);
             }}
-            className={safeCurrentPage === 1 ? 'pointer-events-none opacity-40' : ''}
+            className={`
+              h-8 w-8 p-0
+              sm:h-9 sm:w-auto sm:px-3
+              ${safeCurrentPage === 1 ? 'pointer-events-none opacity-40' : ''}
+            `}
           />
         </PaginationItem>
 
@@ -98,7 +110,7 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
           if (item === 'ellipsis') {
             return (
               <PaginationItem key={`ellipsis-${index}`}>
-                <PaginationEllipsis />
+                <PaginationEllipsis className="h-8 w-8" />
               </PaginationItem>
             );
           }
@@ -114,6 +126,7 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
                   event.preventDefault();
                   goToPage(item);
                 }}
+                className="h-8 w-8 p-0"
               >
                 {item}
               </PaginationLink>
@@ -129,13 +142,14 @@ export default function Pagination({ currentPage, totalPages }: PaginationProps)
               event.preventDefault();
               goToPage(safeCurrentPage + 1);
             }}
-            className={safeCurrentPage === totalPages ? 'pointer-events-none opacity-40' : ''}
+            className={`
+              h-8 w-8 p-0
+              sm:h-9 sm:w-auto sm:px-3
+              ${safeCurrentPage === totalPages ? 'pointer-events-none opacity-40' : ''}
+            `}
           />
         </PaginationItem>
       </PaginationContent>
     </ShadcnPagination>
   );
-
-
-  
 }
