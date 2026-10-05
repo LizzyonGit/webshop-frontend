@@ -17,15 +17,16 @@ export default function AddToCart({ product }: { product: CartProduct }) {
 
   function handleAdd() {
     addItem(product, quantity);
+    setQuantity(1); //resets qty input value
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
   }
 
   return (
     <div className="flex flex-col gap-2">
-      <Label htmlFor="quantity">Quantity</Label>
+      <label htmlFor="quantity" className="mb-2 block font-medium">Quantity</label>
 
-      <div className="flex items-center gap-3">
+      <div className="w-24">
         <Input
           id="quantity"
           type="number"
@@ -40,7 +41,7 @@ export default function AddToCart({ product }: { product: CartProduct }) {
           }}
         />
 
-        <Button type="button" onClick={handleAdd} disabled={outOfStock}>
+        <Button type="button" onClick={handleAdd} disabled={outOfStock} className="mt-4">
           {added ? <Check className="size-4" /> : <ShoppingCart className="size-4" />}
           {outOfStock ? 'Out of stock' : added ? 'Added' : 'Add to cart'}
         </Button>

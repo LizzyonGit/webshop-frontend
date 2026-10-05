@@ -66,16 +66,6 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <span className="font-medium">Stock:</span> {product.stock}
           </p>
 
-          <div className="mt-6">
-            <label htmlFor="quantity" className="mb-2 block font-medium">
-              Quantity
-            </label>
-
-            <div className="w-24">
-              <Input id="quantity" name="quantity" type="number" min={1} max={product.stock} defaultValue={1} />
-            </div>
-          </div>
-
           <div className="mt-4 flex gap-2">
             
               <AddToCart

@@ -13,6 +13,7 @@ import Image from "next/image";
 import Link from "next/link"
 import { useCart } from "@/hooks/use-cart";
 import { productImageFileSchema } from "@/lib/validation/product-image";
+import { ArrowLeft } from "lucide-react";
 
 const formatPrice = (n: number) =>
   new Intl.NumberFormat('en-US', {
@@ -32,8 +33,7 @@ export default function Cart() {
 
     if (!hydrated) return null;//empty page when no items
 
-    if (items.length === 0) {
-        return(<CardTitle>No items</CardTitle>)}
+    
 
 
 
@@ -42,16 +42,28 @@ return (
             <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex flex-col gap-2">
                     <CardTitle className="text-2xl font-semibold">1. Your Cart</CardTitle>
-                    <CardDescription>Current items in your cart.</CardDescription>
+                    <CardDescription>
+                        {items.length === 0
+                        ? "Your cart is currently empty."
+                        : "Current items in your cart."}
+                    </CardDescription>
                 </div>
                     <CardAction>
                         <Button variant="link">
-                            <Link href="/">Continue shopping</Link>
+                            <Link href ="/" className="flex items-center gap-2">
+                            <ArrowLeft />
+                            {items.length === 0
+                        ? "Start shopping"
+                        : "Continue shopping"}</Link>
                         </Button>
                     </CardAction>
             </CardHeader>
             <CardContent className="grid grid-cols-1 gap-6">
-                
+                {items.length === 0 ? (
+                    <div className="flex flex-col">
+                        <h2>Your cart is empty</h2>
+                    </div>
+                ) : (
                 <ul className="flex flex-col">
                     {items.map((item) => (
                     <li key={item.slug} className="flex items-center gap-4 py-4 border-b">
@@ -88,6 +100,7 @@ return (
                     </li>
                     ))}
                 </ul>
+            )}
                 
                 
             </CardContent>
