@@ -1,36 +1,58 @@
 import { prisma } from '@/lib/prisma';
-import { Dashboard } from '@/types/dashboard';
+import { DashboardMapper } from '@/mapping/dashboard-mapper';
+import { Dashboard, DashboardOrderDetail } from '@/types/dashboard';
 
 export class DashboardRepository {
-  async getUserDashboard(userId: string): Promise<Dashboard> {
-    const orderList = await prisma.order.findMany({
-      where: {
-        userId,
-      },
-      orderBy: {
-        createdAt: 'desc',
-      },
-    });
+  async getDashboardOrderDetail(orderId: string): Promise<DashboardOrderDetail | null> {
+    try {
+      const order = await prisma.order.findUnique({
+        where: {
+          id: orderId,
+        },
+        include: {
+          items: true,
+          addresses: true,
+        },
+      });
 
-    const orders = orderList.map((order) => ({
-      id: order.id,
-      orderNumber: order.orderNumber,
-      createdAt: order.createdAt,
-      status: order.status,
-      price: Number(order.total),
-    }));
+      if (!order) {
+        return null;
+      }
 
-    const totalOrders = orders.length;
+      const dashboardOrder = DashboardMapper.mapOrderDboToOrder(order);
+      const orderDetail = DashboardMapper.mapOrderDataToOrderDetail(dashboardOrder);
 
-    const completedOrders = orders.filter((order) => order.status === 'DELIVERED').length;
+      return orderDetail;
+    } catch (error) {
+      console.error('REAL ERROR:', error);
 
-    const totalSpent = orders.reduce((sum, order) => sum + order.price, 0);
+      throw error;
+    }
+  }
 
-    return {
-      totalOrders,
-      completedOrders,
-      totalSpent,
-      orders,
-    };
+  async getDashboard(userId: string): Promise<Dashboard> {
+    try {
+      const orders = await prisma.order.findMany({
+        where: {
+          userId,
+        },
+        orderBy: {
+          createdAt: 'desc',
+        },
+        include: {
+          items: true,
+          addresses: true,
+        },
+      });
+
+      //Mapping Order Data to dashboard type
+      const dashboard = DashboardMapper.mapOrdersToDashboard(orders);
+
+      return dashboard;
+    } catch (error) {
+      console.error('Failed to get user dashboard:', error);
+
+      throw new Error('Failed to fetch user dashboard');
+    }
   }
 }

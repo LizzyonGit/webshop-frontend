@@ -5,6 +5,7 @@ import { LogoutButton } from '@/components/auth/logout-button';
 import { DashboardRepository } from '@/repositories/dashboard-repository';
 import { Smile } from 'lucide-react';
 import Orders from '@/components/orders';
+import { Dashboard } from '@/types/dashboard';
 
 export default async function DashboardPage() {
   const session = await auth.api.getSession({
@@ -20,9 +21,13 @@ export default async function DashboardPage() {
   }
 
   const dashboardRepository = new DashboardRepository();
-  const dashboardData = await dashboardRepository.getUserDashboard(session.user.id);
+  const dashboardData: Dashboard = await dashboardRepository.getDashboard(session.user.id);
 
-  const orders = dashboardData?.orders;
+  if (!dashboardData.orders) {
+    return <p className="flex justify-self-center">You have no orders...</p>;
+  }
+
+  const orders = dashboardData.orders;
 
   return (
     <section className="min-h-screen w-full bg-gray-50 p-6">
