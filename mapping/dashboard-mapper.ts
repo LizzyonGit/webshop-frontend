@@ -10,6 +10,24 @@ export type DashboardOrderData = Prisma.OrderGetPayload<{
 
 export class DashboardMapper {
   static mapOrderDboToOrder(order: DashboardOrderData): DashboardOrder {
+    const shippingAddress = order.addresses.find((address) => address.type === 'SHIPPING');
+
+    if (!shippingAddress) {
+      throw new Error(`Shipping address missing for order ${order.id}`);
+    }
+
+    const dashboardOrderAddress: DashboardOrderAddress = {
+      fullName: shippingAddress.fullName,
+      company: shippingAddress.company ?? '',
+      line1: shippingAddress.line1,
+      line2: shippingAddress.line2 ?? '',
+      city: shippingAddress.city,
+      state: shippingAddress.state ?? '',
+      postalCode: shippingAddress.postalCode,
+      country: shippingAddress.country,
+      phone: shippingAddress.phone ?? '',
+    };
+
     return {
       id: order.id,
       orderNumber: order.orderNumber,
@@ -35,7 +53,7 @@ export class DashboardMapper {
         lineTotal: Number(orderItem.lineTotal),
       })),
 
-      dashboardOrderAddress: order.addresses.find((address) => address.type === 'SHIPPING') as DashboardOrderAddress,
+      dashboardOrderAddress: dashboardOrderAddress,
     };
   }
 

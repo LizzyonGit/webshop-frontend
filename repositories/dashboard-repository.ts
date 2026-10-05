@@ -5,7 +5,7 @@ import { Dashboard, DashboardOrderDetail } from '@/types/dashboard';
 export class DashboardRepository {
   async getDashboardOrderDetail(orderId: string): Promise<DashboardOrderDetail | null> {
     try {
-      const order = await prisma.order.findFirst({
+      const order = await prisma.order.findUnique({
         where: {
           id: orderId,
         },
@@ -20,12 +20,13 @@ export class DashboardRepository {
       }
 
       const dashboardOrder = DashboardMapper.mapOrderDboToOrder(order);
+      const orderDetail = DashboardMapper.mapOrderDataToOrderDetail(dashboardOrder);
 
-      return DashboardMapper.mapOrderDataToOrderDetail(dashboardOrder);
+      return orderDetail;
     } catch (error) {
-      console.error('Failed to get order detail data:', error);
+      console.error('REAL ERROR:', error);
 
-      throw new Error('Failed to fetch order detail data');
+      throw error;
     }
   }
 

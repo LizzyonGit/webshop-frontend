@@ -2,7 +2,7 @@ import { Badge } from '@/components/ui/badge';
 import { auth } from '@/lib/auth';
 import { DashboardRepository } from '@/repositories/dashboard-repository';
 import { DashboardOrderDetail } from '@/types/dashboard';
-import { ReceiptText, MapPin, Mail, Phone, ArrowLeft } from 'lucide-react';
+import { ReceiptText, MapPin, ArrowLeft } from 'lucide-react';
 import { headers } from 'next/headers';
 import { notFound, redirect } from 'next/navigation';
 import OrderItems from '@/components/order-items';
@@ -13,7 +13,7 @@ import Link from 'next/link';
 
 type Props = {
   params: Promise<{
-    orderId: string;
+    id: string;
   }>;
 };
 
@@ -26,11 +26,11 @@ export default async function OrderDetailPage({ params }: Props) {
     redirect('/login');
   }
 
-  const { orderId } = await params;
+  const { id } = await params;
 
   const dashboardRepository = new DashboardRepository();
 
-  const order: DashboardOrderDetail | null = await dashboardRepository.getDashboardOrderDetail(orderId);
+  const order: DashboardOrderDetail | null = await dashboardRepository.getDashboardOrderDetail(id);
 
   if (!order) {
     notFound();
