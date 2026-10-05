@@ -1,26 +1,46 @@
 "use client";
 
+import { Button } from "../ui/button";
 import { useRouter } from "next/navigation";
-
+import { toast } from "sonner";
 import { authClient } from "@/lib/auth-client";
+import { useState } from "react";
 
 export function LogoutButton() {
     const router = useRouter();
+    const [isPending, setIsPending] = useState(false);
 
     async function handleLogout() {
-        await authClient.signOut();
+        setIsPending(true);
+        try {
+            const { error } = await authClient.signOut();
 
-        router.push("/");
-        router.refresh();
+            if (error) {
+                toast.error(error.message ?? `Log out failed! Please try again.`, { duration: 2000 });
+
+                return;
+            }
+
+            toast.success(`Logged out successfully.`);
+            router.push("/");
+            router.refresh();
+        } catch (error) {
+            console.error(`Log out failed:`, error);
+            toast.error(`Log out failed! Please try again.`, { duration: 2000 });
+        } finally {
+            setIsPending(false);
+        }
+
     }
 
     return (
-        <button
+        <Button
             type="button"
+            variant="default"
             onClick={handleLogout}
-            className="bg-black px-4 py-2 text-white"
+            disabled={isPending}
         >
-            Logout
-        </button>
+            {isPending ? `Logging out...` : `Log out`}
+        </Button>
     );
 }
