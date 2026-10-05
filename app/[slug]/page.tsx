@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Input from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart } from 'lucide-react';
+import { useState } from 'react';
 import type { Metadata } from 'next';
 
 const productRepository = new ProductRepository();
@@ -30,8 +31,10 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
-
   const product = await productRepository.getProduct(slug);
+  const [isPending, setIsPending] = useState(false); 
+  
+  setIsPending(true);
 
   if (!product) {
     notFound();
