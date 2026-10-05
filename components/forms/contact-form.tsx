@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent } from 'react';
+import { SubmitEvent } from 'react';
 import { Button } from '../ui/button';
 import Input from '../ui/input';
 import { Textarea } from '../ui/textarea';
@@ -12,7 +12,7 @@ import { useRouter } from 'next/navigation';
 export default function ContactForm() {
   const router = useRouter();
 
-  async function sendContactEmail(evt: FormEvent<HTMLFormElement>) {
+  async function sendContactEmail(evt: SubmitEvent<HTMLFormElement>) {
     evt.preventDefault();
 
     try {
