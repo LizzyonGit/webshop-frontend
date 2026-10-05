@@ -17,6 +17,7 @@ Data in the JSON for the server is from [dummyjson.com](https://dummyjson.com/do
 - Manage a shopping cart
 - Create a user account
 - Log in and manage authentication
+- Add products to the shopping cart
 
 ## Usage
 
@@ -25,6 +26,7 @@ Data in the JSON for the server is from [dummyjson.com](https://dummyjson.com/do
 3. Click on a product to view its details.
 4. Add products to the shopping cart.
 5. Create an account or log in to access account features.
+4. Add products to the shopping cart.
 ...
 
 
