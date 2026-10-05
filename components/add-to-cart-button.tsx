@@ -13,7 +13,7 @@ export function AddToCartButton({ productTitle }: CardButtonProps) {
     const [isPending, setIsPending] = useState(false); 
     
     async function handleCartButton() {
-    setIsPending(true);
+        setIsPending(true);
         try {
           {/*Temporary timeout, replace with Add to Cart functionality when ready*/}
             await new Promise((resolve) => setTimeout(resolve, 500));
