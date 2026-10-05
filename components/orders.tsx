@@ -35,7 +35,7 @@ export default function Orders({ orders }: OrdersProps) {
                 <OrderStatus status={order.status} />
               </div>
 
-              <p className="font-semibold whitespace-nowrap">{order.price.toFixed(2)} €</p>
+              <p className="font-semibold whitespace-nowrap">{order.total.toFixed(2)} €</p>
               <Link className="flex gap-2 items-center" href={`/dashboard/order/${order.id}`}>
                 <Eye className="h-5 w-5"></Eye>
                 <span>View</span>

@@ -1,15 +1,15 @@
 import { OrderStatus, PaymentStatus } from '@/generated/prisma/enums';
 
-export type OrderDetailItem = {
+export type DashboardOrderItem = {
   id: string;
   title: string;
-  sku: string;
+  createdAt: Date;
   unitPrice: number;
   quantity: number;
   lineTotal: number;
 };
 
-export type OrderAddress = {
+export type DashboardOrderAddress = {
   fullName: string;
   company?: string;
   line1: string;
@@ -21,7 +21,7 @@ export type OrderAddress = {
   phone?: string;
 };
 
-export type OrderDetail = {
+export type DashboardOrderDetail = {
   id: string;
   orderNumber: number;
   createdAt: Date;
@@ -34,14 +34,8 @@ export type OrderDetail = {
   discountTotal: number;
   total: number;
   currency: string;
-
-  orderItems: OrderDetailItem[];
-
-  shippingAddress: OrderAddress | null;
-  billingAddress: OrderAddress | null;
-
-  paidAt: Date | null;
-  refundedAt: Date | null;
+  orderItems: DashboardOrderItem[];
+  dashboardOrderAddress: DashboardOrderAddress;
 };
 
 export type DashboardOrder = {
@@ -49,7 +43,17 @@ export type DashboardOrder = {
   orderNumber: number;
   createdAt: Date;
   status: OrderStatus;
+  paymentStatus: PaymentStatus;
+  email: string;
+
+  subtotal: number;
+  shippingTotal: number;
+  taxTotal: number;
+  discountTotal: number;
   total: number;
+  currency: string;
+  orderItems: DashboardOrderItem[];
+  dashboardOrderAddress: DashboardOrderAddress;
 };
 
 export type Dashboard = {

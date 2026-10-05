@@ -1,38 +1,53 @@
 import { prisma } from '@/lib/prisma';
-import { Dashboard } from '@/types/dashboard';
+import { DashboardMapper } from '@/mapping/dashboard-mapper';
+import { Dashboard, DashboardOrderDetail } from '@/types/dashboard';
 
 export class DashboardRepository {
-  async getUserDashboard(userId: string): Promise<Dashboard> {
+  async getDashboardOrderDetail(orderId: string): Promise<DashboardOrderDetail | null> {
     try {
-      const orderList = await prisma.order.findMany({
+      const orders = await prisma.order.findFirst({
+        where: {
+          id: orderId,
+        },
+        include: {
+          items: true,
+          addresses: true,
+        },
+      });
+
+      if (!orders) {
+        return null;
+      }
+
+      const dashboardOrder = DashboardMapper.mapOrderDboToOrder(orders);
+
+      return DashboardMapper.mapOrderDataToOrderDetail(dashboardOrder);
+    } catch (error) {
+      console.error('Failed to get order detail data:', error);
+
+      throw new Error('Failed to fetch order detail data');
+    }
+  }
+
+  async getDashboard(userId: string): Promise<Dashboard> {
+    try {
+      const orders = await prisma.order.findMany({
         where: {
           userId,
         },
         orderBy: {
           createdAt: 'desc',
         },
+        include: {
+          items: true,
+          addresses: true,
+        },
       });
 
-      const orders = orderList.map((order) => ({
-        id: order.id,
-        orderNumber: order.orderNumber,
-        createdAt: order.createdAt,
-        status: order.status,
-        total: Number(order.total),
-      }));
+      //Mapping Order Data to dashboard type
+      const dashboard = DashboardMapper.mapOrdersToDashboard(orders);
 
-      const totalOrders = orders.length;
-
-      const completedOrders = orders.filter((order) => order.status === 'DELIVERED').length;
-
-      const totalSpent = orders.reduce((sum, order) => sum + order.total, 0);
-
-      return {
-        totalOrders,
-        completedOrders,
-        totalSpent,
-        orders,
-      };
+      return dashboard;
     } catch (error) {
       console.error('Failed to get user dashboard:', error);
 
