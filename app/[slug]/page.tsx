@@ -1,11 +1,9 @@
 import { ProductRepository } from '@/repositories/product-repository';
 import { notFound } from 'next/navigation';
+import { AddToCartButton } from '@/components/add-to-cart-button';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Input from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { ShoppingCart } from 'lucide-react';
-import { useState } from 'react';
-import type { Metadata } from 'next';
 
 const productRepository = new ProductRepository();
 
@@ -32,9 +30,6 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
   const product = await productRepository.getProduct(slug);
-  const [isPending, setIsPending] = useState(false); 
-  
-  setIsPending(true);
 
   if (!product) {
     notFound();
@@ -83,10 +78,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
           </div>
 
           <div className="mt-4 flex gap-2">
-            <Button>
-              <ShoppingCart />
-              Add to cart
-            </Button>
+            <AddToCartButton productTitle={product.title} />
           </div>
         </div>
       </div>

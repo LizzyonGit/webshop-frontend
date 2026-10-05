@@ -15,7 +15,7 @@ export function LogoutButton() {
         try {
             const { error } = await authClient.signOut();
 
-            if(error) {
+            if (error) {
                 toast.error(error.message ?? `Log out failed! Please try again.`, { duration: 2000 });
 
                 return;
