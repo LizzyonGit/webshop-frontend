@@ -36,11 +36,12 @@ export default async function ProductsTable({ searchParams }: ProductsTableProps
 
   return (
     <div>
-      <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-6">
+      <div className="flex flex-wrap justify-start gap-6">
         {products.map((product) => (
           <Link
             key={product.id}
             href={`/${product.slug}`} //adjust to final product detail page link
+            className="w-full sm:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)]"
           >
             <Card key={product.id} className="h-full w-full">
               <div className="relative aspect-square border-b border-border">
