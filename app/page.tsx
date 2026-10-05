@@ -19,11 +19,15 @@ export default async function Home({ searchParams }: PageProps) {
   const sortByParams = params.sortBy ?? '';
   const searchParam = params.search ?? '';
 
+  const hasFilters = searchParam !== '' || categoryParams !== '' || sortByParams !== '';
+
   return (
     <>
-        <Hero />
-        <ProductFiltering categoryParam={categoryParams} sortByParam={sortByParams} searchParam={searchParam} />
-        <ProductsTable searchParams={searchParams} />
+      {/* Hide hero when searching or filtering */}
+      {!hasFilters && <Hero />}
+
+      <ProductFiltering categoryParam={categoryParams} sortByParam={sortByParams} searchParam={searchParam} />
+      <ProductsTable searchParams={searchParams} />
     </>
   );
 }
