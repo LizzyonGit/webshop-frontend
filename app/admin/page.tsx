@@ -1,13 +1,10 @@
-//Services
-import ProductService from '@/services/product-service';
-import CategoryService from '@/services/category-service';
-
 //Components
 import ProductListComponent from '@/components/admin/product-list';
 import Header from '@/components/admin/header';
 import InventoryStatistics from '@/components/admin/inventory-statistics';
 import SearchForm from '@/components/admin/search-form';
 import { ProductRepository } from '@/repositories/product-repository';
+import { CategoryRepository } from '@/repositories/category-repository';
 
 type PageProps = {
   searchParams: Promise<{
@@ -15,10 +12,12 @@ type PageProps = {
     category?: string;
     stock?: string;
     search?: string;
+    sortBy?: string;
   }>;
 };
 
 const productRepository = new ProductRepository();
+const categoryRepository = new CategoryRepository();
 
 export default async function Home({ searchParams }: PageProps) {
   const params = await searchParams;
@@ -29,22 +28,17 @@ export default async function Home({ searchParams }: PageProps) {
   //Filter on category with params
   const categoryParams = params.category ?? '';
 
-  const queryParams = params.search ?? '';
+  const searchParam = params.search ?? '';
 
   //Filter on stock with params
   const stockParams = params.stock ?? '';
 
-  const [productResponse, categoryResponse] = await Promise.all([
-    ProductService.getProducts(currentPage, categoryParams, stockParams, queryParams),
-    CategoryService.getAllCategories(),
-  ]);
+  const sortByParam = params.sortBy ?? '';
 
-  const productReponse = await productRepository.getProducts(currentPage, categoryParams, stockParams, queryParams);
-  console.log(productReponse);
+  const categories = await categoryRepository.getAll();
+  const productResponse = await productRepository.getProducts(currentPage, categoryParams, stockParams, searchParam, sortByParam);
 
-  const products = productReponse.products;
-  const categories = categoryResponse.success ? categoryResponse.data.categories : [];
-  const pages = productReponse.totalPages ?? 0;
+  const pages = productResponse.totalPages ?? 0;
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -56,11 +50,11 @@ export default async function Home({ searchParams }: PageProps) {
         <SearchForm categories={categories} selectedCategory={categoryParams} selectedStock={stockParams} />
 
         <ProductListComponent
-          products={products}
+          products={productResponse.products}
           categories={categories}
           categoryParam={categoryParams}
           stockParam={stockParams}
-          queryParam={queryParams}
+          queryParam={searchParam}
           currentPage={currentPage}
           totalPages={pages}
         />
