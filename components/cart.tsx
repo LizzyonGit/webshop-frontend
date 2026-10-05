@@ -13,7 +13,7 @@ import Image from "next/image";
 import Link from "next/link"
 import { useCart } from "@/hooks/use-cart";
 import { productImageFileSchema } from "@/lib/validation/product-image";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Trash2 } from "lucide-react";
 
 const formatPrice = (n: number) =>
   new Intl.NumberFormat('en-US', {
@@ -87,6 +87,10 @@ return (
                             disabled={item.stock !== undefined && item.quantity >= item.stock}
                             onClick={() => setQuantity(item.slug, item.quantity + 1)}>
                                 +
+                            </Button>
+                        </div>
+                        <div><Button variant="ghost" size="icon" aria-label={`Remove ${item.name}`} onClick={() => removeItem(item.slug)}>
+                            <Trash2 className="size-4" />
                             </Button>
                         </div>
                     </div>
