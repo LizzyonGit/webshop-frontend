@@ -31,7 +31,7 @@ export default function Cart() {
     clearCart,
   } = useCart();
 
-    if (!hydrated) return null;//empty page when no items
+    if (!hydrated) return null;//Don't render my cart until we know what's actually in localStorage.
 
 return (
         <Card className="overflow-hidden">
@@ -92,6 +92,9 @@ return (
                     </div>
                     </li>
                     ))}
+                    {items.length > 0 && (<div className="flex justify-center mt-4">
+                        <Button variant="outline" onClick={clearCart}>Clear cart</Button>
+                    </div>)}
                 </ul>
             
                 
