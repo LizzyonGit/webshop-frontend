@@ -24,7 +24,6 @@ export default async function DashboardPage() {
   const dashboardData: Dashboard = await dashboardRepository.getDashboard(session.user.id);
 
   const orders = dashboardData?.orders;
-  console.log(dashboardData);
 
   return (
     <section className="min-h-screen w-full bg-gray-50 p-6">

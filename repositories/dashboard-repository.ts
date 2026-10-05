@@ -5,7 +5,7 @@ import { Dashboard, DashboardOrderDetail } from '@/types/dashboard';
 export class DashboardRepository {
   async getDashboardOrderDetail(orderId: string): Promise<DashboardOrderDetail | null> {
     try {
-      const orders = await prisma.order.findFirst({
+      const order = await prisma.order.findFirst({
         where: {
           id: orderId,
         },
@@ -15,11 +15,11 @@ export class DashboardRepository {
         },
       });
 
-      if (!orders) {
+      if (!order) {
         return null;
       }
 
-      const dashboardOrder = DashboardMapper.mapOrderDboToOrder(orders);
+      const dashboardOrder = DashboardMapper.mapOrderDboToOrder(order);
 
       return DashboardMapper.mapOrderDataToOrderDetail(dashboardOrder);
     } catch (error) {
