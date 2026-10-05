@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Input from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart } from 'lucide-react';
-import type { Metadata } from 'next';
 import AddToCart from '@/components/add-to-cart';
 
 
