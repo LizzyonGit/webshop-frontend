@@ -1,4 +1,17 @@
 'use client';
+
+import { 
+    AlertDialog, 
+    AlertDialogAction, 
+    AlertDialogCancel, 
+    AlertDialogContent, 
+    AlertDialogDescription, 
+    AlertDialogFooter, 
+    AlertDialogHeader, 
+    AlertDialogMedia, 
+    AlertDialogTitle, 
+    AlertDialogTrigger 
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -13,7 +26,6 @@ import Image from "next/image";
 import Link from "next/link"
 import { useCart } from "@/hooks/use-cart";
 import { ArrowLeft, Trash2 } from "lucide-react";
-import { AlertDialog, AlertDialogTrigger } from "./ui/alert-dialog";
 
 const formatPrice = (n: number) =>
   new Intl.NumberFormat('en-US', {
@@ -97,22 +109,41 @@ return (
                     </li>
                     ))}
                     {items.length > 0 && (<div className="flex justify-center mt-4">
+
+                        {/*Clear cart with confirmation message*/}
                         <AlertDialog>
                             <AlertDialogTrigger render={
                                 <Button 
                                 variant="destructive" 
                                 onClick={clearCart}
-                                >
-                                Clear cart
-                                </Button>
-                            }>
+                                />
+                            }>Clear cart
                             </AlertDialogTrigger>
+                            <AlertDialogContent>
+                                <AlertDialogHeader>
+                                    <AlertDialogMedia className="bg-destructive/10">
+                                        <Trash2 />
+                                    </AlertDialogMedia>
+                                    <AlertDialogTitle>
+                                        Clear cart
+                                    </AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                        Are you sure you want to remove {items.length} items from your cart?
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogAction variant="destructive">
+                                        Clear
+                                    </AlertDialogAction>
+                                    <AlertDialogCancel variant="ghost">
+                                        Cancel
+                                    </AlertDialogCancel>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
                         </AlertDialog>
+
                     </div>)}
                 </ul>
-            
-                
-                
             </CardContent>
             {items.length > 0 && (
             <CardFooter className="flex flex-col gap-2">
