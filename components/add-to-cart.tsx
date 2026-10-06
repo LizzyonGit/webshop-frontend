@@ -4,8 +4,8 @@ import { useState } from 'react';
 import { Check, ShoppingCart } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Input from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
 import { useCart, type CartProduct } from '@/hooks/use-cart';
+import { toast } from 'sonner';
 
 export default function AddToCart({ product }: { product: CartProduct }) {
   const { addItem } = useCart();
@@ -16,11 +16,24 @@ export default function AddToCart({ product }: { product: CartProduct }) {
   const outOfStock = max <= 0;
 
   function handleAdd() {
+    try{
+        //for testing failed to add
+        //  const testError = true;
+        // if (testError) {
+        // throw new Error('Test error');
+        // } 
+
     addItem(product, quantity);
+    toast.success(`Added ${product.name} to cart!`);
     setQuantity(1); //resets qty input value
     setAdded(true);
     setTimeout(() => setAdded(false), 1500);
-  }
+  } catch (error) {
+    console.error('Add to Cart failed:', error);
+    toast.error('Failed to add to cart! Please try again.', {
+      duration: 2000,
+    });
+}}
 
   return (
     <div className="flex flex-col gap-2">
