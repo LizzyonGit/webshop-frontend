@@ -116,18 +116,18 @@ return (
                                 <Button 
                                 variant="destructive"
                                 />
-                            }>Empty cart
+                            }>Clear cart
                             </AlertDialogTrigger>
                             <AlertDialogContent size="sm">
                                 <AlertDialogHeader>
                                     <AlertDialogMedia className="bg-destructive/10 text-destructive">
                                         <Trash2 />
                                     </AlertDialogMedia>
-                                    <AlertDialogTitle className="text-destructive">
-                                        Empty cart
+                                    <AlertDialogTitle>
+                                        Remove {items.length} items from cart?
                                     </AlertDialogTitle>
                                     <AlertDialogDescription>
-                                        Are you sure you want to remove {items.length} items from your cart?
+                                        This action cannot be undone!
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
