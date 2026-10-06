@@ -5,14 +5,12 @@ import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import AuthActionButton from '@/components/auth-action-button';
 import MobileMenu from '@/components/mobile-menu';
-import CartIcon from '@/components/cart-icon';
+import CartIconWrapper from './cart-icon-wrapper';
 
 export default async function NavigationBar() {
   const requestHeaders = await headers();
   const session = await auth.api.getSession({ headers: requestHeaders });
   const isLoggedIn = !!session;
-
-  const cartCount = 0; // TODO: replace with the real cart item count
 
   return (
     <div className="container max-w-7xl mx-auto px-2 pbe-2 pbs-4">
@@ -42,7 +40,7 @@ export default async function NavigationBar() {
 
               {/* cart */}
               <NavigationMenuLink render={<Link href="/cart" />} className={navigationMenuTriggerStyle()}>
-                <CartIcon count={cartCount} />
+                <CartIconWrapper />
               </NavigationMenuLink>
 
               {/* login button */}
