@@ -116,15 +116,15 @@ return (
                                 <Button 
                                 variant="destructive"
                                 />
-                            }>Clear cart
+                            }>Empty cart
                             </AlertDialogTrigger>
-                            <AlertDialogContent className="flex flex-col items-center">
+                            <AlertDialogContent size="sm">
                                 <AlertDialogHeader>
                                     <AlertDialogMedia className="bg-destructive/10 text-destructive">
                                         <Trash2 />
                                     </AlertDialogMedia>
-                                    <AlertDialogTitle>
-                                        Clear cart
+                                    <AlertDialogTitle className="text-destructive">
+                                        Empty cart
                                     </AlertDialogTitle>
                                     <AlertDialogDescription>
                                         Are you sure you want to remove {items.length} items from your cart?
@@ -135,7 +135,7 @@ return (
                                         variant="destructive"
                                         onClick={clearCart}
                                     >
-                                        Clear
+                                        Confirm
                                     </AlertDialogAction>
                                     <AlertDialogCancel 
                                         variant="ghost"
