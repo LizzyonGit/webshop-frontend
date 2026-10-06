@@ -85,7 +85,7 @@ export default function Cart() {
                       <Trash2 className="size-4" />
                     </TooltipTrigger>
 
-                    <TooltipContent>
+             <TooltipContent className="bg-destructive/10 text-destructive">
                       <p>Remove item from cart</p>
                     </TooltipContent>
                   </Tooltip>
