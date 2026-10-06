@@ -12,8 +12,8 @@ import {
 import Image from "next/image";
 import Link from "next/link"
 import { useCart } from "@/hooks/use-cart";
-import { productImageFileSchema } from "@/lib/validation/product-image";
 import { ArrowLeft, Trash2 } from "lucide-react";
+import { AlertDialog, AlertDialogTrigger } from "./ui/alert-dialog";
 
 const formatPrice = (n: number) =>
   new Intl.NumberFormat('en-US', {
@@ -97,7 +97,17 @@ return (
                     </li>
                     ))}
                     {items.length > 0 && (<div className="flex justify-center mt-4">
-                        <Button variant="outline" onClick={clearCart}>Clear cart</Button>
+                        <AlertDialog>
+                            <AlertDialogTrigger render={
+                                <Button 
+                                variant="destructive" 
+                                onClick={clearCart}
+                                >
+                                Clear cart
+                                </Button>
+                            }>
+                            </AlertDialogTrigger>
+                        </AlertDialog>
                     </div>)}
                 </ul>
             
