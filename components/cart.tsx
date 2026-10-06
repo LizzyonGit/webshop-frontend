@@ -97,7 +97,7 @@ return (
                     </li>
                     ))}
                     {items.length > 0 && (<div className="flex justify-center mt-4">
-                        <Button variant="outline" onClick={clearCart}>Clear cart</Button>
+                        <Button variant="destructive" onClick={clearCart}>Clear cart</Button>
                     </div>)}
                 </ul>
             

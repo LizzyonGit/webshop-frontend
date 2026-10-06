@@ -15,7 +15,7 @@ export default function Checkout({ disabled }: { disabled: boolean }) {
     
     return (
         <Card className={`overflow-hidden ${
-                disabled ? "opacity-50" : ""
+                disabled ? "opacity-40" : ""
             }`}>
             <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex flex-col gap-2">
