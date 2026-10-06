@@ -114,14 +114,13 @@ return (
                         <AlertDialog>
                             <AlertDialogTrigger render={
                                 <Button 
-                                variant="destructive" 
-                                onClick={clearCart}
+                                variant="destructive"
                                 />
                             }>Clear cart
                             </AlertDialogTrigger>
-                            <AlertDialogContent>
+                            <AlertDialogContent className="flex flex-col items-center">
                                 <AlertDialogHeader>
-                                    <AlertDialogMedia className="bg-destructive/10">
+                                    <AlertDialogMedia className="bg-destructive/10 text-destructive">
                                         <Trash2 />
                                     </AlertDialogMedia>
                                     <AlertDialogTitle>
@@ -132,10 +131,15 @@ return (
                                     </AlertDialogDescription>
                                 </AlertDialogHeader>
                                 <AlertDialogFooter>
-                                    <AlertDialogAction variant="destructive">
+                                    <AlertDialogAction 
+                                        variant="destructive"
+                                        onClick={clearCart}
+                                    >
                                         Clear
                                     </AlertDialogAction>
-                                    <AlertDialogCancel variant="ghost">
+                                    <AlertDialogCancel 
+                                        variant="ghost"
+                                    >
                                         Cancel
                                     </AlertDialogCancel>
                                 </AlertDialogFooter>
