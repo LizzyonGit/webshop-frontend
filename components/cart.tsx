@@ -50,7 +50,7 @@ return (
                             <Link href ="/" className="flex items-center gap-2">
                             <ArrowLeft />
                             {items.length === 0
-                        ? "Start shopping"
+                        ? "Shop now"
                         : "Shop more"}</Link>{/*Shop more takes less space than Continue shopping*/}
                         </Button>
                     </CardAction>
@@ -97,7 +97,7 @@ return (
                     </li>
                     ))}
                     {items.length > 0 && (<div className="flex justify-center mt-4">
-                        <Button variant="outline" onClick={clearCart}>Clear cart</Button>
+                        <Button variant="destructive" onClick={clearCart}>Clear cart</Button>
                     </div>)}
                 </ul>
             
