@@ -1,4 +1,17 @@
 'use client';
+
+import { 
+    AlertDialog, 
+    AlertDialogAction, 
+    AlertDialogCancel, 
+    AlertDialogContent, 
+    AlertDialogDescription, 
+    AlertDialogFooter, 
+    AlertDialogHeader, 
+    AlertDialogMedia, 
+    AlertDialogTitle, 
+    AlertDialogTrigger 
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -12,7 +25,6 @@ import {
 import Image from "next/image";
 import Link from "next/link"
 import { useCart } from "@/hooks/use-cart";
-import { productImageFileSchema } from "@/lib/validation/product-image";
 import { ArrowLeft, Trash2 } from "lucide-react";
 
 const formatPrice = (n: number) =>
@@ -97,12 +109,45 @@ return (
                     </li>
                     ))}
                     {items.length > 0 && (<div className="flex justify-center mt-4">
-                        <Button variant="destructive" onClick={clearCart}>Clear cart</Button>
+
+                        {/*Clear cart with confirmation message*/}
+                        <AlertDialog>
+                            <AlertDialogTrigger render={
+                                <Button 
+                                variant="destructive"
+                                />
+                            }>Clear cart
+                            </AlertDialogTrigger>
+                            <AlertDialogContent size="sm">
+                                <AlertDialogHeader>
+                                    <AlertDialogMedia className="bg-destructive/10 text-destructive">
+                                        <Trash2 />
+                                    </AlertDialogMedia>
+                                    <AlertDialogTitle>
+                                        Remove {items.length} items from cart?
+                                    </AlertDialogTitle>
+                                    <AlertDialogDescription>
+                                        This action cannot be undone!
+                                    </AlertDialogDescription>
+                                </AlertDialogHeader>
+                                <AlertDialogFooter>
+                                    <AlertDialogAction 
+                                        variant="destructive"
+                                        onClick={clearCart}
+                                    >
+                                        Confirm
+                                    </AlertDialogAction>
+                                    <AlertDialogCancel 
+                                        variant="ghost"
+                                    >
+                                        Cancel
+                                    </AlertDialogCancel>
+                                </AlertDialogFooter>
+                            </AlertDialogContent>
+                        </AlertDialog>
+
                     </div>)}
                 </ul>
-            
-                
-                
             </CardContent>
             {items.length > 0 && (
             <CardFooter className="flex flex-col gap-2">
