@@ -1,5 +1,5 @@
 import { Funnel } from 'lucide-react';
-import { Category } from '@/app/types';
+import type { Category } from '@/types/category';
 
 type Props = {
   categories: Category[];
