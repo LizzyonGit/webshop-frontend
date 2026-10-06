@@ -50,7 +50,7 @@ return (
                             <Link href ="/" className="flex items-center gap-2">
                             <ArrowLeft />
                             {items.length === 0
-                        ? "Start shopping"
+                        ? "Shop now"
                         : "Shop more"}</Link>{/*Shop more takes less space than Continue shopping*/}
                         </Button>
                     </CardAction>
