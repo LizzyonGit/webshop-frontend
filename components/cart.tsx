@@ -47,8 +47,8 @@ export default function Cart() {
 
 return (
         <Card className="overflow-hidden">
-            <CardHeader className="flex flex-row gap-3 items-start justify-between">
-                <div className="flex flex-col gap-2">
+            <CardHeader className="flex flex-row gap-3 justify-between">
+                <div className="flex flex-col gap-1">
                     
                     <CardTitle className="text-xl sm:text-2xl font-semibold">1. Your Cart</CardTitle>
                     <CardDescription>
@@ -57,8 +57,9 @@ return (
                         : "Current items in your cart."}
                     </CardDescription>
                 </div>
-                    <CardAction className="self-end">
-                        <Button variant="link">
+                <div className="flex flex-col gap-1">
+                    <CardAction className="">
+                        <Button variant="link" className="px-0">
                             <Link href ="/" className="flex items-center gap-2">
                             <ArrowLeft />
                             {items.length === 0
@@ -66,6 +67,7 @@ return (
                         : "Shop more"}</Link>{/*Shop more takes less space than Continue shopping*/}
                         </Button>
                     </CardAction>
+                </div>
             </CardHeader>
             <CardContent className="grid grid-cols-1 gap-6">
                 
