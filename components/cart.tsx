@@ -73,7 +73,7 @@ return (
                 
                 <ul className="flex flex-col">
                     {items.map((item) => (
-                    <li key={item.slug} className="flex items-center justify-between gap-4 py-4 border-b">
+                    <li key={item.slug} className="flex items-center justify-between gap-1 py-4 border-b">
                         <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl">
                         {item.image && (<Image 
                         src={item.image} 
@@ -92,7 +92,7 @@ return (
                                 {formatPrice(item.price)}
                             </p>
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex gap-1">
                         <div className="border-2 rounded-xl w-fit flex items-center">
                             <Button type="button" variant="ghost" size="sm" aria-label="Decrease quantity" onClick={() => setQuantity(item.slug, item.quantity - 1)}>
                                 -
