@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
-import { Button } from '@/components/ui/button';
 import { SearchX } from 'lucide-react';
 
 export default function ProductNotFound() {
@@ -10,7 +9,7 @@ export default function ProductNotFound() {
   const slug = decodeURIComponent(params.slug);
 
   return (
-    <main className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/hero.png')" }}>
+    <main className="relative left-1/2 w-screen -translate-x-1/2 flex min-h-screen items-center justify-center overflow-hidden bg-muted-foreground" >
       <div className="absolute inset-0 bg-black/60" />
       <div className="relative z-10 text-center text-white">
         <div className="mb-6 flex justify-center">
