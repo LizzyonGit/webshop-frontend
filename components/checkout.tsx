@@ -9,16 +9,22 @@ import {
 import Input from "./ui/input";
 import { Textarea } from "./ui/textarea";
 
-export default function Checkout() {
+
+
+export default function Checkout({ disabled }: { disabled: boolean }) {
+    
     return (
-        <Card className="overflow-hidden">
+        <Card className={`overflow-hidden ${
+                disabled ? "opacity-40" : ""
+            }`}>
             <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex flex-col gap-2">
-                    <CardTitle className="text-2xl font-semibold">2. Checkout</CardTitle>
+                    <CardTitle className="text-xl sm:text-2xl font-semibold">2. Checkout</CardTitle>
                     <CardDescription>Please fill out your order to proceed to shipping.</CardDescription>
                 </div>
             </CardHeader> 
-            <CardContent className="grid grid-cols-1 gap-6">   
+            <CardContent className="grid grid-cols-1 gap-6">
+                <fieldset disabled={disabled}>  
                 <form className="grid grid-cols-1 sm:grid-cols-2 gap-4" action="">
                     
                     <div className="flex flex-col gap-1.5 sm:col-span-2">
@@ -340,6 +346,7 @@ export default function Checkout() {
                     </div>
 
                 </form>
+                </fieldset> 
             </CardContent>
         </Card>  
     )

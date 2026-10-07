@@ -1,6 +1,5 @@
 //Types
 import type { Product } from '@/types/product';
-import type { Category } from '@/app/types';
 
 type Props = {
   product?: Product;

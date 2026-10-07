@@ -1,10 +1,12 @@
 import { ProductRepository } from '@/repositories/product-repository';
 import { notFound } from 'next/navigation';
+import type { Metadata } from 'next';
 import Image from 'next/image';
 import Input from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { ShoppingCart } from 'lucide-react';
-import type { Metadata } from 'next';
+import AddToCart from '@/components/add-to-cart';
+
 
 const productRepository = new ProductRepository();
 
@@ -30,7 +32,6 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const { slug } = await params;
-
   const product = await productRepository.getProduct(slug);
 
   if (!product) {
@@ -69,21 +70,17 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <span className="font-medium">Stock:</span> {product.stock}
           </p>
 
-          <div className="mt-6">
-            <label htmlFor="quantity" className="mb-2 block font-medium">
-              Quantity
-            </label>
-
-            <div className="w-24">
-              <Input id="quantity" name="quantity" type="number" min={1} max={product.stock} defaultValue={1} />
-            </div>
-          </div>
-
           <div className="mt-4 flex gap-2">
-            <Button>
-              <ShoppingCart />
-              Add to cart
-            </Button>
+            
+              <AddToCart
+              product={{
+                slug: product.slug,
+                name: product.title, 
+                price: Number(product.price),
+                image: `/images/${product.thumbnail}.webp`,
+                stock: product.stock,
+              }}
+            />
           </div>
         </div>
       </div>
