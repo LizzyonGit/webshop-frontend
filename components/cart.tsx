@@ -1,31 +1,24 @@
 'use client';
+import { Button } from '@/components/ui/button';
+import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useCart } from '@/hooks/use-cart';
+import { ArrowLeft, Trash2 } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
 
-import { 
-    AlertDialog, 
-    AlertDialogAction, 
-    AlertDialogCancel, 
-    AlertDialogContent, 
-    AlertDialogDescription, 
-    AlertDialogFooter, 
-    AlertDialogHeader, 
-    AlertDialogMedia, 
-    AlertDialogTitle, 
-    AlertDialogTrigger 
-} from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button"
 import {
-  Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card"
-import Image from "next/image";
-import Link from "next/link"
-import { useCart } from "@/hooks/use-cart";
-import { ArrowLeft, Trash2 } from "lucide-react";
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogMedia,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 const formatPrice = (n: number) =>
   new Intl.NumberFormat('en-US', {
@@ -34,16 +27,9 @@ const formatPrice = (n: number) =>
   }).format(n);
 
 export default function Cart() {
-    const {
-    items,
-    subtotal,
-    hydrated,
-    setQuantity,
-    removeItem,
-    clearCart,
-  } = useCart();
+  const { items, subtotal, hydrated, setQuantity, removeItem, clearCart } = useCart();
 
-    if (!hydrated) return null;//Don't render my cart until we know what's actually in localStorage.
+  if (!hydrated) return null; //Don't render my cart until we know what's actually in localStorage.
 
 return (
         <Card className="overflow-hidden">
@@ -104,10 +90,19 @@ return (
                                 +
                             </Button>
                         </div>
-                            <div className=""><Button variant="ghost" size="icon" aria-label={`Remove ${item.name}`} onClick={() => removeItem(item.slug)}>
-                            <Trash2 className="size-4" />
-                            </Button>
-                            </div></div>
+                             <div>
+                    {/* Tooltip explains that the trash icon removes the entire cart item */}
+                  <Tooltip> 
+                    <TooltipTrigger render={<Button variant="ghost" size="icon" aria-label={`Remove ${item.name}`} onClick={() => removeItem(item.slug)} />}>
+                      <Trash2 className="size-4" />
+                    </TooltipTrigger>
+
+
+             <TooltipContent className="bg-destructive/10 text-destructive">
+                      <p>Remove item from cart</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div></div>
                     </div>
                     </li>
                     ))}
@@ -149,26 +144,28 @@ return (
                             </AlertDialogContent>
                         </AlertDialog>
 
-                    </div>)}
-                </ul>
-            </CardContent>
-            {items.length > 0 && (
-            <CardFooter className="flex flex-col gap-2">
-                <h2 className="text-xl font-semibold">Order summary</h2>
-                    <div className="flex justify-between w-full">
-                        <p className="font-bold">Subtotal</p>
-                        <span>{formatPrice(subtotal)}</span>
-                    </div>
-                    <div className="flex justify-between w-full">
-                        <p className="font-bold">Shipping cost</p>
-                        <span>Free</span>
-                    </div>
-                    <div className="flex justify-between border-y-2 py-2 text-xl font-bold w-full">
-                        <p>Total</p>
-                        <span>{formatPrice(subtotal)}</span>
-                    </div>  
-            </CardFooter>
-        )}
-        </Card>
-    )
+             
+            </div>
+          )}
+        </ul>
+      </CardContent>
+      {items.length > 0 && (
+        <CardFooter className="flex flex-col gap-2">
+          <h2 className="text-xl font-semibold">Order summary</h2>
+          <div className="flex justify-between w-full">
+            <p className="font-bold">Subtotal</p>
+            <span>{formatPrice(subtotal)}</span>
+          </div>
+          <div className="flex justify-between w-full">
+            <p className="font-bold">Shipping cost</p>
+            <span>Free</span>
+          </div>
+          <div className="flex justify-between border-y-2 py-2 text-xl font-bold w-full">
+            <p>Total</p>
+            <span>{formatPrice(subtotal)}</span>
+          </div>
+        </CardFooter>
+      )}
+    </Card>
+  );
 }
