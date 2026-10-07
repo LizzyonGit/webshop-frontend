@@ -73,7 +73,7 @@ return (
                 
                 <ul className="flex flex-col">
                     {items.map((item) => (
-                    <li key={item.slug} className="flex items-center gap-4 py-4 border-b">
+                    <li key={item.slug} className="flex items-center justify-between gap-4 py-4 border-b">
                         <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-xl">
                         {item.image && (<Image 
                         src={item.image} 
@@ -83,8 +83,8 @@ return (
                         sizes="96px"
                         />)}
                         </div>
-                    <div className="flex flex-1 items-center justify-between gap-4">
-                        <div className="flex-1 min-w-0">
+                    <div className="flex flex-col sm:flex-1 sm:flex-row sm:items-center sm:justify-between gap-4">
+                        <div className="flex-1 min-w-0 ">
                             <Link href={`/products/${item.slug}`} className="font-medium hover:underline">
                                 {item.name}
                             </Link>
@@ -92,6 +92,7 @@ return (
                                 {formatPrice(item.price)}
                             </p>
                         </div>
+                        <div className="flex gap-2">
                         <div className="border-2 rounded-xl w-fit flex items-center">
                             <Button type="button" variant="ghost" size="sm" aria-label="Decrease quantity" onClick={() => setQuantity(item.slug, item.quantity - 1)}>
                                 -
@@ -103,10 +104,10 @@ return (
                                 +
                             </Button>
                         </div>
-                        <div><Button variant="ghost" size="icon" aria-label={`Remove ${item.name}`} onClick={() => removeItem(item.slug)}>
+                            <div className=""><Button variant="ghost" size="icon" aria-label={`Remove ${item.name}`} onClick={() => removeItem(item.slug)}>
                             <Trash2 className="size-4" />
                             </Button>
-                        </div>
+                            </div></div>
                     </div>
                     </li>
                     ))}
