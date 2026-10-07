@@ -61,7 +61,7 @@ To start the development server, run:
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open your browser and go to `http://localhost:3000` to view the application.
 
 The JSON server is running on [http://localhost:4000](http://localhost:4000). Here you can see the API endpoints and test them.
 
@@ -214,6 +214,12 @@ To learn more about Next.js, take a look at the following resources:
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
+## Future Additions
+
+- Continue improving responsive design across the application.
+- Add and update screenshots as the application develops.
+- Continue improving the customer and admin experience.
+
 
 ## Definition of Done
 
@@ -228,12 +234,16 @@ To learn more about Next.js, take a look at the following resources:
 - The GitHub issue has been updated.
 - The application has been successfully deployed to Vercel.
 
+## License
+
+This project is licensed under the MIT License.
+
 ## Authors
-- Patrik Idén
-- Lizzy van Rhijn
-- Leo Leksell
-- David Palmgren
-- Perjin Shavani
+-[Patrik Idén](https://github.com/patrikiden-dev)
+-[Lizzy van Rhijn](https://github.com/LizzyonGit)
+-[Leo Leksell](https://github.com/leo98lxl)
+-[David Söderberg](https://github.com/dame9785)
+-[Perjin Shavani](https://github.com/perjinshavani)
 
 
 
