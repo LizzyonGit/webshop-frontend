@@ -96,9 +96,17 @@ export async function createProduct(_previousState: { success: boolean; message:
     title: formData.get('title'),
     description: formData.get('description'),
     brand: formData.get('brand'),
+    tags: formData.get('tags'),
     categoryId: formData.get('categoryId'),
+
     price: formData.get('price'),
+    discountPercentage: formData.get('discountPercentage'),
     stock: formData.get('stock'),
+    minimumOrderQuantity: formData.get('minimumOrderQuantity'),
+
+    height: formData.get('height'),
+    width: formData.get('width'),
+    depth: formData.get('depth'),
   });
 
   if (!validation.success) {
