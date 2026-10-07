@@ -18,7 +18,7 @@ export default async function NavigationBar() {
         <NavigationMenuList className="w-full justify-between">
           <NavigationMenuItem className="flex w-full items-center justify-between">
             <NavigationMenuLink render={<Link href="/" />} className={navigationMenuTriggerStyle()}>
-              <Image src="/sky-market-transparent.png" alt="Sky Market logo" width={200} height={100} priority className="h-auto w-40 object-contain" loading="eager" />
+              <Image src="/sky-market-transparent.png" alt="Sky Market logo" width={415} height={151} priority className="h-auto w-40 object-contain" loading="eager" />
             </NavigationMenuLink>
 
             {/* Desktop links */}
