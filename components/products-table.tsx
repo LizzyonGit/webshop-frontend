@@ -64,7 +64,15 @@ export default async function ProductsTable({ searchParams }: ProductsTableProps
                 </CardTitle>
               </CardHeader>
 
-              <CardContent>€{product.price}</CardContent>
+              <CardContent className="flex justify-between">
+                €{product.price}
+                {product.stock ?? product.stock === 0 
+                ? "" : 
+                <Badge variant="destructive">
+                  Out of Stock
+                </Badge>
+                }
+              </CardContent>
             </Card>
           </Link>
         ))}
