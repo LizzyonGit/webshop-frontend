@@ -138,7 +138,10 @@ lib/          - Shared utilities and application logic
 
 ## Screenshots
 
-<!-- TODO: Add screenshots when the final styling is complete -->
+![Sky Market homepage with navigation bar and hero image featuring a handbag, headphones, smartphone, watch and nail polish](...)(image.png)
+![Sky Market product list showing women's watches with search, category and sorting filters](...)(image-1.png)
+![Sky Market product details page showing a car with product information, quantity selector and Add to cart button](...)(image-2.png)
+
 
 ## Technologies
 
