@@ -58,12 +58,22 @@ export async function updateProduct(productId: string, _previousState: { success
     title: formData.get('title'),
     description: formData.get('description'),
     brand: formData.get('brand'),
+    tags: formData.get('tags'),
     categoryId: formData.get('categoryId'),
+
     price: formData.get('price'),
+    discountPercentage: formData.get('discountPercentage'),
     stock: formData.get('stock'),
+    minimumOrderQuantity: formData.get('minimumOrderQuantity'),
+
+    height: formData.get('height'),
+    width: formData.get('width'),
+    depth: formData.get('depth'),
   });
 
   if (!validation.success) {
+    console.log('Update validation errors:', validation.error.issues);
+
     return {
       success: false,
       message: validation.error.issues[0].message,
