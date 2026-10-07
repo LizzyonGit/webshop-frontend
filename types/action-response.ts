@@ -3,3 +3,10 @@ export type ActionResponse = {
   message: string;
   errors?: Record<string, string[]>;
 };
+
+export type ActionSignInEmailAction = {
+  success: boolean;
+  message: string;
+  errors?: Record<string, string[]>;
+  userRole?: string | undefined | null;
+};

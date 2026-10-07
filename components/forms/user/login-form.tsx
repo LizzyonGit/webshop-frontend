@@ -40,8 +40,13 @@ export default function LoginForm() {
         return;
       }
 
-      router.push('/');
-      return toast.success(result.message);
+      toast.success(result.message, { duration: 1000 });
+
+      if (!result.userRole || result.userRole === 'USER') {
+        router.push('/');
+      } else if (result.userRole === 'ADMIN') {
+        router.push('/admin');
+      }
     } catch (error) {
       console.error('Login form error:', error);
 
