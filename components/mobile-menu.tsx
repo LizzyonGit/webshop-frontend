@@ -6,11 +6,11 @@ import { Button } from '@/components/ui/button';
 import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
 import AuthActionButtonMobile from '@/components/auth-action-button-mobile';
 import Image from 'next/image';
-import CartIcon from '@/components/cart-icon';
+import CartIconWrapper from './cart-icon-wrapper';
 
 const linkClass = 'rounded-md px-3 py-3 text-base font-medium hover:bg-muted';
 
-export default function MobileMenu({ isLoggedIn, cartCount = 0 }: { isLoggedIn: boolean; cartCount?: number }) {
+export default function MobileMenu({ isLoggedIn, }: { isLoggedIn: boolean; }) {
   return (
     <Drawer swipeDirection="right">
       <DrawerTrigger render={<Button variant="ghost" size="icon" className="md:hidden" aria-label="Open menu" />}>
@@ -37,7 +37,7 @@ export default function MobileMenu({ isLoggedIn, cartCount = 0 }: { isLoggedIn: 
           </DrawerClose>
 
           <DrawerClose render={<Link href="/cart" />} nativeButton={false} className={`${linkClass} flex items-center gap-3`}>
-            <CartIcon count={cartCount} className="size-5" />
+            <CartIconWrapper className="size-5" />
           </DrawerClose>
 
           <AuthActionButtonMobile isLoggedIn={isLoggedIn} />

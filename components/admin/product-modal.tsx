@@ -6,8 +6,7 @@ import { useFormStatus } from 'react-dom';
 import ProductInfoForm from '@/components/forms/admin/product-info-form';
 //Types
 import type { Product } from '@/types/product';
-import type { Category } from '@/app/types';
-
+import type { Category } from '@/types/category';
 import { X } from 'lucide-react';
 
 import PricingInventoryForm from '@/components/forms/admin/pricing-inventory-form';

@@ -8,8 +8,7 @@ import { deleteProduct } from '@/actions/admin/product-action';
 
 //Types
 import type { Product } from '@/types/product';
-import type { Category } from '@/app/types';
-
+import type { Category } from '@/types/category';
 import Image from 'next/image';
 
 type Props = {

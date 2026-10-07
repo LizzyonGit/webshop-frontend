@@ -6,6 +6,7 @@ import { Toaster } from 'sonner';
 import { cn } from '@/lib/utils';
 import NavigationBar from '@/components/navigation-bar';
 import Footer from '@/components/footer';
+import { TooltipProvider } from '@/components/ui/tooltip';
 
 const notoSansHeading = Noto_Sans({ subsets: ['latin'], variable: '--font-heading' });
 
@@ -56,6 +57,7 @@ export default function RootLayout({
       )}
     >
     <body className="flex min-h-dvh flex-col">
+      <TooltipProvider>
     <NavigationBar />
     <main className="flex-1">
       <div className="container max-w-7xl mx-auto px-6">{children}</div>
@@ -63,6 +65,7 @@ export default function RootLayout({
     <Footer />
     <Toaster richColors position="top-right" />
     <CookieBanner />
+     </TooltipProvider>
     </body>
     </html>
   );
