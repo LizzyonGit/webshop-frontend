@@ -4,8 +4,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 
 import AddToCart from '@/components/add-to-cart';
-import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import GoBackhistoryButton from '@/components/go-back-history-button';
 
 const productRepository = new ProductRepository();
 
@@ -39,10 +38,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
   return (
     <main className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-      <Link href="/" className="mb-6 inline-flex items-center gap-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground">
-        <ArrowLeft className="h-4 w-4" />
-        Tillbaka till produkter
-      </Link>
+      <GoBackhistoryButton />
       <div className="grid gap-10 md:grid-cols-2">
         <div>
           <Image src={`/images/${product.thumbnail}.webp`} width={500} height={500} alt={product.title} loading="eager" />
