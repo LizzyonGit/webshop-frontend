@@ -18,7 +18,7 @@ export default function Checkout({ disabled }: { disabled: boolean }) {
                 disabled ? "opacity-40" : ""
             }`}>
             <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-1">
                     <CardTitle className="text-xl sm:text-2xl font-semibold">2. Checkout</CardTitle>
                     <CardDescription>Please fill out your order to proceed to shipping.</CardDescription>
                 </div>
