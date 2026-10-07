@@ -46,9 +46,6 @@ export interface Product {
   thumbnail: string;
 }
 
-//Category API Responses
-export type ApiResponse<T> = ApiSuccessResponse<T> | ApiErrorResponse;
-
 export interface ProductsResponse {
   products: Product[];
   total: number;
