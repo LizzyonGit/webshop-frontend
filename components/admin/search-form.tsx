@@ -27,7 +27,7 @@ export default function SearchForm({ categories, selectedCategory, selectedStock
         <select name="category" id="category" defaultValue={selectedCategory} className="border border-zinc-200 rounded-sm p-2 grow-2">
           <option value="">All Categories</option>
           {categories.map((category) => (
-            <option value={category.id} key={category.id}>
+            <option value={category.name} key={category.id}>
               {category.name}
             </option>
           ))}

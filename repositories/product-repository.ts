@@ -1,6 +1,6 @@
 import { Prisma } from '@/generated/prisma/client';
 import { prisma } from '@/lib/prisma';
-import { Product, ProductListResponse } from '@/types/product';
+import { CreateProduct, Product, ProductListResponse, UpdateProduct } from '@/types/product';
 
 export class ProductRepository {
   async getProducts(currentPage: number, categoryParams: string, stockParams: string, queryParams: string, sortByParam: string): Promise<ProductListResponse> {
@@ -152,5 +152,44 @@ export class ProductRepository {
 
       throw new Error('Failed to fetch product.');
     }
+  }
+
+  async deleteProduct(productId: string) {
+    return await prisma.product.delete({
+      where: {
+        id: productId,
+      },
+    });
+  }
+
+  async updateProduct(productId: string, product: UpdateProduct) {
+    return await prisma.product.update({
+      where: {
+        id: productId,
+      },
+      data: {
+        title: product.title,
+        description: product.description,
+        brand: product.brand,
+        categoryId: product.categoryId,
+        price: product.price,
+        stock: product.stock,
+      },
+    });
+  }
+
+  async addProduct(product: CreateProduct) {
+    return await prisma.product.create({
+      data: {
+        title: product.title,
+        description: product.description,
+        brand: product.brand,
+        categoryId: product.categoryId,
+        price: product.price,
+        stock: product.stock,
+        slug: product.slug,
+        sku: product.sku,
+      },
+    });
   }
 }
