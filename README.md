@@ -8,26 +8,42 @@ This project uses [json-server](https://github.com/typicode/json-server/tree/v0.
 
 Data in the JSON for the server is from [dummyjson.com](https://dummyjson.com/docs/products) but modified to fit the needs of this project. Most of the endpoints mirrors those in that documentation.
 
+## Table of Contents
+
+- [Features](#features)
+- [Usage](#usage)
+- [Getting Started](#getting-started)
+- [JSON Server Setup](#json-server-setup)
+- [API Endpoints](#api-endpoints)
+- [Architecture](#architecture)
+- [Screenshots](#screenshots)
+- [Technologies](#technologies)
+- [Environment Variables](#environment-variables)
+- [Learn More](#learn-more)
+- [Definition of Done](#definition-of-done)
+- [Authors](#authors)
 
 ## Features
 
 - Browse products
-- Search and filter products
+- Search, filter and sort products
 - View product details
-- Manage a shopping cart
+- Add products to the shopping cart
+- Update quantities, remove products and clear the cart with confirmation
+- View order summary and checkout
 - Create a user account
 - Log in and manage authentication
-- Add products to the shopping cart
 
 ## Usage
 
 1. Open the application.
-2. Browse, search, or filter products.
+2. Browse, search, filter, or sort products.
 3. Click on a product to view its details.
 4. Add products to the shopping cart.
-5. Create an account or log in to access account features.
-4. Add products to the shopping cart.
-...
+5. Update quantities or remove products from the cart.
+6. Review the order summary and proceed to checkout.
+7. Create an account or log in to access account features.
+
 
 
 ## Getting Started
@@ -100,15 +116,19 @@ The mock server (running on port 4000) provides the following endpoints:
 See [json-server documentation](https://github.com/typicode/json-server/tree/v0.17.4) for more information.
 
 #### Pagination
+
 Use `_page` and `_limit` to paginate data:
-- `GET /products?_page=1&_limit=10` (First page, 10 items)
-- `GET /products?_page=2&_limit=10` (Second page, 10 items)
+
+- `GET /products?_page=1&_limit=12` (First page, 12 items)
+- `GET /products?_page=2&_limit=12` (Second page, 12 items)
 
 The response will include the `Link` header with `first`, `prev`, `next`, and `last` links.
 Our custom middleware also adds `X-Total-Count` header and wraps the response to include pagination metadata (total, limit, page, pages).
 
 #### Sorting
+
 Use `_sort` and `_order` to sort data:
+
 - `GET /products?_sort=price&_order=asc` (Sort by price, ascending)
 - `GET /products?_sort=price&_order=desc` (Sort by price, descending)
 - `GET /products?_sort=price,title&_order=desc,asc` (Sort by multiple fields)
@@ -138,9 +158,14 @@ lib/          - Shared utilities and application logic
 
 ## Screenshots
 
-![Sky Market homepage with navigation bar and hero image featuring a handbag, headphones, smartphone, watch and nail polish](...)(image.png)
-![Sky Market product list showing women's watches with search, category and sorting filters](...)(image-1.png)
-![Sky Market product details page showing a car with product information, quantity selector and Add to cart button](...)(image-2.png)
+![Sky Market homepage with navigation bar and hero image featuring a handbag, headphones, smartphone, watch and nail polish](image-3.png)
+![Sky Market product list showing women's watches with search, category and sorting filters](image-4.png)
+![Sky Market product list with pagination and footer navigation](image-7.png)
+![Sky Market car product page with product information, price, quantity selector, Add to cart button and confirmation that the product was added to the cart](image-9.png)
+![Sky Market account login page with email and password fields, login button and account options](image-11.png)
+![Sky Market shopping cart and checkout page for a logged-in user with order summary and quantity controls](image-14.png)
+![Sky Market responsive mobile homepage with hamburger menu and hero image](image-12.png)
+![Sky Market responsive mobile product list with product card and pagination](image-13.png)
 
 
 ## Technologies
@@ -201,6 +226,7 @@ To learn more about Next.js, take a look at the following resources:
 - The feature has been merged into the group's shared development branch.
 - No known critical errors remain.
 - The GitHub issue has been updated.
+- The application has been successfully deployed to Vercel.
 
 ## Authors
 - Patrik Idén
