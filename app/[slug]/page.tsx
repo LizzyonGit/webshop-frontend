@@ -2,9 +2,6 @@ import { ProductRepository } from '@/repositories/product-repository';
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import Image from 'next/image';
-import Input from '@/components/ui/input';
-import { Button } from '@/components/ui/button';
-import { ShoppingCart } from 'lucide-react';
 import AddToCart from '@/components/add-to-cart';
 
 

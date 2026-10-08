@@ -1,11 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import { Menu, ShoppingCart, X } from 'lucide-react';
+import { Menu,  X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
+import { Drawer, DrawerClose, DrawerContent, DrawerHeader, DrawerTitle, DrawerTrigger } from '@/components/ui/drawer';
 import AuthActionButtonMobile from '@/components/auth-action-button-mobile';
-import Image from 'next/image';
 import CartIconWrapper from './cart-icon-wrapper';
 
 const linkClass = 'rounded-md px-3 py-3 text-base font-medium hover:bg-muted';
