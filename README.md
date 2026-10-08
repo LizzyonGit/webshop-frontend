@@ -3,8 +3,8 @@
 Sky Market is an e-commerce web application built with Next.js, React, and TypeScript.
 Users can browse, search and filter products, view product details, manage their shopping cart, and create an account.
 
-
-Sky Market uses Prisma ORM to manage database access. The application uses Next.js API routes for server-side functionality.
+Sky Market uses PostgreSQL as its database and Prisma ORM to manage database access.
+The application uses Next.js API routes for server-side functionality.
 
 ## Table of Contents
 
