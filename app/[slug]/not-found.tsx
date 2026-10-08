@@ -9,7 +9,12 @@ export default function ProductNotFound() {
   const slug = decodeURIComponent(params.slug);
 
   return (
-    <main className="relative left-1/2 w-screen -translate-x-1/2 flex min-h-screen items-center justify-center overflow-hidden bg-muted-foreground" >
+    <main
+      className="relative left-1/2 w-screen -translate-x-1/2 flex min-h-screen items-center justify-center overflow-hidden bg-[url('/hero.png')]
+    bg-size-[120%_auto]
+    bg-center
+    bg-no-repeat"
+    >
       <div className="absolute inset-0 bg-black/60" />
       <div className="relative z-10 text-center text-white">
         <div className="mb-6 flex justify-center">
