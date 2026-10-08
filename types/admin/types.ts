@@ -46,9 +46,6 @@ export interface Product {
   thumbnail: string;
 }
 
-//Category API Responses
-export type ApiResponse<T> = ApiSuccessResponse<T> | ApiErrorResponse;
-
 export interface ProductsResponse {
   products: Product[];
   total: number;
@@ -64,15 +61,4 @@ export interface ProductDeleteResponse {
 
 export interface CategoryResponse {
   categories: Category[];
-}
-
-export interface ApiSuccessResponse<T> {
-  success: true;
-  data: T;
-  message?: string;
-}
-
-export interface ApiErrorResponse {
-  success: false;
-  message: string;
 }

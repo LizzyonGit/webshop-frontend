@@ -7,7 +7,7 @@ export default function Footer() {
       <div className="mx-auto max-w-7xl px-6 py-12">
         <nav aria-label="Footer navigation" className="grid gap-8 md:grid-cols-4">
           <div>
-            <Image src="/sky-market-transparent.png" alt="Sky Market logo" width={200} height={100} className="-mt-2 h-auto w-[120px] object-contain" />
+            <Image src="/sky-market-footer.png" alt="Sky Market logo" width={415} height={151} className="-mt-2 h-auto w-[120px] object-contain" />
 
             <address className="mt-4 text-sm not-italic text-muted-foreground">
               Saturnusgatan 5, 123 45 Stockholm,

@@ -1,99 +1,104 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import ProductService from '@/services/product-service';
-import type { Product } from '@/app/types';
 import { addProductSchema, editProduct } from '@/schemas/validation-schema';
+import { ProductRepository } from '@/repositories/product-repository';
+import { CreateProduct, UpdateProduct } from '@/types/product';
+
+const productRepository = new ProductRepository();
 
 export async function deleteProduct(productId: string) {
-  const response = await ProductService.deleteProduct(productId);
+  try {
+    await productRepository.deleteProduct(productId);
+    // Telling NEXT.JS That product list needs to be updated
+    revalidatePath('/');
 
-  if (!response.success) {
     return {
-      success: response.success,
+      success: true,
+      message: 'Product deleted successfully',
+    };
+  } catch (error) {
+    console.error('Error while deleting product', error);
+    return {
+      success: false,
       message: 'Product could not be deleted',
     };
   }
-
-  // Telling NEXT.JS That product list needs to be updated
-  revalidatePath('/');
-
-  return {
-    success: response.success,
-    message: 'Product deleted successfully',
-  };
 }
 
 // Convert FormData values into the format expected by ProductService
-function getProductFromFormData(formData: FormData): Partial<Product> {
+function getProductFromFormData(formData: FormData): CreateProduct {
+  const title = formData.get('title')?.toString() ?? '';
+
   return {
-    title: String(formData.get('title') ?? ''),
-    description: String(formData.get('description') ?? ''),
-    brand: String(formData.get('brand') ?? ''),
-    tags: String(formData.get('tags') ?? '')
-      .split(',')
-      .map((tag) => tag.trim())
-      .filter(Boolean),
+    title,
+    description: formData.get('description')?.toString() ?? '',
+    brand: formData.get('brand')?.toString() || undefined,
     categoryId: Number(formData.get('categoryId')),
     price: Number(formData.get('price')),
-    discountPercentage: Number(formData.get('discountPercentage')),
     stock: Number(formData.get('stock')),
-    minimumOrderQuantity: Number(formData.get('minimumOrderQuantity')),
-    thumbnail: String(formData.get('thumbnail') ?? ''),
-    images: String(formData.get('images') ?? '')
-      .split(',')
-      .map((image) => image.trim())
-      .filter(Boolean),
-    dimensions: {
-      width: Number(formData.get('width')),
-      height: Number(formData.get('height')),
-      depth: Number(formData.get('depth')),
-    },
+    slug: title.toLowerCase().replace(/\s+/g, '-'),
+    sku: `SKU-${Date.now()}`,
   };
 }
 
-export async function updateProduct(productId: number, _previousState: { success: boolean; message: string }, formData: FormData) {
-  // Validate form data before sending it to the API
+function getUpdateProductFromFormData(formData: FormData): UpdateProduct {
+  return {
+    title: formData.get('title')?.toString() ?? '',
+    description: formData.get('description')?.toString() ?? '',
+    brand: formData.get('brand')?.toString() || undefined,
+    categoryId: Number(formData.get('categoryId')),
+    price: Number(formData.get('price')),
+    stock: Number(formData.get('stock')),
+  };
+}
+
+export async function updateProduct(productId: string, _previousState: { success: boolean; message: string }, formData: FormData) {
   const validation = editProduct.safeParse({
     title: formData.get('title'),
     description: formData.get('description'),
     brand: formData.get('brand'),
     tags: formData.get('tags'),
     categoryId: formData.get('categoryId'),
+
     price: formData.get('price'),
     discountPercentage: formData.get('discountPercentage'),
     stock: formData.get('stock'),
     minimumOrderQuantity: formData.get('minimumOrderQuantity'),
+
     height: formData.get('height'),
     width: formData.get('width'),
     depth: formData.get('depth'),
   });
 
-  // Stop if the form data does not pass validation
   if (!validation.success) {
+    console.log('Update validation errors:', validation.error.issues);
+
     return {
       success: false,
       message: validation.error.issues[0].message,
     };
   }
 
-  const product = getProductFromFormData(formData);
+  try {
+    const product = getUpdateProductFromFormData(formData);
 
-  const response = await ProductService.updateProduct(productId, product);
+    await productRepository.updateProduct(productId, product);
 
-  if (!response.success) {
+    revalidatePath('/');
+
+    return {
+      success: true,
+      message: 'Product updated successfully',
+    };
+  } catch (error) {
+    console.error('Error while updating product:', error);
+
     return {
       success: false,
       message: 'Product could not be updated',
     };
   }
-
-  revalidatePath('/');
-
-  return {
-    success: true,
-    message: 'Product updated successfully',
-  };
 }
 
 export async function createProduct(_previousState: { success: boolean; message: string }, formData: FormData) {
@@ -103,10 +108,12 @@ export async function createProduct(_previousState: { success: boolean; message:
     brand: formData.get('brand'),
     tags: formData.get('tags'),
     categoryId: formData.get('categoryId'),
+
     price: formData.get('price'),
     discountPercentage: formData.get('discountPercentage'),
     stock: formData.get('stock'),
     minimumOrderQuantity: formData.get('minimumOrderQuantity'),
+
     height: formData.get('height'),
     width: formData.get('width'),
     depth: formData.get('depth'),
@@ -119,21 +126,23 @@ export async function createProduct(_previousState: { success: boolean; message:
     };
   }
 
-  const product = getProductFromFormData(formData);
+  try {
+    const product = getProductFromFormData(formData);
 
-  const response = await ProductService.createProduct(product);
+    await productRepository.addProduct(product);
 
-  if (!response.success) {
+    revalidatePath('/');
+
+    return {
+      success: true,
+      message: 'Product created successfully',
+    };
+  } catch (error) {
+    console.error('Error while creating product:', error);
+
     return {
       success: false,
       message: 'Product could not be created',
     };
   }
-
-  revalidatePath('/');
-
-  return {
-    success: true,
-    message: 'Product created successfully',
-  };
 }

@@ -5,7 +5,12 @@ import { CircleAlert } from 'lucide-react';
 
 export default function Error({ error, reset }: { error: Error & { digest?: string }; reset: () => void }) {
   return (
-    <main className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat" style={{ backgroundImage: "url('/hero.png')" }}>
+    <main
+      className="min-h-screen flex items-center justify-center overflow-hidden bg-[url('/hero.png')]
+    bg-size-[120%_auto]
+    bg-center
+    bg-no-repeat"
+    >
       <div className="absolute inset-0 bg-black/60" />
       <div className="relative z-10 text-center text-white">
         <div className="mb-6 flex justify-center">
