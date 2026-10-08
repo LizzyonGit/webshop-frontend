@@ -99,7 +99,7 @@ export class ProductRepository {
         slug: product.slug,
         category: product.category.name,
         brand: product.brand,
-        humbnail: product.slug,
+        thumbnail: product.slug,
         price: Number(product.price),
         stock: product.stock,
         description: product.description,
