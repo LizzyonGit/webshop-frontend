@@ -174,7 +174,7 @@ npm run prisma:studio
 
 ### Admin Account Setup
 
-- There are no seeded Users in the database.
+- There are no seeded Admins in the database.
 - Run the application and sign up as a new user.
 - When the user is created. Open up Prisma Studio to assign the user the Admin role.
 
