@@ -20,3 +20,23 @@ export type ProductListResponse = {
   pageSize: number;
   totalPages: number;
 };
+
+export type CreateProduct = {
+  title: string;
+  description: string;
+  price: number;
+  categoryId: number;
+  stock: number;
+  brand?: string;
+  slug: string;
+  sku: string;
+};
+
+export type UpdateProduct = {
+  title: string;
+  description: string;
+  price: number;
+  categoryId: number;
+  stock: number;
+  brand?: string;
+};

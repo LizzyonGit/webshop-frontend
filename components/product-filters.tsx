@@ -72,7 +72,7 @@ export default async function ProductFiltering({ categoryParam, sortByParam, sea
         <div
           className="
             min-w-0
-            lg:w-[210px] lg:shrink-0
+            lg:w-52.5 lg:shrink-0
           "
         >
           <label htmlFor="category" className="sr-only">
@@ -96,7 +96,7 @@ export default async function ProductFiltering({ categoryParam, sortByParam, sea
               focus:ring-1 focus:ring-zinc-200
             "
           >
-            <option value="">All Categories</option>
+            <option value="">Categories</option>
 
             {categories.map((category) => (
               <option value={category.name} key={category.id}>
@@ -110,7 +110,7 @@ export default async function ProductFiltering({ categoryParam, sortByParam, sea
         <div
           className="
             min-w-0
-            lg:w-[150px] lg:shrink-0
+            lg:w-37.5 lg:shrink-0
           "
         >
           <label htmlFor="sortBy" className="sr-only">
