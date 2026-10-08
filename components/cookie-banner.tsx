@@ -54,16 +54,16 @@ export default function CookieBanner() {
           Cookies
         </h2>
 
-        <p className="text-sm leading-6 text-gray-600">Vi använder cookies för att analysera trafik och förbättra webbplatsen. Du kan välja att acceptera eller neka.</p>
+        <p className="text-sm leading-6 text-gray-600">We use cookies to analyze traffic and improve the website. You can choose to accept or decline.</p>
       </div>
 
       <div className="mt-5 flex justify-center gap-3">
         <Button type="button" variant="secondary" onClick={declineCookie}>
-          Neka
+          Decline
         </Button>
 
         <Button type="button" variant="default" onClick={acceptCookie}>
-          Acceptera
+          Accept
         </Button>
       </div>
     </aside>
