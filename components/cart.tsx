@@ -45,13 +45,13 @@ return (
                 </div>
                 <div className="flex flex-col gap-1">
                     <CardAction className="">
-                        <Button variant="link" className="px-0">
-                            <Link href ="/" className="flex items-center gap-2">
+                            {/*since i removed the button, i added all button styles to the link below*/}
+                            <Link href ="/" className="inline-flex min-h-11 shrink-0 items-center justify-center gap-1.5 rounded-2xl border border-transparent bg-clip-padding px-0 text-sm font-medium whitespace-nowrap text-primary underline-offset-4 transition-all outline-none select-none hover:underline focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/30 [&_svg:not([class*='size-'])]:size-4">
                             <ArrowLeft />
                             {items.length === 0
                         ? "Shop now"
                         : "Shop more"}</Link>{/*Shop more takes less space than Continue shopping*/}
-                        </Button>
+                        
                     </CardAction>
                 </div>
             </CardHeader>
