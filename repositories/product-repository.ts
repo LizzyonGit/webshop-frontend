@@ -99,12 +99,14 @@ export class ProductRepository {
         slug: product.slug,
         category: product.category.name,
         brand: product.brand,
-        humbnail: product.slug,
+        thumbnail: product.slug,
         price: Number(product.price),
         stock: product.stock,
         description: product.description,
         sku: product.sku,
         added: product.createdAt.toISOString(),
+        discountPercentage: 0, //TODO: FIX THIS
+        minimumOrderQuantity: 0, //TODO: FIX THIS
       }));
 
       return {
@@ -146,6 +148,8 @@ export class ProductRepository {
         description: product.description,
         sku: product.sku,
         added: product.createdAt.toISOString(),
+        discountPercentage: 0, //TODO: FIX THIS
+        minimumOrderQuantity: 0, //TODO: FIX THIS
       };
     } catch (error) {
       console.error('Failed to get product:', error);

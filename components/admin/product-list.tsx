@@ -70,7 +70,7 @@ export default function ProductList({ products, currentPage, totalPages, categor
                   <th scope="row" className="px-6 py-4 text-left font-bold text-black">
                     <div className="flex items-center gap-3">
                       <Image
-                        src={product.thumbnail || '/placeholder.png'}
+                        src={product.thumbnail ? `/images/${product.thumbnail}.webp` : '/placeholder.png'}
                         alt={`${product.title} product image`}
                         width={50}
                         height={50}

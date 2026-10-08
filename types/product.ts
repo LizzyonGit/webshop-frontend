@@ -11,6 +11,8 @@ export type Product = {
   thumbnail?: string;
   added: string;
   sku: string;
+  discountPercentage: number;
+  minimumOrderQuantity: number;
 };
 
 export type ProductListResponse = {
