@@ -91,7 +91,7 @@ data/         - Contains products.json file used when seeding the database
 docs/         - Documentation for the project
 generated/    - Generated Prisma client and files
 hooks/        - Custom hooks for managing state and logic
-lib/          - Shared utilities and application logic
+lib/          - Third-party libraries, utilities and application logic
 mapping/      - Mapping functions for data transformation and manipulation
 prisma/       - Database schema, migrations, and seed script 
 public/       - Static files and images
