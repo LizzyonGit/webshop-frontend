@@ -56,7 +56,7 @@ export default async function ProductsTable({ searchParams }: ProductsTableProps
               </div>
 
               <CardHeader>
-                <CardTitle className="flex">
+                <CardTitle className="flex gap-1">
                   {product.title}
                   <Badge variant="default" className="ml-auto">
                     {product.category}
