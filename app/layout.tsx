@@ -35,16 +35,16 @@ export const metadata: Metadata = {
   description: 'Buy high quality products from trusted seller with fast delivery and easy return with Sky Market',
 };
 
-
 export default function RootLayout({
-                                     children,
-                                   }: Readonly<{
+  children,
+}: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html
       lang="en"
       className={cn(
+        'dark',
         'h-full',
         'antialiased',
         geistSans.variable,
@@ -56,17 +56,17 @@ export default function RootLayout({
         'scrollbar-gutter-stable',
       )}
     >
-    <body className="flex min-h-dvh flex-col">
-      <TooltipProvider>
-    <NavigationBar />
-    <main className="flex-1">
-      <div className="container max-w-7xl mx-auto px-6">{children}</div>
-    </main>
-    <Footer />
-    <Toaster richColors position="top-right" />
-    <CookieBanner />
-     </TooltipProvider>
-    </body>
+      <body className="flex min-h-dvh flex-col">
+        <TooltipProvider>
+          <NavigationBar />
+          <main className="flex-1">
+            <div className="container max-w-7xl mx-auto px-6">{children}</div>
+          </main>
+          <Footer />
+          <Toaster richColors position="top-right" />
+          <CookieBanner />
+        </TooltipProvider>
+      </body>
     </html>
   );
 }
