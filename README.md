@@ -231,4 +231,7 @@ This project is licensed under the MIT License.
 - PostgreSQL (https://www.postgresql.org/)
 - TypeScript (https://www.typescriptlang.org/)
 - Lucid Icons (https://lucide.dev/)
+- TinyPNG (https://tinypng.com/)
+- ChatGPT (https://chatgpt.com/)
+- Copilot (https://copilot.com/)
 
