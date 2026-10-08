@@ -4,7 +4,7 @@ export type ActionResponse = {
   errors?: Record<string, string[]>;
 };
 
-export type ActionSignInEmailAction = {
+export type SignInEmailAction = {
   success: boolean;
   message: string;
   errors?: Record<string, string[]>;
