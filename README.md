@@ -181,7 +181,7 @@ npm run prisma:studio
 
 ## Deloyment on Vercel
 
-(https://webshop-frontend-2.vercel.app/)
+https://webshop-frontend-2.vercel.app/
 
 ## Future Additions
 
