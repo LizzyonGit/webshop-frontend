@@ -13,7 +13,6 @@ export type Product = {
   sku: string;
   discountPercentage: number;
   minimumOrderQuantity: number;
-  tags: string[];
 };
 
 export type ProductListResponse = {

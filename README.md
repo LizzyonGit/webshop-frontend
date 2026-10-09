@@ -103,14 +103,14 @@ utils/        - Reusable utilities functions
 
 ## Screenshots
 
-![Sky Market homepage with navigation bar and hero image featuring a handbag, headphones, smartphone, watch and nail polish](image-3.png)
-![Sky Market product list showing women's watches with search, category and sorting filters](image-4.png)
-![Sky Market product list with pagination and footer navigation](image-7.png)
-![Sky Market car product page with product information, price, quantity selector, Add to cart button and confirmation that the product was added to the cart](image-9.png)
-![Sky Market account login page with email and password fields, login button and account options](image-11.png)
-![Sky Market shopping cart and checkout page for a logged-in user with order summary and quantity controls](image-14.png)
-![Sky Market responsive mobile homepage with hamburger menu and hero image](image-12.png)
-![Sky Market responsive mobile product list with product card and pagination](image-13.png)
+![Sky Market homepage with navigation bar and hero image featuring a handbag, headphones, smartphone, watch and nail polish](docs/screenshots/image-3.png)
+![Sky Market product list showing women's watches with search, category and sorting filters](docs/screenshots/image-4.png)
+![Sky Market product list with pagination and footer navigation](docs/screenshots/image-7.png)
+![Sky Market car product page with product information, price, quantity selector, Add to cart button and confirmation that the product was added to the cart](docs/screenshots/image-9.png)
+![Sky Market account login page with email and password fields, login button and account options](docs/screenshots/image-11.png)
+![Sky Market shopping cart and checkout page for a logged-in user with order summary and quantity controls](docs/screenshots/image-14.png)
+![Sky Market responsive mobile homepage with hamburger menu and hero image](docs/screenshots/image-12.png)
+![Sky Market responsive mobile product list with product card and pagination](docs/screenshots/image-13.png)
 
 
 ## Technologies

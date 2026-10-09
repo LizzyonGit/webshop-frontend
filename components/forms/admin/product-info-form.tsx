@@ -42,21 +42,6 @@ export default function ProductInfoForm({ categories, product }: Props) {
         </div>
 
         <div>
-          <label htmlFor="tags" className="block text-sm font-medium text-foreground">
-            Tags
-          </label>
-
-          <input
-            id="tags"
-            name="tags"
-            type="text"
-            placeholder="Tags separated by commas"
-            defaultValue={product?.tags?.join(', ') ?? ''}
-            className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-foreground"
-          />
-        </div>
-
-        <div>
           <label htmlFor="categoryId" className="block text-sm font-medium text-foreground">
             Category
           </label>

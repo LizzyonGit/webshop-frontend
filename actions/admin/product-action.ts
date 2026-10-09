@@ -1,7 +1,7 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { addProductSchema, editProduct } from '@/schemas/validation-schema';
+import { addProductSchema, editProduct } from '@/lib/validation/validation-schema';
 import { ProductRepository } from '@/repositories/product-repository';
 import { CreateProduct, UpdateProduct } from '@/types/product';
 import { saveProductImage } from '@/utils/product-image-saver';

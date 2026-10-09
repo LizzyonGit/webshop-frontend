@@ -20,7 +20,7 @@ export default function Orders({ orders }: OrdersProps) {
 
       {orders.length === 0 ? (
         <div className="py-12 text-center">
-          <p className="text-muted-foreground">You haven't placed any orders yet.</p>
+          <p className="text-muted-foreground">You haven&apos;t placed any orders yet.</p>
         </div>
       ) : (
         <div className="divide-y">
