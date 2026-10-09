@@ -9,7 +9,7 @@ export default function Hero() {
         <div className="absolute inset-0 bg-black/30" />
         <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white">
-            <h1 className="text-5xl font-bold tracking-wider">Reach for the sky!</h1>
+            <h1 className="text-2xl font-bold tracking-wider sm:text-3xl md:text-4xl lg:text-5xl">Reach for the sky!</h1>
             <p className="mt-4 text-lg drop-shadow-md sm:text-xl">Discover products made for you</p>
           </div>
         </div>
