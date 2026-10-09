@@ -2,11 +2,11 @@
 
 import { auth } from '@/lib/auth';
 import { loginSchema } from '@/lib/validation/user';
-import { ActionSignInEmailAction } from '@/types/action-response';
+import { SignInEmailAction } from '@/types/action-response';
 import { isAPIError } from 'better-auth/api';
 import { headers } from 'next/headers';
 
-export async function signInEmailAction(formData: FormData): Promise<ActionSignInEmailAction> {
+export async function signInEmailAction(formData: FormData): Promise<SignInEmailAction> {
   const email = formData.get('email')?.toString().trim() ?? '';
   const password = formData.get('password')?.toString() ?? '';
 
