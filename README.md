@@ -19,7 +19,7 @@ Sky Market uses PostgreSQL (Supabase) as its database and Prisma 7 ORM to manage
 - [Database Setup](#database-setup)
 - [User Account Setup](#user-account-setup)
 - [Admin Account Setup](#admin-account-setup)
-- [Deloyment on Vercel](#deployment-on-vercel)
+- [Deloyment on Vercel](#deloyment-on-vercel)
 - [Future Additions](#future-additions)
 - [Definition of Done](#definition-of-done)
 - [License](#license)
