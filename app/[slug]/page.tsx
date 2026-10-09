@@ -42,8 +42,7 @@ export default async function ProductPage({ params }: ProductPageProps) {
       <div className="grid gap-10 md:grid-cols-2">
         <div>
           <Image src={`/images/${product.thumbnail}.webp`} width={500} height={500} alt={product.title} loading="eager" />
-
-          <Image src={`/thumbnails/${product.slug}.webp`} width={50} height={50} alt={product.title} className="mt-4 rounded-md border" />
+          <Image src={`/images/${product.thumbnail}.webp`} width={50} height={50} alt={product.title} className="mt-4 rounded-md border" />
         </div>
 
         <div>

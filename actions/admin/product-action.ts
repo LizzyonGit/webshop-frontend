@@ -4,6 +4,7 @@ import { revalidatePath } from 'next/cache';
 import { addProductSchema, editProduct } from '@/schemas/validation-schema';
 import { ProductRepository } from '@/repositories/product-repository';
 import { CreateProduct, UpdateProduct } from '@/types/product';
+import { saveProductImage } from '@/utils/product-image-saver';
 
 const productRepository = new ProductRepository();
 
@@ -27,8 +28,16 @@ export async function deleteProduct(productId: string) {
 }
 
 // Convert FormData values into the format expected by ProductService
-function getProductFromFormData(formData: FormData): CreateProduct {
+async function getProductFromFormData(formData: FormData): Promise<CreateProduct> {
   const title = formData.get('title')?.toString() ?? '';
+
+  const slug = title.toLowerCase().trim().replace(/\s+/g, '-');
+
+  const image = formData.get('thumbnail');
+
+  if (image instanceof File && image.size > 0) {
+    await saveProductImage(image, slug);
+  }
 
   return {
     title,
@@ -37,7 +46,7 @@ function getProductFromFormData(formData: FormData): CreateProduct {
     categoryId: Number(formData.get('categoryId')),
     price: Number(formData.get('price')),
     stock: Number(formData.get('stock')),
-    slug: title.toLowerCase().replace(/\s+/g, '-'),
+    slug,
     sku: `SKU-${Date.now()}`,
   };
 }
@@ -127,7 +136,7 @@ export async function createProduct(_previousState: { success: boolean; message:
   }
 
   try {
-    const product = getProductFromFormData(formData);
+    const product = await getProductFromFormData(formData);
 
     await productRepository.addProduct(product);
 
