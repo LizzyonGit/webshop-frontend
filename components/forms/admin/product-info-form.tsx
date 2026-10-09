@@ -40,7 +40,7 @@ export default function ProductInfoForm({ categories, product }: Props) {
 
           <input id="brand" name="brand" type="text" defaultValue={product?.brand ?? ''} className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-foreground" />
         </div>
-
+        {/* 
         <div>
           <label htmlFor="tags" className="block text-sm font-medium text-foreground">
             Tags
@@ -54,7 +54,7 @@ export default function ProductInfoForm({ categories, product }: Props) {
             defaultValue={product?.tags?.join(', ') ?? ''}
             className="mt-1 w-full rounded-lg border border-gray-300 px-3 py-2 text-foreground"
           />
-        </div>
+        </div> */}
 
         <div>
           <label htmlFor="categoryId" className="block text-sm font-medium text-foreground">
@@ -64,7 +64,7 @@ export default function ProductInfoForm({ categories, product }: Props) {
           <select
             name="categoryId"
             id="categoryId"
-            defaultValue={product?.categoryId?.toString() ?? '0'}
+            defaultValue={product?.category?.toString() ?? '0'}
             className="mt-1 w-full rounded-lg border border-gray-300 bg-background px-3 py-2 text-foreground"
           >
             <option value="0" disabled>
