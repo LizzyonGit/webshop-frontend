@@ -38,7 +38,7 @@ export default async function DashboardPage() {
               <Smile className="h-8 w-8" />
               Hello, {session.user.name}!
             </h1>
-            <p className="mt-2 text-muted-foreground">Heres an overview of your orders.</p>
+            <p className="mt-2 text-muted-foreground">Here's an overview of your orders.</p>
           </div>
 
           <LogoutButton />

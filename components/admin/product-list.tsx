@@ -22,6 +22,7 @@ type Props = {
 };
 
 export default function ProductList({ products, currentPage, totalPages, categoryParam, categories, stockParam, queryParam }: Props) {
+  console.log('PRODUCTS', products);
   return (
     <section aria-labelledby="products-heading" className="mt-6 rounded-xl border border-gray-200 bg-white">
       <h2 id="products-heading" className="sr-only">
@@ -78,7 +79,6 @@ export default function ProductList({ products, currentPage, totalPages, categor
                       />
                       <div>
                         <p className="font-semibold text-gray-900">{product.title}</p>
-
                         <p className="text-xs text-gray-500">SKU: {product.sku}</p>
                       </div>
                     </div>
