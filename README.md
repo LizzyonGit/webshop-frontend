@@ -19,6 +19,7 @@ Sky Market uses PostgreSQL (Supabase) as its database and Prisma 7 ORM to manage
 - [Database Setup](#database-setup)
 - [User Account Setup](#user-account-setup)
 - [Admin Account Setup](#admin-account-setup)
+- [Deloyment on Vercel](#deployment-on-vercel)
 - [Future Additions](#future-additions)
 - [Definition of Done](#definition-of-done)
 - [License](#license)
@@ -178,6 +179,9 @@ npm run prisma:studio
 - Run the application and sign up as a new user.
 - When the user is created. Open up Prisma Studio to assign the user the Admin role.
 
+## Deloyment on Vercel
+
+(https://webshop-frontend-2.vercel.app/)
 
 ## Future Additions
 
