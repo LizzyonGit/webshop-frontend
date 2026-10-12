@@ -38,8 +38,8 @@ export default function AddToCart({ product }: { product: CartProduct }) {
     <div className="flex flex-col gap-2">
       <span className="mb-2 block font-medium">Quantity</span>
 
-      <div className="w-24">
-        <div className="flex items-center rounded-xl border-2">
+      <div className="">
+        <div className="flex items-center justify-between rounded-xl border-2">
           <Button
             type="button"
             variant="ghost"
