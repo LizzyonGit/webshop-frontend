@@ -183,17 +183,22 @@ export class ProductRepository {
   }
 
   async addProduct(product: CreateProduct) {
-    return await prisma.product.create({
-      data: {
-        title: product.title,
-        description: product.description,
-        brand: product.brand,
-        categoryId: product.categoryId,
-        price: product.price,
-        stock: product.stock,
-        slug: product.slug,
-        sku: product.sku,
-      },
-    });
+    try {
+      return await prisma.product.create({
+        data: {
+          title: product.title,
+          description: product.description,
+          brand: product.brand,
+          categoryId: product.categoryId,
+          price: product.price,
+          stock: product.stock,
+          slug: product.slug,
+          sku: product.sku,
+        },
+      });
+    } catch (error) {
+      console.error('CREATE PROUDCT REPOSITORY ERROR', error);
+      return null;
+    }
   }
 }

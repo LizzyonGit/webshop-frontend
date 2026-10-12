@@ -67,7 +67,7 @@ export async function updateProduct(productId: string, _previousState: { success
     title: formData.get('title'),
     description: formData.get('description'),
     brand: formData.get('brand'),
-    tags: formData.get('tags'),
+
     categoryId: formData.get('categoryId'),
 
     price: formData.get('price'),
@@ -115,7 +115,7 @@ export async function createProduct(_previousState: { success: boolean; message:
     title: formData.get('title'),
     description: formData.get('description'),
     brand: formData.get('brand'),
-    tags: formData.get('tags'),
+
     categoryId: formData.get('categoryId'),
 
     price: formData.get('price'),

@@ -5,7 +5,7 @@ export const addProductSchema = z.object({
   title: z.string().trim().min(3, 'The title must be at least 3 character.').max(30, 'Title can maximum be 30 character long.'),
   description: z.string().trim().min(1, 'Description is required.'),
   brand: z.string().trim().min(1, 'Brand is requried'),
-  tags: z.string().trim().min(1, 'At least one tag is required.'),
+
   categoryId: z.string().refine((value) => value !== '0', {
     message: 'Please select a category.',
   }),
